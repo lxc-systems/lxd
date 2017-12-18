@@ -1,3 +1,4 @@
 compile.log
 compile-errors.log
 doc/
+.temp/
