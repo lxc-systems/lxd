@@ -1,4 +1,5 @@
 compile.log
 compile-errors.log
+ext/
 doc/
 .temp/
