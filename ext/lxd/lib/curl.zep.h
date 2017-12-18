@@ -8,9 +8,10 @@ PHP_METHOD(Lxd_Lib_Curl, get);
 PHP_METHOD(Lxd_Lib_Curl, post);
 PHP_METHOD(Lxd_Lib_Curl, put);
 PHP_METHOD(Lxd_Lib_Curl, delete);
+zend_object *zephir_init_properties_Lxd_Lib_Curl(zend_class_entry *class_type TSRMLS_DC);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, config)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl___construct, 0, 0, 0)
+	ZEND_ARG_ARRAY_INFO(0, config, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl_get, 0, 0, 1)

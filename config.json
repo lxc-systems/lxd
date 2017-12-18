@@ -60,5 +60,9 @@
     "verbose": false,
     "requires": {
         "extensions": []
+    },
+    "package-dependencies": {
+        "openssl": "*",
+        "libcurl": "*"
     }
 }

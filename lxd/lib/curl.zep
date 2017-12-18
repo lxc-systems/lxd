@@ -2,17 +2,20 @@ namespace Lxd\Lib;
 
 class Curl
 {
-    private config;
-    private curl_options;
+
+    private config  = [];
+    private options = [];
 
     /**
      *
      */
-    public function __construct(config) -> void
+    public function __construct(array config = []) -> void
     {
+        //
         let this->config = config;
 
-        let this->curl_options = [
+        //
+        let this->options = [
             CURLOPT_RETURNTRANSFER : true,
             CURLOPT_SSL_VERIFYPEER : false,
             CURLOPT_SSL_VERIFYHOST : false,
@@ -23,148 +26,115 @@ class Curl
 
         //
         if (this->config["certificate_path"] && this->config["ip"]) {
-            let this->curl_options[CURLOPT_SSLKEY]  = this->config["certificate_path"]."/".this->config["ip"]."/private.key";
-            let this->curl_options[CURLOPT_SSLCERT] = this->config["certificate_path"]."/".this->config["ip"]."/client.pem";
+            let this->options[CURLOPT_SSLKEY]  = this->config["certificate_path"]."/".this->config["ip"]."/private.key";
+            let this->options[CURLOPT_SSLCERT] = this->config["certificate_path"]."/".this->config["ip"]."/client.pem";
         }
     }
 
     /**
-     *  GET request
-     *  @param  string      Resource to fetch
-     *  @param  array       Associative array with additional parameters
-     *  @return array       Associative array with the result
+     *  GET
      */
-    public function get(url, array parameters = []) -> array
+    public function get(string url, array parameters = []) -> array
     {
-        var query, curl, response, httpCode;
+        var query, curl, response;
 
         //
         let query = http_build_query(parameters);
 
         //
-        let curl =  curl_init(url.(!empty(query) ? "?".query : null));
+        let curl = curl_init(url.(!empty query ? "?".query : null));
 
         //
-        curl_setopt_array(curl, this->curl_options);
+        curl_setopt_array(curl, this->options);
 
         //
-        let response = curl_exec(curl);
-        let httpCode = curl_getinfo(curl, CURLINFO_HTTP_CODE);
-
-        //
-        curl_close(curl);
-
-        //
-        let response = json_decode(response, true);
-
-        return (array) response;
-    }
-
-    /**
-     *  Do a POST request
-     *  @param  string      Resource name
-     *  @param  array       Associative array with data to post
-     *  @return mixed       False on failure or the id of the created item           
-     */
-    public function post(url, array parameters = []) -> array
-    {
-        var curl, response, httpCode;
-
-        //
-        let curl =  curl_init(url);
-
-        //
-        let this->curl_options[CURLOPT_POST] = true;
-        let this->curl_options[CURLOPT_POSTFIELDS] = json_encode(parameters);
-
-        //
-        curl_setopt_array(curl, this->curl_options);
-
-        //
-        let response = curl_exec(curl);
-        let httpCode = curl_getinfo(curl, CURLINFO_HTTP_CODE);
+        let response = (string) curl_exec(curl);
 
         //
         curl_close(curl);
 
         //
-        if !(httpCode) || httpCode == 400 {
-            //return false;
-        }
-
-        //
-        return json_decode(response, true);
+        return (array) json_decode(response, true);
     }
 
     /**
-     *  Do a PUT request
-     *  @param  string      Resource name
-     *  @param  array       Associative array with data to post
-     *  @param  array       Associative array with additional parameters
-     *  @return bool
+     *  POST         
      */
-    public function put(url, array parameters = []) -> array
+    public function post(string url, array parameters = []) -> array
     {
-        var curl, response, httpCode;
+        var curl, response;
 
         //
         let curl = curl_init(url);
 
         //
-        let this->curl_options[CURLOPT_CUSTOMREQUEST] = "PUT";
-        let this->curl_options[CURLOPT_POSTFIELDS] = json_encode(parameters);
+        let this->options[CURLOPT_POST] = true;
+        let this->options[CURLOPT_POSTFIELDS] = json_encode(parameters);
 
         //
-        curl_setopt_array(curl, this->curl_options);
+        curl_setopt_array(curl, this->options);
 
         //
-        let response = curl_exec(curl);
-        let httpCode = curl_getinfo(curl, CURLINFO_HTTP_CODE);
+        let response = (string) curl_exec(curl);
 
         //
         curl_close(curl);
 
         //
-        if !(httpCode) || httpCode == 400 {
-            //return false;
-        }
-
-        //
-        return json_decode(response, true);
+        return (array) json_decode(response, true);
     }
 
     /**
-     *  Do a DELETE request
-     *  @param  string      Resource name
-     *  @return bool
+     *  PUT
      */
-    public function delete(url) -> bool
+    public function put(string url, array parameters = []) -> array
     {
-        var curl, response, httpCode;
+        var curl, response;
 
         //
-        let curl =  curl_init(url);
+        let curl = curl_init(url);
 
         //
-        let this->curl_options[CURLOPT_CUSTOMREQUEST] = "DELETE";
+        let this->options[CURLOPT_CUSTOMREQUEST] = "PUT";
+        let this->options[CURLOPT_POSTFIELDS] = json_encode(parameters);
 
         //
-        curl_setopt_array(curl, this->curl_options);
+        curl_setopt_array(curl, this->options);
 
         //
-        let response = curl_exec(curl);
-        let httpCode = curl_getinfo(curl, CURLINFO_HTTP_CODE);
+        let response = (string) curl_exec(curl);
 
         //
         curl_close(curl);
 
         //
-        if !(httpCode) || httpCode == 400 {
-            //return false;
-        }
+        return (array) json_decode(response, true);
+    }
+
+    /**
+     *  DELETE
+     */
+    public function delete(string url) -> array
+    {
+        var curl, response;
 
         //
-        return json_decode(response, true);
+        let curl = curl_init(url);
+
+        //
+        let this->options[CURLOPT_CUSTOMREQUEST] = "DELETE";
+
+        //
+        curl_setopt_array(curl, this->options);
+
+        //
+        let response = (string) curl_exec(curl);
+
+        //
+        curl_close(curl);
+
+        //
+        return (array) json_decode(response, true);
     }
 
 }
