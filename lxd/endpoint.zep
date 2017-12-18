@@ -5,7 +5,7 @@ class Endpoint
     protected config;
     protected curl;
     protected endpoint;
-    
+
     public function __construct(array config, curl, string endpoint = "")
     {
         let this->config   = config;

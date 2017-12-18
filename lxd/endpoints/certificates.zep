@@ -6,18 +6,18 @@ class Certificates extends Endpoint
 {
     protected curl;
     private endpoint;
-    
+
     public function __construct(config, curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
-        
+
         let this->endpoint = this->config["url"]."/".this->config["version"]."/".this->config["endpoint"];
     }
-        
+
     public function all() -> array
     {
         var response = this->curl->get(this->endpoint);
-        
+
         var certificate;
         var certificates = [];
         for certificate in (array) response["metadata"] {
@@ -25,7 +25,7 @@ class Certificates extends Endpoint
         }
         return certificates;
     }
-    
+
     public function add(certificate, string password = null, string name = null) -> array
     {
         var begin, end, pem_data, der, fingerprint, options;
@@ -44,22 +44,22 @@ class Certificates extends Endpoint
             let options["password"] = password;
         }
         if (name !== null) {
-           let options["name"] = name;
+            let options["name"] = name;
         }
 
         return this->curl->post(this->endpoint, options);
     }
-    
+
     public function info(fingerprint) -> array
     {
         return this->curl->get(this->endpoint."/".fingerprint);
     }
-    
+
     public function delete(fingerprint) -> bool
     {
         return this->remove(fingerprint);
     }
-    
+
     public function remove(fingerprint) -> bool
     {
         return this->curl->delete(this->endpoint."/".fingerprint);
