@@ -138,14 +138,14 @@ class Containers extends Endpoint
     {
         return this->setState(name, "unfreeze", timeout, force, stateful, wait);
     }
-    
+
     /**
      *
      */
     private function getSource(array options) -> array
     {
         var only, opts, attr;
-        
+
         if isset options["source"] {
             let only = [
                 "type",
@@ -163,12 +163,12 @@ class Containers extends Endpoint
                 "properties",
                 "live"
             ];
-            
+
             let opts = array_intersect_key(options, array_flip(only));
-            
+
             return opts["source"];
         }
-        
+
         for attr in ["alias", "fingerprint", "properties"] {
             if isset options[attr] && !empty options[attr] {
                 return [attr : options[attr]];
@@ -176,11 +176,11 @@ class Containers extends Endpoint
         }
         return [];
     }
-    
+
     private function getOptions(string name, array options) -> array
     {
         var only, opts;
-        
+
         let only = [
             "architecture",
             "profiles",
@@ -188,17 +188,17 @@ class Containers extends Endpoint
             "config",
             "devices"
         ];
-        
+
         let opts         = array_intersect_key(options, array_flip(only));
         let opts["name"] = name;
-        
+
         return opts;
     }
-    
+
     private function getEmptyOptions(string name, array options) -> array
     {
         var attrs, attr, opts;
-        
+
         let attrs = [
             "alias",
             "fingerprint",
@@ -208,63 +208,63 @@ class Containers extends Endpoint
             "protocol",
             "certificate"
         ];
-        
+
         for attr in attrs {
             if isset options[attr] && !empty options[attr] {
                 throw new \Exception("empty => true is not compatible with ".attr);
             }
         }
-        
+
         let opts                   = this->getOptions(name, options);
         let opts["source"]["type"] = "none";
-        
+
         return opts;
     }
-    
+
     private function getRemoteImageOptions(string name, array source, array options) -> array
     {
         var only, opts, remoteOptions;
-        
+
         if isset options["protocol"] && !in_array(options["protocol"], ["lxd", "simplestreams"]) {
             throw new \Exception("Invalid protocol.  Valid choices: lxd, simplestreams");
         }
-        
+
         let only = [
             "server",
             "secret",
             "protocol",
             "certificate"
         ];
-        
+
         let remoteOptions          = array_intersect_key(options, array_flip(only));
         let opts                   = this->getOptions(name, options);
         let opts["source"]         = array_merge(source, remoteOptions);
         let opts["source"]["type"] = "image";
         let opts["source"]["mode"] = "pull";
-        
+
         return opts;
     }
-    
+
     private function getLocalImageOptions(string name, array source, array options) -> array
     {
         var attrs, attr, opts;
-        
+
         let attrs = [
             "secret",
             "protocol",
             "certificate"
         ];
-        
+
         for attr in attrs {
             if isset options[attr] && !empty options[attr] {
                 throw new \Exception("Only setting remote server is compatible with ".attr);
             }
         }
-        
+
         let opts                   = this->getOptions(name, options);
         let opts["source"]         = source;
         let opts["source"]["type"] = "image";
-        
+
         return opts;
     }
 
@@ -274,13 +274,13 @@ class Containers extends Endpoint
     public function create(string name, array options, boolean wait = false) -> array
     {
         var source, opts, response;
-        
+
         let source = this->getSource(options);
 
         if (isset options["empty"] && empty options["empty"]) && empty source {
             throw new \Exception("Source empty");
         }
-        
+
         if isset options["empty"] && empty options["empty"] {
             let opts = this->getOptions(name, options);
             let opts["source"] = source;
@@ -293,7 +293,7 @@ class Containers extends Endpoint
         }
 
         let response = this->curl->post(this->endpoint, opts);
-        
+
         if wait {
             let response = this->curl->get(this->endpoint."/".response["metadata"]["id"]."/wait");
         }
