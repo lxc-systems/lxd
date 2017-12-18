@@ -1,0 +1,23 @@
+
+extern zend_class_entry *lxd_endpoint_ce;
+
+ZEPHIR_INIT_CLASS(Lxd_Endpoint);
+
+PHP_METHOD(Lxd_Endpoint, __construct);
+PHP_METHOD(Lxd_Endpoint, __get);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoint___construct, 0, 0, 2)
+	ZEND_ARG_ARRAY_INFO(0, config, 0)
+	ZEND_ARG_INFO(0, curl)
+	ZEND_ARG_INFO(0, endpoint)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoint___get, 0, 0, 1)
+	ZEND_ARG_INFO(0, method)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(lxd_endpoint_method_entry) {
+	PHP_ME(Lxd_Endpoint, __construct, arginfo_lxd_endpoint___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Lxd_Endpoint, __get, arginfo_lxd_endpoint___get, ZEND_ACC_PUBLIC)
+	PHP_FE_END
+};
