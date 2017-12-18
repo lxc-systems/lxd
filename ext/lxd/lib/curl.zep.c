@@ -153,7 +153,7 @@ PHP_METHOD(Lxd_Lib_Curl, get) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&query, "http_build_query", NULL, 18, &parameters);
+	ZEPHIR_CALL_FUNCTION(&query, "http_build_query", NULL, 25, &parameters);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	if (!(ZEPHIR_IS_EMPTY(&query))) {
@@ -165,17 +165,17 @@ PHP_METHOD(Lxd_Lib_Curl, get) {
 	}
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_VV(&_1, url, &_0);
-	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 19, &_1);
+	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 26, &_1);
 	zephir_check_call_status();
 	zephir_read_property(&_2, this_ptr, SL("curl_options"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 20, &curl, &_2);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 27, &curl, &_2);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 21, &curl);
+	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 28, &curl);
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, 2097154);
-	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 22, &curl, &_3);
+	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 29, &curl, &_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 23, &curl);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 30, &curl);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_4);
 	zephir_json_decode(&_4, &response, zephir_get_intval(&__$true) );
@@ -222,7 +222,7 @@ PHP_METHOD(Lxd_Lib_Curl, post) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 19, url);
+	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 26, url);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_LONG(&_0, 47);
@@ -233,14 +233,14 @@ PHP_METHOD(Lxd_Lib_Curl, post) {
 	ZVAL_LONG(&_2, 10015);
 	zephir_update_property_array(this_ptr, SL("curl_options"), &_2, &_1 TSRMLS_CC);
 	zephir_read_property(&_3, this_ptr, SL("curl_options"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 20, &curl, &_3);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 27, &curl, &_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 21, &curl);
+	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 28, &curl);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 2097154);
-	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 22, &curl, &_4);
+	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 29, &curl, &_4);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 23, &curl);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 30, &curl);
 	zephir_check_call_status();
 	_5 = !zephir_is_true(&httpCode);
 	if (!(_5)) {
@@ -292,7 +292,7 @@ PHP_METHOD(Lxd_Lib_Curl, put) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 19, url);
+	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 26, url);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_LONG(&_0, 10036);
@@ -305,14 +305,14 @@ PHP_METHOD(Lxd_Lib_Curl, put) {
 	ZVAL_LONG(&_3, 10015);
 	zephir_update_property_array(this_ptr, SL("curl_options"), &_3, &_2 TSRMLS_CC);
 	zephir_read_property(&_4, this_ptr, SL("curl_options"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 20, &curl, &_4);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 27, &curl, &_4);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 21, &curl);
+	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 28, &curl);
 	zephir_check_call_status();
 	ZVAL_LONG(&_5, 2097154);
-	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 22, &curl, &_5);
+	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 29, &curl, &_5);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 23, &curl);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 30, &curl);
 	zephir_check_call_status();
 	_6 = !zephir_is_true(&httpCode);
 	if (!(_6)) {
@@ -352,7 +352,7 @@ PHP_METHOD(Lxd_Lib_Curl, delete) {
 
 
 
-	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 19, url);
+	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 26, url);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_LONG(&_0, 10036);
@@ -360,14 +360,14 @@ PHP_METHOD(Lxd_Lib_Curl, delete) {
 	ZVAL_STRING(&_1, "DELETE");
 	zephir_update_property_array(this_ptr, SL("curl_options"), &_0, &_1 TSRMLS_CC);
 	zephir_read_property(&_2, this_ptr, SL("curl_options"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 20, &curl, &_2);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt_array", NULL, 27, &curl, &_2);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 21, &curl);
+	ZEPHIR_CALL_FUNCTION(&response, "curl_exec", NULL, 28, &curl);
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, 2097154);
-	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 22, &curl, &_3);
+	ZEPHIR_CALL_FUNCTION(&httpCode, "curl_getinfo", NULL, 29, &curl, &_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 23, &curl);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 30, &curl);
 	zephir_check_call_status();
 	_4 = !zephir_is_true(&httpCode);
 	if (!(_4)) {

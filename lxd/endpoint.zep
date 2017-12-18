@@ -6,7 +6,7 @@ class Endpoint
     protected curl;
     protected endpoint;
 
-    public function __construct(array config, curl, string endpoint = "")
+    public function __construct(array config, curl, string endpoint = "") -> void
     {
         let this->config   = config;
         let this->curl     = curl;
@@ -23,7 +23,7 @@ class Endpoint
             return new {ns}(this->config);
         }
 
-        if (method_exists(this, method)) {
+        if method_exists(this, method) {
             return call_user_func(
                 [this, method],
                 [this->config, this->curl]
