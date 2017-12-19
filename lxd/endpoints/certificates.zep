@@ -4,65 +4,97 @@ use Lxd\Endpoint;
 
 class Certificates extends Endpoint
 {
+    const ENDPOINT = "certificates";
+
     protected curl;
     private endpoint;
 
+    /**
+     *
+     */
     public function __construct(config, curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
-
-        let this->endpoint = this->config["url"]."/".this->config["version"]."/".this->config["endpoint"];
     }
 
+    /**
+     *
+     */
     public function all() -> array
     {
-        var response = this->curl->get(this->endpoint);
+        var key, value, response = [
+            "metadata": []
+        ];
 
-        var certificate;
-        var certificates = [];
-        for certificate in (array) response["metadata"] {
-            let certificates[] = str_replace("/".this->config["version"]."/".this->config["endpoint"]."/", null, certificate);
+        let response = this->curl->get(this->getBase(Certificates::ENDPOINT));
+
+        for key, value in response["metadata"] {
+            let response["metadata"][key] = this->stripEndpoint(value);
         }
-        return certificates;
+
+        return response;
     }
 
+    /**
+     *
+     */
     public function add(certificate, string password = null, string name = null) -> array
     {
-        var begin, end, pem_data, der, fingerprint, options;
+        var raw, pem, options = [];
 
-        let begin = "CERTIFICATE-----";
-        let end   = "-----END";
-        let pem_data = substr(certificate, strpos(certificate, begin)+strlen(begin));
-        let pem_data = substr(pem_data, 0, strpos(pem_data, end));
-        let der = base64_decode(pem_data);
-        let fingerprint = hash("sha256", der);
-
-        let options = [];
-        let options["type"] = "client";
-        let options["certificate"] = base64_encode(der);
-        if (password !== null) {
-            let options["password"] = password;
+        if !file_exists(certificate) || !is_file(certificate) {
+            throw new \Exception("Certificate not found.");
         }
+
+        //
+        let raw = file_get_contents(certificate);
+        
+        // check its PEM format
+        if strpos(raw, "BEGIN CERTIFICATE") === false {
+            throw new \Exception("Certificate not in PEM format.");
+        }
+        
+        //
+        let pem = trim(str_replace([
+            "-----BEGIN CERTIFICATE-----",
+            "-----END CERTIFICATE-----"
+        ], null, raw));
+
+        //
+        let options["type"] = "client";
+        let options["certificate"] = pem;
         if (name !== null) {
             let options["name"] = name;
         }
+        if (password !== null) {
+            let options["password"] = password;
+        }
 
-        return this->curl->post(this->endpoint, options);
+        return this->curl->post(this->getBase(Certificates::ENDPOINT), options);
     }
 
+    /**
+     *
+     */
     public function info(fingerprint) -> array
     {
-        return this->curl->get(this->endpoint."/".fingerprint);
+        return this->curl->get(this->getBase(Certificates::ENDPOINT)."/".fingerprint);
     }
 
+    /**
+     *
+     */
     public function delete(fingerprint) -> bool
     {
         return this->remove(fingerprint);
     }
 
+    /**
+     *
+     */
     public function remove(fingerprint) -> bool
     {
-        return this->curl->delete(this->endpoint."/".fingerprint);
+        return this->curl->delete(this->getBase(Certificates::ENDPOINT)."/".fingerprint);
     }
 
 }

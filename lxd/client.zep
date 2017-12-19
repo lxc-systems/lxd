@@ -5,10 +5,14 @@ use Lxd\Lib\Certificate;
 
 class Client
 {
+
     protected config;
     protected curl;
     protected certificate;
 
+    /**
+     *
+     */
     public function __construct(array config = []) -> void
     {
         let this->config = array_merge([
@@ -16,8 +20,8 @@ class Client
             "ip"       : null,
             "port"     : null,
             "secret"   : null,
-            "endpoint" : null,
-            "version"  : "1.0"
+            "version"  : "1.0",
+            "endpoint" : null
         ], config);
 
         // check and set client certificate path
@@ -35,6 +39,39 @@ class Client
         }
     }
 
+    /**
+     *
+     */
+    public function __get(string endpoint)
+    {
+        string ns = __NAMESPACE__."\\Endpoints\\".ucfirst(endpoint);
+
+        let this->config["endpoint"] = endpoint;
+
+        if class_exists(ns) {
+            return new {ns}(this->config, this->curl);
+        } else {
+            throw new \Exception(
+                "Endpoint ".ns.", not implemented."
+            );
+        }
+    }
+    
+    /**
+     *
+     */
+    public function info() -> array
+    {
+        if !<Lxd\Lib\Curl> (this->curl) {
+            let this->curl = new Curl(this->config);
+        }
+
+        return this->curl->get(this->config["url"]."/".this->config["version"]);
+    }
+
+    /**
+     *
+     */
     public function connect(string url = null, string secret = null)
     {
         var ip, port, ping;
@@ -64,7 +101,10 @@ class Client
             this->certificate->generate(ip);
         }
 
-        let this->curl = new Curl(this->config);
+        //
+        if !<Lxd\Lib\Curl> (this->curl) {
+            let this->curl = new Curl(this->config);
+        }
 
         return this;
     }
@@ -86,9 +126,9 @@ class Client
             return -1;
         }
 
-        let start = (int) microtime(true);
+        let start = (float) microtime(true);
         let sock  = fsockopen(ip, port, null, null, timeout);
-        let stop  = (int) microtime(true);
+        let stop  = (float) microtime(true);
         let time = 0;
 
         if (!sock) {
@@ -98,25 +138,7 @@ class Client
             let time = (float) round(((stop - start) * 1000), 2);
         }
 
-        return time;
-    }
-
-    /**
-     *
-     */
-    public function __get(string endpoint)
-    {
-        string ns; let ns = __NAMESPACE__."\\Endpoints\\".endpoint;
-
-        let this->config["endpoint"]  = endpoint;
-
-        if class_exists(ns) {
-            return new {ns}(this->config, this->curl);
-        } else {
-            throw new \Exception(
-                "Endpoint ".ns.", not implemented."
-            );
-        }
+        return (float) time;
     }
 
 }

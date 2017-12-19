@@ -60,7 +60,7 @@ if test "$PHP_LXD" = "yes"; then
 	lxd/client.zep.c
 	lxd/endpoints/certificates.zep.c
 	lxd/endpoints/containers.zep.c
-	lxd/endpoints/host.zep.c
+	lxd/endpoints/containers/files.zep.c
 	lxd/endpoints/operations.zep.c
 	lxd/lib/certificate.zep.c
 	lxd/lib/curl.zep.c "

@@ -16,10 +16,11 @@
 #include "kernel/array.h"
 #include "kernel/object.h"
 #include "kernel/operators.h"
+#include "kernel/concat.h"
+#include "kernel/string.h"
 #include "kernel/fcall.h"
 #include "kernel/exception.h"
 #include "kernel/file.h"
-#include "kernel/concat.h"
 #include "kernel/time.h"
 #include "kernel/math.h"
 
@@ -38,6 +39,9 @@ ZEPHIR_INIT_CLASS(Lxd_Client) {
 
 }
 
+/**
+ *
+ */
 PHP_METHOD(Lxd_Client, __construct) {
 
 	zval *config_param = NULL, __$null, _0, _2, _5, _3$$3, _4$$3, _6$$4, _7$$4, _8$$5, _9$$5, _10$$6, _11$$6;
@@ -77,8 +81,8 @@ PHP_METHOD(Lxd_Client, __construct) {
 	zephir_array_update_string(&_1, SL("ip"), &__$null, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_1, SL("port"), &__$null, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_1, SL("secret"), &__$null, PH_COPY | PH_SEPARATE);
-	zephir_array_update_string(&_1, SL("endpoint"), &__$null, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(&_1, SL("version"), SL("1.0"));
+	zephir_array_update_string(&_1, SL("endpoint"), &__$null, PH_COPY | PH_SEPARATE);
 	zephir_fast_array_merge(&_0, &_1, &config TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("config"), &_0);
 	zephir_read_property(&_2, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
@@ -98,7 +102,7 @@ PHP_METHOD(Lxd_Client, __construct) {
 		zephir_update_property_array(this_ptr, SL("config"), &_6$$4, &_7$$4 TSRMLS_CC);
 	} else {
 		zephir_read_property(&_8$$5, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_9$$5, &_8$$5, SL("timeout"), PH_NOISY | PH_READONLY, "lxd/client.zep", 32 TSRMLS_CC);
+		zephir_array_fetch_string(&_9$$5, &_8$$5, SL("timeout"), PH_NOISY | PH_READONLY, "lxd/client.zep", 36 TSRMLS_CC);
 		if (!(zephir_is_numeric(&_9$$5))) {
 			ZEPHIR_INIT_VAR(&_10$$6);
 			ZVAL_STRING(&_10$$6, "timeout");
@@ -111,11 +115,119 @@ PHP_METHOD(Lxd_Client, __construct) {
 
 }
 
+/**
+ *
+ */
+PHP_METHOD(Lxd_Client, __get) {
+
+	zend_class_entry *_4$$3;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *endpoint_param = NULL, _0, _1, _2, _3$$3, _5$$3, _6$$3, _7$$4;
+	zval endpoint, ns, _8$$4;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&endpoint);
+	ZVAL_UNDEF(&ns);
+	ZVAL_UNDEF(&_8$$4);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_7$$4);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &endpoint_param);
+
+	zephir_get_strval(&endpoint, endpoint_param);
+
+
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_ucfirst(&_0, &endpoint);
+	ZEPHIR_INIT_VAR(&_1);
+	ZEPHIR_CONCAT_SSV(&_1, "Lxd", "\\Endpoints\\", &_0);
+	zephir_get_strval(&ns, &_1);
+	ZEPHIR_INIT_VAR(&_2);
+	ZVAL_STRING(&_2, "endpoint");
+	zephir_update_property_array(this_ptr, SL("config"), &_2, &endpoint TSRMLS_CC);
+	if (zephir_class_exists(&ns, 1 TSRMLS_CC)) {
+		zephir_fetch_safe_class(&_3$$3, &ns);
+		_4$$3 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_3$$3), Z_STRLEN_P(&_3$$3), ZEND_FETCH_CLASS_AUTO);
+		object_init_ex(return_value, _4$$3);
+		if (zephir_has_constructor(return_value TSRMLS_CC)) {
+			zephir_read_property(&_5$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, &_5$$3, &_6$$3);
+			zephir_check_call_status();
+		}
+		RETURN_MM();
+	} else {
+		ZEPHIR_INIT_VAR(&_7$$4);
+		object_init_ex(&_7$$4, zend_exception_get_default(TSRMLS_C));
+		ZEPHIR_INIT_VAR(&_8$$4);
+		ZEPHIR_CONCAT_SVS(&_8$$4, "Endpoint ", &ns, ", not implemented.");
+		ZEPHIR_CALL_METHOD(NULL, &_7$$4, "__construct", NULL, 2, &_8$$4);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(&_7$$4, "lxd/client.zep", 56 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+
+}
+
+/**
+ *
+ */
+PHP_METHOD(Lxd_Client, info) {
+
+	zval _0, _3, _4, _5, _6, _7, _8, _1$$3, _2$$3;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_5);
+	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_8);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_2$$3);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC);
+	if (!(zephir_is_true(&_0))) {
+		ZEPHIR_INIT_VAR(&_1$$3);
+		object_init_ex(&_1$$3, lxd_lib_curl_ce);
+		zephir_read_property(&_2$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 3, &_2$$3);
+		zephir_check_call_status();
+		zephir_update_property_zval(this_ptr, SL("curl"), &_1$$3);
+	}
+	zephir_read_property(&_3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_4, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+	zephir_array_fetch_string(&_5, &_4, SL("url"), PH_NOISY | PH_READONLY, "lxd/client.zep", 69 TSRMLS_CC);
+	zephir_read_property(&_6, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+	zephir_array_fetch_string(&_7, &_6, SL("version"), PH_NOISY | PH_READONLY, "lxd/client.zep", 69 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_8);
+	ZEPHIR_CONCAT_VSV(&_8, &_5, "/", &_7);
+	ZEPHIR_RETURN_CALL_METHOD(&_3, "get", NULL, 0, &_8);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ *
+ */
 PHP_METHOD(Lxd_Client, connect) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	zval *url_param = NULL, *secret_param = NULL, ip, port, ping, _0, _2, _3, _4, _5, _6, _7, _8, _9, _14, _15, _10$$5, _11$$5, _12$$5, _13$$5;
+	zval *url_param = NULL, *secret_param = NULL, ip, port, ping, _0, _2, _3, _4, _5, _6, _7, _8, _9, _14, _10$$5, _11$$5, _12$$5, _13$$5, _15$$6, _16$$6;
 	zval url, secret;
 	zval *this_ptr = getThis();
 
@@ -134,11 +246,12 @@ PHP_METHOD(Lxd_Client, connect) {
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_14);
-	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_10$$5);
 	ZVAL_UNDEF(&_11$$5);
 	ZVAL_UNDEF(&_12$$5);
 	ZVAL_UNDEF(&_13$$5);
+	ZVAL_UNDEF(&_15$$6);
+	ZVAL_UNDEF(&_16$$6);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &url_param, &secret_param);
@@ -158,10 +271,10 @@ PHP_METHOD(Lxd_Client, connect) {
 
 
 	ZVAL_LONG(&_0, 1);
-	ZEPHIR_CALL_FUNCTION(&ip, "parse_url", &_1, 3, &url, &_0);
+	ZEPHIR_CALL_FUNCTION(&ip, "parse_url", &_1, 4, &url, &_0);
 	zephir_check_call_status();
 	ZVAL_LONG(&_0, 2);
-	ZEPHIR_CALL_FUNCTION(&port, "parse_url", &_1, 3, &url, &_0);
+	ZEPHIR_CALL_FUNCTION(&port, "parse_url", &_1, 4, &url, &_0);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_EMPTY(&port)) {
 		ZEPHIR_INIT_NVAR(&port);
@@ -180,35 +293,39 @@ PHP_METHOD(Lxd_Client, connect) {
 	ZVAL_STRING(&_5, "secret");
 	zephir_update_property_array(this_ptr, SL("config"), &_5, &secret TSRMLS_CC);
 	zephir_read_property(&_0, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_6, &_0, SL("timeout"), PH_NOISY | PH_READONLY, "lxd/client.zep", 53 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, &_0, SL("timeout"), PH_NOISY | PH_READONLY, "lxd/client.zep", 90 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(&ping, this_ptr, "connectable", NULL, 0, &ip, &port, &_6);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG_IDENTICAL(&ping, -1)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Could not connect.", "lxd/client.zep", 56);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Could not connect.", "lxd/client.zep", 93);
 		return;
 	}
 	zephir_read_property(&_7, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_8, &_7, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 60 TSRMLS_CC);
+	zephir_array_fetch_string(&_8, &_7, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 97 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_9);
 	ZEPHIR_CONCAT_VSVS(&_9, &_8, "/", &ip, "/client.pem");
 	if (!((zephir_file_exists(&_9 TSRMLS_CC) == SUCCESS))) {
 		ZEPHIR_INIT_VAR(&_10$$5);
 		object_init_ex(&_10$$5, lxd_lib_certificate_ce);
 		zephir_read_property(&_11$$5, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_12$$5, &_11$$5, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 62 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(NULL, &_10$$5, "__construct", NULL, 4, &_12$$5);
+		zephir_array_fetch_string(&_12$$5, &_11$$5, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 99 TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(NULL, &_10$$5, "__construct", NULL, 5, &_12$$5);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("certificate"), &_10$$5);
 		zephir_read_property(&_13$$5, this_ptr, SL("certificate"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &_13$$5, "generate", NULL, 0, &ip);
 		zephir_check_call_status();
 	}
-	ZEPHIR_INIT_VAR(&_14);
-	object_init_ex(&_14, lxd_lib_curl_ce);
-	zephir_read_property(&_15, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, &_14, "__construct", NULL, 5, &_15);
-	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("curl"), &_14);
+	ZEPHIR_OBS_VAR(&_14);
+	zephir_read_property(&_14, this_ptr, SL("curl"), PH_NOISY_CC);
+	if (!(zephir_is_true(&_14))) {
+		ZEPHIR_INIT_VAR(&_15$$6);
+		object_init_ex(&_15$$6, lxd_lib_curl_ce);
+		zephir_read_property(&_16$$6, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(NULL, &_15$$6, "__construct", NULL, 3, &_16$$6);
+		zephir_check_call_status();
+		zephir_update_property_zval(this_ptr, SL("curl"), &_15$$6);
+	}
 	RETURN_THIS();
 
 }
@@ -265,7 +382,7 @@ PHP_METHOD(Lxd_Client, connectable) {
 	}
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_microtime(&_0, &__$true TSRMLS_CC);
-	start = zephir_get_intval(&_0);
+	start = (long) (zephir_get_doubleval(&_0));
 	ZVAL_LONG(&_1, port);
 	ZVAL_NULL(&_2);
 	ZVAL_NULL(&_3);
@@ -278,7 +395,7 @@ PHP_METHOD(Lxd_Client, connectable) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_5);
 	zephir_microtime(&_5, &__$true TSRMLS_CC);
-	stop = zephir_get_intval(&_5);
+	stop = (long) (zephir_get_doubleval(&_5));
 	ZEPHIR_INIT_VAR(&time);
 	ZVAL_LONG(&time, 0);
 	ZEPHIR_INIT_NVAR(&time);
@@ -292,63 +409,7 @@ PHP_METHOD(Lxd_Client, connectable) {
 		zephir_round(&_6$$5, &_7$$5, &_8$$5, NULL TSRMLS_CC);
 		ZVAL_DOUBLE(&time, zephir_get_doubleval(&_6$$5));
 	}
-	RETURN_CCTOR(&time);
-
-}
-
-/**
- *
- */
-PHP_METHOD(Lxd_Client, __get) {
-
-	zend_class_entry *_2$$3;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *endpoint_param = NULL, _0, _1$$3, _3$$3, _4$$3, _5$$4;
-	zval endpoint, ns, _6$$4;
-	zval *this_ptr = getThis();
-
-	ZVAL_UNDEF(&endpoint);
-	ZVAL_UNDEF(&ns);
-	ZVAL_UNDEF(&_6$$4);
-	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1$$3);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_5$$4);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &endpoint_param);
-
-	zephir_get_strval(&endpoint, endpoint_param);
-
-
-	ZEPHIR_INIT_VAR(&ns);
-	ZEPHIR_CONCAT_SSV(&ns, "Lxd", "\\Endpoints\\", &endpoint);
-	ZEPHIR_INIT_VAR(&_0);
-	ZVAL_STRING(&_0, "endpoint");
-	zephir_update_property_array(this_ptr, SL("config"), &_0, &endpoint TSRMLS_CC);
-	if (zephir_class_exists(&ns, 1 TSRMLS_CC)) {
-		zephir_fetch_safe_class(&_1$$3, &ns);
-		_2$$3 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_1$$3), Z_STRLEN_P(&_1$$3), ZEND_FETCH_CLASS_AUTO);
-		object_init_ex(return_value, _2$$3);
-		if (zephir_has_constructor(return_value TSRMLS_CC)) {
-			zephir_read_property(&_3$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-			zephir_read_property(&_4$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, &_3$$3, &_4$$3);
-			zephir_check_call_status();
-		}
-		RETURN_MM();
-	} else {
-		ZEPHIR_INIT_VAR(&_5$$4);
-		object_init_ex(&_5$$4, zend_exception_get_default(TSRMLS_C));
-		ZEPHIR_INIT_VAR(&_6$$4);
-		ZEPHIR_CONCAT_SVS(&_6$$4, "Endpoint ", &ns, ", not implemented.");
-		ZEPHIR_CALL_METHOD(NULL, &_5$$4, "__construct", NULL, 2, &_6$$4);
-		zephir_check_call_status();
-		zephir_throw_exception_debug(&_5$$4, "lxd/client.zep", 118 TSRMLS_CC);
-		ZEPHIR_MM_RESTORE();
-		return;
-	}
+	RETURN_MM_DOUBLE(zephir_get_doubleval(&time));
 
 }
 

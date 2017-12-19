@@ -13,8 +13,6 @@ class Containers extends Endpoint
     public function __construct(array config, resource curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
-
-        let this->endpoint = this->config["url"]."/".this->config["version"]."/".this->config["endpoint"];
     }
 
     /**
@@ -22,11 +20,11 @@ class Containers extends Endpoint
      */
     public function all() -> array
     {
-        var response = this->curl->get(this->endpoint);
-
         var ret = [], item;
+        var response = this->curl->get(this->getBase());
+
         for item in (array) response["metadata"] {
-            let ret[] = str_replace("/".this->config["version"]."/".this->config["endpoint"]."/", null, item);
+            let ret[] = this->stripEndpoint(item);
         }
         return ret;
     }
@@ -36,7 +34,7 @@ class Containers extends Endpoint
      */
     public function info(string name) -> array
     {
-        return this->curl->get(this->endpoint."/".name);
+        return this->curl->get(this->getBase()."/containers/".name);
     }
 
     /**
@@ -44,7 +42,7 @@ class Containers extends Endpoint
      */
     public function state(string name) -> array
     {
-        return this->curl->get(this->endpoint."/".name."/state");
+        return this->curl->get(this->getBase()."/containers/".name."/state");
     }
 
     /**
@@ -65,10 +63,10 @@ class Containers extends Endpoint
             "stateful" : stateful
         ], response;
 
-        let response = this->curl->put(this->endpoint."/".name."/state", options);
+        let response = this->curl->put(this->getBase()."/containers/".name."/state", options);
 
         if wait {
-            let response = this->curl->get(this->endpoint."/".response["metadata"]["id"]."/wait?timeout=".timeout);
+            let response = this->curl->get(this->getBase()."/containers/".response["metadata"]["id"]."/wait?timeout=".timeout);
         }
 
         return response;
@@ -177,6 +175,9 @@ class Containers extends Endpoint
         return [];
     }
 
+    /**
+     *
+     */
     private function getOptions(string name, array options) -> array
     {
         var only, opts;
@@ -195,6 +196,9 @@ class Containers extends Endpoint
         return opts;
     }
 
+    /**
+     *
+     */
     private function getEmptyOptions(string name, array options) -> array
     {
         var attrs, attr, opts;
@@ -221,6 +225,9 @@ class Containers extends Endpoint
         return opts;
     }
 
+    /**
+     *
+     */
     private function getRemoteImageOptions(string name, array source, array options) -> array
     {
         var only, opts, remoteOptions;
@@ -245,6 +252,9 @@ class Containers extends Endpoint
         return opts;
     }
 
+    /**
+     *
+     */
     private function getLocalImageOptions(string name, array source, array options) -> array
     {
         var attrs, attr, opts;
@@ -292,15 +302,34 @@ class Containers extends Endpoint
             let opts = this->getLocalImageOptions(name, source, options);
         }
 
-        let response = this->curl->post(this->endpoint, opts);
+        let response = this->curl->post(this->getBase()."containers", opts);
 
         if wait {
-            let response = this->curl->get(this->endpoint."/".response["metadata"]["id"]."/wait");
+            let response = this->curl->get(this->getBase()."/containers/".response["metadata"]["id"]."/wait");
         }
 
         return response;
     }
 
+    /**
+     *
+     */
+    public function copy(string name, string copyName, array options = [], boolean wait = false) -> array
+    {
+        var opts, response;
+
+        let opts = this->getOptions(copyName, options);
+        let opts["source"]["type"]   = "copy";
+        let opts["source"]["source"] = name;
+
+        let response = this->curl->post(this->getBase()."containers", opts);
+
+        if wait {
+            let response = this->curl->get(this->getBase()."/containers/".response["metadata"]["id"]."/wait");
+        }
+
+        return response;
+    }
 
     /**
      *
@@ -315,7 +344,7 @@ class Containers extends Endpoint
      */
     public function remove(string fingerprint) -> bool
     {
-        return this->curl->delete(this->endpoint."/".fingerprint);
+        return this->curl->delete(this->getBase()."/".fingerprint);
     }
 
 }

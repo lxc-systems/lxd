@@ -10,18 +10,16 @@ class Operations extends Endpoint
     public function __construct(config, curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
-
-        let this->endpoint = this->config["url"]."/".this->config["version"]."/".this->config["endpoint"];
     }
 
     public function all() -> array
     {
-        var response = this->curl->get(this->endpoint);
+        var response = this->curl->get(this->getBase()."/operations");
 
         var ret = [], item, key, operation_id;
         for key, item in (array) response["metadata"] {
             for operation_id in item {
-                let ret[key][] = str_replace("/".this->config["version"]."/".this->config["endpoint"]."/", null, operation_id);
+                let ret[key][] = this->stripEndpoint(operation_id);
             }
         }
         return ret;
@@ -29,23 +27,25 @@ class Operations extends Endpoint
 
     public function info(uuid) -> array
     {
-        return this->curl->get(this->endpoint."/".uuid);
+        return this->curl->get(this->getBase()."/operations/".uuid);
     }
 
     public function cancel(uuid) -> bool
     {
-        return this->curl->delete(this->endpoint."/".uuid);
+        return this->curl->delete(this->getBase()."/operations/".uuid);
     }
 
     public function wait(uuid, int timeout = null) -> array
     {
-        let this->endpoint .= "/".uuid."/wait";
+        string endpoint;
+        
+        let endpoint = this->getBase()."/operations/".uuid."/wait";
 
         if is_numeric(timeout) && timeout > 0 {
-            let this->endpoint .= "?timeout=".timeout;
+            let endpoint .= "?timeout=".timeout;
         }
 
-        return this->curl->get(this->endpoint);
+        return this->curl->get(endpoint);
     }
 
 }
