@@ -34,22 +34,23 @@ class Files extends Endpoint
         string name, 
         string filepath, 
         string data, 
-        boolean uid = null, 
-        boolean gid = null, 
-        boolean mode = null) -> string
+        var uid = null, 
+        var gid = null, 
+        var mode = null
+    ) -> string
     {
         var headers = [];
 
-        if is_numeric(uid) {
-            let headers["X-LXD-uid"] = uid;
+        if uid !== null && is_numeric(uid) {
+            let headers[] = "X-LXD-uid: ".int_val(uid);
         }
         
-        if is_numeric(gid) {
-            let headers["X-LXD-gid"] = gid;
+        if gid !== null && is_numeric(gid) {
+            let headers[] = "X-LXD-gid: ".int_val(gid);
         }
         
-        if is_numeric(mode) {
-            let headers["X-LXD-mode"] = mode;
+        if mode !== null && is_numeric(mode) {
+            let headers[] = "X-LXD-mode: ".sprintf("%04d", decoct(mode));
         }
 
         return this->curl->post(this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath, data, headers);
