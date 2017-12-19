@@ -40,7 +40,7 @@ class Files extends Endpoint
         var uid = null, 
         var gid = null, 
         var mode = null
-    ) -> string
+    ) -> array
     {
         var headers = [];
 
@@ -63,11 +63,10 @@ class Files extends Endpoint
         );
     }
     
-    
     /**
      *
      */
-    public function delete(string name, string filepath) -> string
+    public function delete(string name, string filepath) -> array
     {
         return this->curl->delete(
             this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath
