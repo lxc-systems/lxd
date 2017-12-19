@@ -14,6 +14,18 @@ WIP!
     $lxd->info();
 
  # Certificates
+ 
+    $lxd->certificates->all();
+    
+    $lxd->certificates->info('certificate-fingerprint');
+    
+    $lxd->certificates->remove('certificate-fingerprint');
+    
+    $lxd->certificates->add(
+        'certificates/127.0.0.1/cert.crt',
+	   'lxd.server.secret',
+	   'My Client Certificate'
+    )
 
  # Containers
 
@@ -22,5 +34,7 @@ WIP!
  # Networks
  
  # Operations
+ 
+     $lxd->operations->all();
  
  # Profiles
