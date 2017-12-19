@@ -17,20 +17,24 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl_get, 0, 0, 1)
 	ZEND_ARG_INFO(0, url)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
+	ZEND_ARG_ARRAY_INFO(0, headers, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl_post, 0, 0, 1)
 	ZEND_ARG_INFO(0, url)
-	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
+	ZEND_ARG_INFO(0, parameters)
+	ZEND_ARG_ARRAY_INFO(0, headers, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl_put, 0, 0, 1)
 	ZEND_ARG_INFO(0, url)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
+	ZEND_ARG_ARRAY_INFO(0, headers, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_lib_curl_delete, 0, 0, 1)
 	ZEND_ARG_INFO(0, url)
+	ZEND_ARG_ARRAY_INFO(0, headers, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(lxd_lib_curl_method_entry) {

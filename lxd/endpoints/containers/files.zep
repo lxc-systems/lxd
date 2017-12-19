@@ -4,6 +4,8 @@ use Lxd\Endpoint;
 
 class Files extends Endpoint
 {
+    const ENDPOINT = "containers";
+    
     protected curl;
     private endpoint;
 
@@ -18,9 +20,39 @@ class Files extends Endpoint
     /**
      *
      */
-    public function read(string name, string filepath) -> array
+    public function read(string name, string filepath) -> string
     {
-        return this->curl->get(this->getBase()."/containers/".name."/files?path=".filepath);
+        return this->curl->get(this->getBase(Files::ENDPOINT)."/".name."/files", [
+            "path" : filepath
+        ]);
+    }
+
+    /**
+     *
+     */
+    public function write(
+        string name, 
+        string filepath, 
+        string data, 
+        boolean uid = null, 
+        boolean gid = null, 
+        boolean mode = null) -> string
+    {
+        var headers = [];
+
+        if is_numeric(uid) {
+            let headers["X-LXD-uid"] = uid;
+        }
+        
+        if is_numeric(gid) {
+            let headers["X-LXD-gid"] = gid;
+        }
+        
+        if is_numeric(mode) {
+            let headers["X-LXD-mode"] = mode;
+        }
+
+        return this->curl->post(this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath, data, headers);
     }
 
 }
