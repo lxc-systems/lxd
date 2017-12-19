@@ -22,9 +22,12 @@ class Files extends Endpoint
      */
     public function read(string name, string filepath) -> string
     {
-        return this->curl->get(this->getBase(Files::ENDPOINT)."/".name."/files", [
-            "path" : filepath
-        ]);
+        return this->curl->get(
+            this->getBase(Files::ENDPOINT)."/".name."/files",
+            [
+                "path" : filepath
+            ]
+        );
     }
 
     /**
@@ -42,18 +45,33 @@ class Files extends Endpoint
         var headers = [];
 
         if uid !== null && is_numeric(uid) {
-            let headers[] = "X-LXD-uid: ".int_val(uid);
+            let headers[] = "X-LXD-uid: ".intval(uid);
         }
         
         if gid !== null && is_numeric(gid) {
-            let headers[] = "X-LXD-gid: ".int_val(gid);
+            let headers[] = "X-LXD-gid: ".intval(gid);
         }
         
         if mode !== null && is_numeric(mode) {
             let headers[] = "X-LXD-mode: ".sprintf("%04d", decoct(mode));
         }
 
-        return this->curl->post(this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath, data, headers);
+        return this->curl->post(
+            this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath,
+            data,
+            headers
+        );
+    }
+    
+    
+    /**
+     *
+     */
+    public function delete(string name, string filepath) -> string
+    {
+        return this->curl->delete(
+            this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath
+        );
     }
 
 }
