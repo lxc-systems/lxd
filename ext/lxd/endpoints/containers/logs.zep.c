@@ -115,7 +115,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "containers");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 11, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/logs");
@@ -196,7 +196,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, read) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 11, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/logs/", &log);
@@ -244,7 +244,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, remove) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 24, &name, &log);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 26, &name, &log);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -295,7 +295,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, delete) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 11, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/logs/", &log);

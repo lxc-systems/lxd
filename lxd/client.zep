@@ -15,6 +15,11 @@
  +------------------------------------------------------------------------+
  */
 
+// global connect function
+function lxd_connect(string! url, string! secret, array! options = []) {
+    return (new \Lxd\Client(options))->connect(url, secret);
+}
+
 namespace Lxd;
 
 use Lxd\Lib\Curl;

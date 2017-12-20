@@ -97,7 +97,7 @@ PHP_METHOD(Lxd_Client, __construct) {
 	_6 = !(zephir_array_isset_string(&_5, SL("timeout")));
 	if (!(_6)) {
 		zephir_read_property(&_7, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_8, &_7, SL("timeout"), PH_NOISY | PH_READONLY, "lxd/client.zep", 50 TSRMLS_CC);
+		zephir_array_fetch_string(&_8, &_7, SL("timeout"), PH_NOISY | PH_READONLY, "lxd/client.zep", 55 TSRMLS_CC);
 		_6 = !(zephir_is_numeric(&_8));
 	}
 	if (_6) {
@@ -169,7 +169,7 @@ PHP_METHOD(Lxd_Client, __get) {
 	} else {
 		ZEPHIR_INIT_VAR(&_7$$4);
 		ZEPHIR_CONCAT_SVS(&_7$$4, "Endpoint ", &ns, ", not implemented.");
-		zephir_throw_exception_debug(&_7$$4, "lxd/client.zep", 68 TSRMLS_CC);
+		zephir_throw_exception_debug(&_7$$4, "lxd/client.zep", 73 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -209,9 +209,9 @@ PHP_METHOD(Lxd_Client, info) {
 	}
 	zephir_read_property(&_3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_4, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_5, &_4, SL("url"), PH_NOISY | PH_READONLY, "lxd/client.zep", 81 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, &_4, SL("url"), PH_NOISY | PH_READONLY, "lxd/client.zep", 86 TSRMLS_CC);
 	zephir_read_property(&_6, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_7, &_6, SL("version"), PH_NOISY | PH_READONLY, "lxd/client.zep", 81 TSRMLS_CC);
+	zephir_array_fetch_string(&_7, &_6, SL("version"), PH_NOISY | PH_READONLY, "lxd/client.zep", 86 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_8);
 	ZEPHIR_CONCAT_VSV(&_8, &_5, "/", &_7);
 	ZEPHIR_RETURN_CALL_METHOD(&_3, "get", NULL, 0, &_8);
@@ -253,9 +253,9 @@ PHP_METHOD(Lxd_Client, resources) {
 	}
 	zephir_read_property(&_3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_4, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_5, &_4, SL("url"), PH_NOISY | PH_READONLY, "lxd/client.zep", 93 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, &_4, SL("url"), PH_NOISY | PH_READONLY, "lxd/client.zep", 98 TSRMLS_CC);
 	zephir_read_property(&_6, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_7, &_6, SL("version"), PH_NOISY | PH_READONLY, "lxd/client.zep", 93 TSRMLS_CC);
+	zephir_array_fetch_string(&_7, &_6, SL("version"), PH_NOISY | PH_READONLY, "lxd/client.zep", 98 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_8);
 	ZEPHIR_CONCAT_VSVS(&_8, &_5, "/", &_7, "/resources");
 	ZEPHIR_RETURN_CALL_METHOD(&_3, "get", NULL, 0, &_8);
@@ -356,18 +356,18 @@ PHP_METHOD(Lxd_Client, connect) {
 	ZEPHIR_CALL_METHOD(&ping, this_ptr, "connectable", NULL, 6, &ip, &port, &_0);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG_IDENTICAL(&ping, -1)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Could not connect.", "lxd/client.zep", 117);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Could not connect.", "lxd/client.zep", 122);
 		return;
 	}
 	zephir_read_property(&_0, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_6, &_0, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 121 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, &_0, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 126 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_7);
 	ZEPHIR_CONCAT_VSVS(&_7, &_6, "/", &ip, "/client.pem");
 	if (!((zephir_file_exists(&_7 TSRMLS_CC) == SUCCESS))) {
 		ZEPHIR_INIT_VAR(&_8$$5);
 		object_init_ex(&_8$$5, lxd_lib_certificate_ce);
 		zephir_read_property(&_9$$5, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_10$$5, &_9$$5, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 123 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$5, &_9$$5, SL("certificate_path"), PH_NOISY | PH_READONLY, "lxd/client.zep", 128 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, &_8$$5, "__construct", NULL, 7, &_10$$5);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("certificate"), &_8$$5);
@@ -486,6 +486,57 @@ PHP_METHOD(Lxd_Client, connectable) {
 		ZVAL_DOUBLE(&time, zephir_get_doubleval(&_6$$5));
 	}
 	RETURN_MM_DOUBLE(zephir_get_doubleval(&time));
+
+}
+
+PHP_FUNCTION(g_lxd_lxd_connect) {
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval options;
+	zval *url_param = NULL, *secret_param = NULL, *options_param = NULL, _0;
+	zval url, secret;
+		ZVAL_UNDEF(&url);
+	ZVAL_UNDEF(&secret);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&options);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 1, &url_param, &secret_param, &options_param);
+
+	if (UNEXPECTED(Z_TYPE_P(url_param) != IS_STRING && Z_TYPE_P(url_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'url' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(url_param) == IS_STRING)) {
+		zephir_get_strval(&url, url_param);
+	} else {
+		ZEPHIR_INIT_VAR(&url);
+		ZVAL_EMPTY_STRING(&url);
+	}
+	if (UNEXPECTED(Z_TYPE_P(secret_param) != IS_STRING && Z_TYPE_P(secret_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'secret' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(secret_param) == IS_STRING)) {
+		zephir_get_strval(&secret, secret_param);
+	} else {
+		ZEPHIR_INIT_VAR(&secret);
+		ZVAL_EMPTY_STRING(&secret);
+	}
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(&options);
+		array_init(&options);
+	} else {
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
+	}
+
+
+	ZEPHIR_INIT_VAR(&_0);
+	object_init_ex(&_0, lxd_client_ce);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 9, &options);
+	zephir_check_call_status();
+	ZEPHIR_RETURN_CALL_METHOD(&_0, "connect", NULL, 10, &url, &secret);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

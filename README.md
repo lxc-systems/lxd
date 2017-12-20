@@ -8,6 +8,9 @@ WIP!
         'certificate_path' => 'certificates',
         'timeout' => 30
     ]))->connect('https://127.0.0.1:8443', 'lxd.server.secret');
+    
+    // or by global function
+    $lxd = lxd_connect('https://127.0.0.1:8443', 'lxd.server.secret');
 
  ## Host
    

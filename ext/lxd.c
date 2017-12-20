@@ -152,8 +152,16 @@ static PHP_GSHUTDOWN_FUNCTION(lxd)
 
 }
 
+PHP_FUNCTION(g_lxd_lxd_connect);
+ZEND_BEGIN_ARG_INFO_EX(arginfo_g_lxd_lxd_connect, 0, 0, 2)
+	ZEND_ARG_INFO(0, url)
+	ZEND_ARG_INFO(0, secret)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
+ZEND_END_ARG_INFO()
+
 
 zend_function_entry php_lxd_functions[] = {
+ZEND_NAMED_FE(lxd_connect, ZEND_FN(g_lxd_lxd_connect), arginfo_g_lxd_lxd_connect)
 ZEND_FE_END
 
 };
