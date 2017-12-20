@@ -87,7 +87,6 @@ WIP!
         "dns.mode" => "dynamic"
     ], "bridge", true));
 
-
     $lxd->networks->remove("newnet");
  
  ## Operations
