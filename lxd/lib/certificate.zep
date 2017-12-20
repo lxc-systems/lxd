@@ -73,7 +73,7 @@ final class Certificate
         string pemString; let pemString = certString.privkeyString;
 
         // hash for reference
-        string pemHash; let pemHash = (string) hash("sha1", pemString);
+        string pemHash; let pemHash = (string) pemString->sha1();
 
         // check storage directory exists
         string cert_path; let cert_path = this->cert_path."/".ip;

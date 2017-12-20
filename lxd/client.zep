@@ -65,9 +65,7 @@ final class Client
         if class_exists(ns) {
             return new {ns}(this->config, this->curl);
         } else {
-            throw new \Exception(
-                "Endpoint ".ns.", not implemented."
-            );
+            throw "Endpoint ".ns.", not implemented.";
         }
     }
     
@@ -116,7 +114,7 @@ final class Client
         let ping = this->connectable(ip, port, 3);
 
         if ping === -1 {
-            throw new \Exception("Could not connect.");
+            throw "Could not connect.";
         }
 
         //

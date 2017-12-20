@@ -94,7 +94,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "operations");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
@@ -123,7 +123,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 		{
 			ZEPHIR_INIT_NVAR(&operation_id);
 			ZVAL_COPY(&operation_id, _9$$4);
-			ZEPHIR_CALL_METHOD(&_10$$5, this_ptr, "stripendpoint", &_11, 11, &operation_id);
+			ZEPHIR_CALL_METHOD(&_10$$5, this_ptr, "stripendpoint", &_11, 10, &operation_id);
 			zephir_check_call_status();
 			zephir_array_update_multi(&ret, &_10$$5 TSRMLS_CC, SL("za"), 2, &key);
 		} ZEND_HASH_FOREACH_END();
@@ -169,7 +169,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, info) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "operations");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &uuid);
@@ -213,7 +213,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, cancel) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "operations");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &uuid);
@@ -270,7 +270,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, wait) {
 
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "operations");
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getbase", NULL, 10, &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getbase", NULL, 9, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSVS(&_2, &_0, "/", &uuid, "/wait");

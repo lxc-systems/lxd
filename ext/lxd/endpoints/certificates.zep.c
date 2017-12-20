@@ -97,7 +97,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "certificates");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
@@ -117,7 +117,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 		}
 		ZEPHIR_INIT_NVAR(&value);
 		ZVAL_COPY(&value, _5);
-		ZEPHIR_CALL_METHOD(&_8$$4, this_ptr, "stripendpoint", &_9, 11, &value);
+		ZEPHIR_CALL_METHOD(&_8$$4, this_ptr, "stripendpoint", &_9, 10, &value);
 		zephir_check_call_status();
 		zephir_array_update_multi(&response, &_8$$4 TSRMLS_CC, SL("sz"), 3, SL("metadata"), &key);
 	} ZEND_HASH_FOREACH_END();
@@ -205,7 +205,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	array_init(&options);
 	_0 = !((zephir_file_exists(&certificate TSRMLS_CC) == SUCCESS));
 	if (!(_0)) {
-		ZEPHIR_CALL_FUNCTION(&_1, "is_file", NULL, 12, &certificate);
+		ZEPHIR_CALL_FUNCTION(&_1, "is_file", NULL, 11, &certificate);
 		zephir_check_call_status();
 		_0 = !zephir_is_true(&_1);
 	}
@@ -248,7 +248,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	zephir_read_property(&_7, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_9);
 	ZVAL_STRING(&_9, "certificates");
-	ZEPHIR_CALL_METHOD(&_8, this_ptr, "getbase", NULL, 10, &_9);
+	ZEPHIR_CALL_METHOD(&_8, this_ptr, "getbase", NULL, 9, &_9);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(&_7, "post", NULL, 0, &_8, &options);
 	zephir_check_call_status();
@@ -290,7 +290,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "certificates");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &fingerprint);
@@ -327,7 +327,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, delete) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 13, &fingerprint);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 12, &fingerprint);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -367,7 +367,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, remove) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "certificates");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &fingerprint);

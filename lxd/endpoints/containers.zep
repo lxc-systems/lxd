@@ -240,7 +240,7 @@ final class Containers extends Endpoint
 
         for attr in attrs {
             if isset options[attr] && !empty options[attr] {
-                throw new \Exception("empty => true is not compatible with ".attr);
+                throw "empty => true is not compatible with ".attr;
             }
         }
 
@@ -263,12 +263,12 @@ final class Containers extends Endpoint
         ];
 
         if isset options["protocol"] && !in_array(options["protocol"], ["lxd", "simplestreams"]) {
-            throw new \Exception("Invalid protocol.  Valid choices: lxd, simplestreams");
+            throw "Invalid protocol.  Valid choices: lxd, simplestreams";
         }
 
-        let remoteOptions          = array_intersect_key(options, array_flip(only));
+        let remoteOptions          = array_intersect_key(options, only->flip());
         let opts                   = this->getOptions(name, options);
-        let opts["source"]         = array_merge(source, remoteOptions);
+        let opts["source"]         = source->merge(remoteOptions);
         let opts["source"]["type"] = "image";
         let opts["source"]["mode"] = "pull";
 
@@ -288,7 +288,7 @@ final class Containers extends Endpoint
 
         for attr in attrs {
             if isset options[attr] && !empty options[attr] {
-                throw new \Exception("Only setting remote server is compatible with ".attr);
+                throw "Only setting remote server is compatible with ".attr;
             }
         }
 
@@ -309,7 +309,7 @@ final class Containers extends Endpoint
         let source = this->getSource(options);
 
         if (isset options["empty"] && empty options["empty"]) && empty source {
-            throw new \Exception("Source empty");
+            throw "Source empty";
         }
 
         if isset options["empty"] && empty options["empty"] {

@@ -89,7 +89,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, all) {
 	ZEPHIR_INIT_VAR(&ret);
 	array_init(&ret);
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
@@ -105,7 +105,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, all) {
 	{
 		ZEPHIR_INIT_NVAR(&item);
 		ZVAL_COPY(&item, _5);
-		ZEPHIR_CALL_METHOD(&_6$$4, this_ptr, "stripendpoint", &_7, 11, &item);
+		ZEPHIR_CALL_METHOD(&_6$$4, this_ptr, "stripendpoint", &_7, 10, &item);
 		zephir_check_call_status();
 		zephir_array_append(&ret, &_6$$4, PH_SEPARATE, "lxd/endpoints/containers.zep", 49);
 	} ZEND_HASH_FOREACH_END();
@@ -148,7 +148,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, info) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
@@ -192,7 +192,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, state) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVS(&_3, &_1, "/", &name, "/state");
@@ -307,7 +307,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, setState) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "containers");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/state");
@@ -322,7 +322,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, setState) {
 		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 9, &_8$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 94 TSRMLS_CC);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 94 TSRMLS_CC);
@@ -427,7 +427,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, start) {
 	} else {
 		ZVAL_BOOL(&_4, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 14, &name, &_0, &_1, &_2, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 13, &name, &_0, &_1, &_2, &_3, &_4);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -520,7 +520,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, stop) {
 	} else {
 		ZVAL_BOOL(&_4, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 14, &name, &_0, &_1, &_2, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 13, &name, &_0, &_1, &_2, &_3, &_4);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -613,7 +613,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, restart) {
 	} else {
 		ZVAL_BOOL(&_4, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 14, &name, &_0, &_1, &_2, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 13, &name, &_0, &_1, &_2, &_3, &_4);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -706,7 +706,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, freeze) {
 	} else {
 		ZVAL_BOOL(&_4, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 14, &name, &_0, &_1, &_2, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 13, &name, &_0, &_1, &_2, &_3, &_4);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -799,7 +799,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, unfreeze) {
 	} else {
 		ZVAL_BOOL(&_4, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 14, &name, &_0, &_1, &_2, &_3, &_4);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setstate", NULL, 13, &name, &_0, &_1, &_2, &_3, &_4);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -879,9 +879,9 @@ PHP_METHOD(Lxd_Endpoints_Containers, getSource) {
 		ZEPHIR_INIT_NVAR(&_0$$3);
 		ZVAL_STRING(&_0$$3, "live");
 		zephir_array_fast_append(&only, &_0$$3);
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "array_flip", NULL, 15, &only);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "array_flip", NULL, 14, &only);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&opts, "array_intersect_key", NULL, 16, &options, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&opts, "array_intersect_key", NULL, 15, &options, &_1$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_2$$3, &opts, SL("source"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 196 TSRMLS_CC);
 		RETURN_CTOR(&_2$$3);
@@ -972,9 +972,9 @@ PHP_METHOD(Lxd_Endpoints_Containers, getOptions) {
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "devices");
 	zephir_array_fast_append(&only, &_0);
-	ZEPHIR_CALL_FUNCTION(&_1, "array_flip", NULL, 15, &only);
+	ZEPHIR_CALL_FUNCTION(&_1, "array_flip", NULL, 14, &only);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&opts, "array_intersect_key", NULL, 16, &options, &_1);
+	ZEPHIR_CALL_FUNCTION(&opts, "array_intersect_key", NULL, 15, &options, &_1);
 	zephir_check_call_status();
 	zephir_array_update_string(&opts, SL("name"), &name, PH_COPY | PH_SEPARATE);
 	RETURN_CCTOR(&opts);
@@ -987,10 +987,9 @@ PHP_METHOD(Lxd_Endpoints_Containers, getOptions) {
 PHP_METHOD(Lxd_Endpoints_Containers, getEmptyOptions) {
 
 	zend_bool _2$$3;
-	zephir_fcall_cache_entry *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options;
-	zval *name_param = NULL, *options_param = NULL, attr, opts, attrs, _0, *_1, _3$$3, _4$$4, _5$$4;
+	zval *name_param = NULL, *options_param = NULL, attr, opts, attrs, _0, *_1, _3$$3, _4$$4;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -1001,7 +1000,6 @@ PHP_METHOD(Lxd_Endpoints_Containers, getEmptyOptions) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$4);
-	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&options);
 
 	ZEPHIR_MM_GROW();
@@ -1054,19 +1052,15 @@ PHP_METHOD(Lxd_Endpoints_Containers, getEmptyOptions) {
 			_2$$3 = !(ZEPHIR_IS_EMPTY(&_3$$3));
 		}
 		if (_2$$3) {
-			ZEPHIR_INIT_NVAR(&_4$$4);
-			object_init_ex(&_4$$4, zend_exception_get_default(TSRMLS_C));
-			ZEPHIR_INIT_LNVAR(_5$$4);
-			ZEPHIR_CONCAT_SV(&_5$$4, "empty => true is not compatible with ", &attr);
-			ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", &_6, 2, &_5$$4);
-			zephir_check_call_status();
+			ZEPHIR_INIT_LNVAR(_4$$4);
+			ZEPHIR_CONCAT_SV(&_4$$4, "empty => true is not compatible with ", &attr);
 			zephir_throw_exception_debug(&_4$$4, "lxd/endpoints/containers.zep", 243 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&attr);
-	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 17, &name, &options);
+	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 16, &name, &options);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "none");
@@ -1083,7 +1077,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, getRemoteImageOptions) {
 	zend_bool _1;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval source, options, _3;
-	zval *name_param = NULL, *source_param = NULL, *options_param = NULL, opts, remoteOptions, only, _0, _2, _4, _5;
+	zval *name_param = NULL, *source_param = NULL, *options_param = NULL, opts, remoteOptions, only, _0, _2, _4, _5, _6;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -1095,6 +1089,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, getRemoteImageOptions) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+	ZVAL_UNDEF(&_6);
 	ZVAL_UNDEF(&source);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_3);
@@ -1147,21 +1142,21 @@ PHP_METHOD(Lxd_Endpoints_Containers, getRemoteImageOptions) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Invalid protocol.  Valid choices: lxd, simplestreams", "lxd/endpoints/containers.zep", 266);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&_4, "array_flip", NULL, 15, &only);
+	ZEPHIR_CALL_METHOD(&_4, &only, "flip", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&remoteOptions, "array_intersect_key", NULL, 16, &options, &_4);
+	ZEPHIR_CALL_FUNCTION(&remoteOptions, "array_intersect_key", NULL, 15, &options, &_4);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 17, &name, &options);
+	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 16, &name, &options);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	zephir_fast_array_merge(&_0, &source, &remoteOptions TSRMLS_CC);
 	zephir_array_update_string(&opts, SL("source"), &_0, PH_COPY | PH_SEPARATE);
-	ZEPHIR_INIT_VAR(&_5);
-	ZVAL_STRING(&_5, "image");
-	zephir_array_update_multi(&opts, &_5 TSRMLS_CC, SL("ss"), 4, SL("source"), SL("type"));
-	ZEPHIR_INIT_NVAR(&_5);
-	ZVAL_STRING(&_5, "pull");
-	zephir_array_update_multi(&opts, &_5 TSRMLS_CC, SL("ss"), 4, SL("source"), SL("mode"));
+	ZEPHIR_INIT_VAR(&_6);
+	ZVAL_STRING(&_6, "image");
+	zephir_array_update_multi(&opts, &_6 TSRMLS_CC, SL("ss"), 4, SL("source"), SL("type"));
+	ZEPHIR_INIT_NVAR(&_6);
+	ZVAL_STRING(&_6, "pull");
+	zephir_array_update_multi(&opts, &_6 TSRMLS_CC, SL("ss"), 4, SL("source"), SL("mode"));
 	RETURN_CCTOR(&opts);
 
 }
@@ -1172,10 +1167,9 @@ PHP_METHOD(Lxd_Endpoints_Containers, getRemoteImageOptions) {
 PHP_METHOD(Lxd_Endpoints_Containers, getLocalImageOptions) {
 
 	zend_bool _2$$3;
-	zephir_fcall_cache_entry *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval source, options;
-	zval *name_param = NULL, *source_param = NULL, *options_param = NULL, opts, attr, attrs, _0, *_1, _3$$3, _4$$4, _5$$4;
+	zval *name_param = NULL, *source_param = NULL, *options_param = NULL, opts, attr, attrs, _0, *_1, _3$$3, _4$$4;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -1186,7 +1180,6 @@ PHP_METHOD(Lxd_Endpoints_Containers, getLocalImageOptions) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$4);
-	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&source);
 	ZVAL_UNDEF(&options);
 
@@ -1229,19 +1222,15 @@ PHP_METHOD(Lxd_Endpoints_Containers, getLocalImageOptions) {
 			_2$$3 = !(ZEPHIR_IS_EMPTY(&_3$$3));
 		}
 		if (_2$$3) {
-			ZEPHIR_INIT_NVAR(&_4$$4);
-			object_init_ex(&_4$$4, zend_exception_get_default(TSRMLS_C));
-			ZEPHIR_INIT_LNVAR(_5$$4);
-			ZEPHIR_CONCAT_SV(&_5$$4, "Only setting remote server is compatible with ", &attr);
-			ZEPHIR_CALL_METHOD(NULL, &_4$$4, "__construct", &_6, 2, &_5$$4);
-			zephir_check_call_status();
+			ZEPHIR_INIT_LNVAR(_4$$4);
+			ZEPHIR_CONCAT_SV(&_4$$4, "Only setting remote server is compatible with ", &attr);
 			zephir_throw_exception_debug(&_4$$4, "lxd/endpoints/containers.zep", 291 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&attr);
-	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 17, &name, &options);
+	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 16, &name, &options);
 	zephir_check_call_status();
 	zephir_array_update_string(&opts, SL("source"), &source, PH_COPY | PH_SEPARATE);
 	ZEPHIR_INIT_NVAR(&_0);
@@ -1311,7 +1300,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&source, this_ptr, "getsource", NULL, 18, &options);
+	ZEPHIR_CALL_METHOD(&source, this_ptr, "getsource", NULL, 17, &options);
 	zephir_check_call_status();
 	_0 = zephir_array_isset_string(&options, SL("empty"));
 	if (_0) {
@@ -1342,23 +1331,23 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 		_7 = !(ZEPHIR_IS_EMPTY(&_8));
 	}
 	if (_3) {
-		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 17, &name, &options);
+		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 16, &name, &options);
 		zephir_check_call_status();
 		zephir_array_update_string(&opts, SL("source"), &source, PH_COPY | PH_SEPARATE);
 	} else if (_5) {
-		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getemptyoptions", NULL, 19, &name, &options);
+		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getemptyoptions", NULL, 18, &name, &options);
 		zephir_check_call_status();
 	} else if (_7) {
-		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getremoteimageoptions", NULL, 20, &name, &source, &options);
+		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getremoteimageoptions", NULL, 19, &name, &source, &options);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getlocalimageoptions", NULL, 21, &name, &source, &options);
+		ZEPHIR_CALL_METHOD(&opts, this_ptr, "getlocalimageoptions", NULL, 20, &name, &source, &options);
 		zephir_check_call_status();
 	}
 	zephir_read_property(&_9, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_11);
 	ZVAL_STRING(&_11, "containers");
-	ZEPHIR_CALL_METHOD(&_10, this_ptr, "getbase", NULL, 10, &_11);
+	ZEPHIR_CALL_METHOD(&_10, this_ptr, "getbase", NULL, 9, &_11);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_9, "post", NULL, 0, &_10, &opts);
 	zephir_check_call_status();
@@ -1371,7 +1360,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 		zephir_read_property(&_14$$8, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_16$$8);
 		ZVAL_STRING(&_16$$8, "operations");
-		ZEPHIR_CALL_METHOD(&_15$$8, this_ptr, "getbase", NULL, 10, &_16$$8);
+		ZEPHIR_CALL_METHOD(&_15$$8, this_ptr, "getbase", NULL, 9, &_16$$8);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_17$$8, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 330 TSRMLS_CC);
 		zephir_array_fetch_string(&_18$$8, &_17$$8, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 330 TSRMLS_CC);
@@ -1461,7 +1450,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 17, &copyName, &options);
+	ZEPHIR_CALL_METHOD(&opts, this_ptr, "getoptions", NULL, 16, &copyName, &options);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "copy");
@@ -1470,7 +1459,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "containers");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "post", NULL, 0, &_2, &opts);
 	zephir_check_call_status();
@@ -1483,7 +1472,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 		zephir_read_property(&_5$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_7$$3);
 		ZVAL_STRING(&_7$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_6$$3, this_ptr, "getbase", NULL, 10, &_7$$3);
+		ZEPHIR_CALL_METHOD(&_6$$3, this_ptr, "getbase", NULL, 9, &_7$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_8$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 355 TSRMLS_CC);
 		zephir_array_fetch_string(&_9$$3, &_8$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 355 TSRMLS_CC);
@@ -1560,7 +1549,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, replace) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
@@ -1575,7 +1564,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, replace) {
 		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 9, &_8$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 376 TSRMLS_CC);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 376 TSRMLS_CC);
@@ -1621,7 +1610,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, delete) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 22, &fingerprint);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 21, &fingerprint);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -1658,7 +1647,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, remove) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSV(&_2, &_1, "/", &fingerprint);

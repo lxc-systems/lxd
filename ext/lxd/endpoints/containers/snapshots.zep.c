@@ -115,7 +115,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, all) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "containers");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/snapshots");
@@ -138,7 +138,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, all) {
 		ZEPHIR_INIT_NVAR(&value);
 		ZVAL_COPY(&value, _6);
 		ZEPHIR_INIT_NVAR(&_9$$4);
-		ZEPHIR_CALL_METHOD(&_10$$4, this_ptr, "getversion", &_11, 4);
+		ZEPHIR_CALL_METHOD(&_10$$4, this_ptr, "getversion", &_11, 3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_12$$4);
 		ZEPHIR_CONCAT_SVSSSVS(&_12$$4, "/", &_10$$4, "/", "containers", "/", &name, "/snapshots/");
@@ -196,7 +196,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, info) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/snapshots/", &snapshot);
@@ -289,7 +289,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, create) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "containers");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/snapshots");
@@ -304,7 +304,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, create) {
 		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 9, &_8$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 91 TSRMLS_CC);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 91 TSRMLS_CC);
@@ -394,7 +394,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, restore) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
@@ -409,7 +409,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, restore) {
 		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 9, &_8$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 114 TSRMLS_CC);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 114 TSRMLS_CC);
@@ -510,7 +510,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, rename) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/snapshots/", &snaphot);
@@ -525,7 +525,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, rename) {
 		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 9, &_8$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 137 TSRMLS_CC);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 137 TSRMLS_CC);
@@ -611,7 +611,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, remove) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "containers");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/snapshots/", &snaphot);
@@ -626,7 +626,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, remove) {
 		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 9, &_8$$3);
 		zephir_check_call_status();
 		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 158 TSRMLS_CC);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 158 TSRMLS_CC);
@@ -699,7 +699,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, delete) {
 	} else {
 		ZVAL_BOOL(&_0, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 26, &name, &snaphot, &_0);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 25, &name, &snaphot, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

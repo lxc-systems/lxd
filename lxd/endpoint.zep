@@ -52,7 +52,7 @@ class Endpoint
                 [this->config, this->curl]
             );
         } else {
-            throw new \Exception("Endpoint ".ns.", not implemented.");
+            throw "Endpoint ".ns.", not implemented.";
         }
     }
 

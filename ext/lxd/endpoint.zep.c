@@ -87,13 +87,13 @@ PHP_METHOD(Lxd_Endpoint, __get) {
 	zval _9$$4, _10$$4;
 	zend_class_entry *_7$$3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *method_param = NULL, _0, _1, _2, _3$$3, _4$$3, _5$$3, _6$$3, _8$$3, _11$$4, _12$$5;
-	zval method, ns, _13$$5;
+	zval *method_param = NULL, _0, _1, _2, _3$$3, _4$$3, _5$$3, _6$$3, _8$$3, _11$$4;
+	zval method, ns, _12$$5;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&ns);
-	ZVAL_UNDEF(&_13$$5);
+	ZVAL_UNDEF(&_12$$5);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -103,7 +103,6 @@ PHP_METHOD(Lxd_Endpoint, __get) {
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_11$$4);
-	ZVAL_UNDEF(&_12$$5);
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_10$$4);
 
@@ -165,11 +164,7 @@ PHP_METHOD(Lxd_Endpoint, __get) {
 		RETURN_MM();
 	} else {
 		ZEPHIR_INIT_VAR(&_12$$5);
-		object_init_ex(&_12$$5, zend_exception_get_default(TSRMLS_C));
-		ZEPHIR_INIT_VAR(&_13$$5);
-		ZEPHIR_CONCAT_SVS(&_13$$5, "Endpoint ", &ns, ", not implemented.");
-		ZEPHIR_CALL_METHOD(NULL, &_12$$5, "__construct", NULL, 2, &_13$$5);
-		zephir_check_call_status();
+		ZEPHIR_CONCAT_SVS(&_12$$5, "Endpoint ", &ns, ", not implemented.");
 		zephir_throw_exception_debug(&_12$$5, "lxd/endpoint.zep", 55 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
@@ -260,10 +255,10 @@ PHP_METHOD(Lxd_Endpoint, getBase) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "geturl", NULL, 3);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "geturl", NULL, 2);
 	zephir_check_call_status();
 	zephir_get_strval(&_1, &_0);
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getversion", NULL, 4);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getversion", NULL, 3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	if (!(ZEPHIR_IS_EMPTY(&endpoint))) {
@@ -319,7 +314,7 @@ PHP_METHOD(Lxd_Endpoint, stripEndpoint) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getversion", NULL, 4);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getversion", NULL, 3);
 	zephir_check_call_status();
 	zephir_read_property(&_2, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch_string(&_3, &_2, SL("endpoint"), PH_NOISY | PH_READONLY, "lxd/endpoint.zep", 88 TSRMLS_CC);

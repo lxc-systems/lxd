@@ -98,7 +98,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, all) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "networks");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
@@ -120,7 +120,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, all) {
 		}
 		ZEPHIR_INIT_NVAR(&item);
 		ZVAL_COPY(&item, _6);
-		ZEPHIR_CALL_METHOD(&_9$$4, this_ptr, "stripendpoint", &_10, 11, &item);
+		ZEPHIR_CALL_METHOD(&_9$$4, this_ptr, "stripendpoint", &_10, 10, &item);
 		zephir_check_call_status();
 		zephir_array_update_multi(&response, &_9$$4 TSRMLS_CC, SL("sz"), 3, SL("metadata"), &key);
 	} ZEND_HASH_FOREACH_END();
@@ -188,7 +188,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, info) {
 	zephir_read_property(&_2, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "networks");
-	ZEPHIR_CALL_METHOD(&_3, this_ptr, "getbase", NULL, 10, &_1);
+	ZEPHIR_CALL_METHOD(&_3, this_ptr, "getbase", NULL, 9, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_4);
 	ZEPHIR_CONCAT_VSV(&_4, &_3, "/", &name);
@@ -214,7 +214,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, info) {
 		ZEPHIR_INIT_NVAR(&item);
 		ZVAL_COPY(&item, _9);
 		ZEPHIR_INIT_NVAR(&_12$$4);
-		ZEPHIR_CALL_METHOD(&_13$$4, this_ptr, "getversion", &_14, 4);
+		ZEPHIR_CALL_METHOD(&_13$$4, this_ptr, "getversion", &_14, 3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_15$$4);
 		ZEPHIR_CONCAT_SVS(&_15$$4, "/", &_13$$4, "/containers/");
@@ -315,7 +315,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, create) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "networks");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "post", NULL, 0, &_2, &opt);
 	zephir_check_call_status();
@@ -372,7 +372,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, rename) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "networks");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
@@ -471,7 +471,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, replace) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "networks");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_2, "/", &name);
@@ -570,7 +570,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, update) {
 	zephir_read_property(&_1, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "networks");
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 10, &_0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getbase", NULL, 9, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_2, "/", &name);
@@ -614,7 +614,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, remove) {
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "networks");
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 9, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
@@ -651,7 +651,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, delete) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 27, &name);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 26, &name);
 	zephir_check_call_status();
 	RETURN_MM();
 

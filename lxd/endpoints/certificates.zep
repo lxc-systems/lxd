@@ -63,7 +63,7 @@ final class Certificates extends Endpoint
         var raw, pem, options = [];
 
         if !file_exists(certificate) || !is_file(certificate) {
-            throw new \Exception("Certificate not found.");
+            throw "Certificate not found.";
         }
 
         //
@@ -71,7 +71,7 @@ final class Certificates extends Endpoint
 
         // check its PEM format
         if strpos(raw, "BEGIN CERTIFICATE") === false {
-            throw new \Exception("Certificate not in PEM format.");
+            throw "Certificate not in PEM format.";
         }
 
         //
