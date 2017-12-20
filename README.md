@@ -65,6 +65,31 @@ WIP!
  
  ## Networks
  
+    $lxd->networks->all();
+
+    $lxd->networks->info('network-name');
+
+    $lxd->networks->create("network-name", "My Network", [
+        "ipv4.address" => "192.168.1.1/8",
+        "ipv4.nat" => "true",
+        "ipv6.address" => "2001:470:b368:4242::1/64",
+        "ipv6.nat" => "true"
+    ], "bridge", true);
+
+    $lxd->networks->replace("network-name", "My Updated Network", [
+        "bridge.driver" => "openvswitch",
+        "ipv4.address" => "192.168.1.2/8",
+        "ipv4.nat" => "true",
+        "ipv6.address" => "none"
+    ], "bridge", true);
+
+    $lxd->networks->update("network-name", "My Updated Network", [
+        "dns.mode" => "dynamic"
+    ], "bridge", true));
+
+
+    $lxd->networks->remove("newnet");
+ 
  ## Operations
  
      $lxd->operations->all();
