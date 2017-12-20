@@ -1,3 +1,20 @@
+/*
+ +------------------------------------------------------------------------+
+ | PHP LXD Extension                                                      |
+ +------------------------------------------------------------------------+
+ | Copyright (c)2017-2017 LXC.systems (https://github.com/lxc-systems/lxd)|
+ +------------------------------------------------------------------------+
+ | This source file is subject to GNU General Public License v2.0 License |
+ | that is bundled with this package in the file LICENSE.                 |
+ |                                                                        |
+ | If you did not receive a copy of the license and are unable to         |
+ | obtain it through the world-wide-web, please send an email             |
+ | to license@lxd.systems so we can send you a copy immediately.          |
+ +------------------------------------------------------------------------+
+ | Authors: Lawrence Cherone <lawrence@lxd.systems>                       |
+ +------------------------------------------------------------------------+
+ */
+
 namespace Lxd;
 
 class Endpoint

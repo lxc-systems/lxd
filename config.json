@@ -1,4 +1,17 @@
 {
+    "namespace": "lxd",
+    "name": "LXD Client",
+    "description": "PHP extension for interacting with LXD REST API's",
+    "author": "Lawrence Cherone",
+    "version": "0.0.1",
+    "verbose": false,
+    "requires": {
+        "extensions": []
+    },
+    "package-dependencies": {
+        "openssl": "*",
+        "libcurl": "*"
+    },
     "stubs": {
         "path": "ide\/%version%\/%namespace%\/",
         "stubs-run-after-generate": false
@@ -8,7 +21,7 @@
         "theme": {
             "name": "zephir",
             "options": {
-                "github": null,
+                "github": "https://github.com/lxc-systems/lxd",
                 "analytics": null,
                 "main_color": "#3E6496",
                 "link_color": "#3E6496",
@@ -51,18 +64,5 @@
         "call-gatherer-pass": true,
         "check-invalid-reads": false,
         "internal-call-transformation": false
-    },
-    "namespace": "lxd",
-    "name": "LXD Client",
-    "description": "PHP extension for interacting with LXD REST API's",
-    "author": "Lawrence Cherone",
-    "version": "0.0.1",
-    "verbose": false,
-    "requires": {
-        "extensions": []
-    },
-    "package-dependencies": {
-        "openssl": "*",
-        "libcurl": "*"
     }
 }

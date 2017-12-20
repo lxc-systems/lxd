@@ -14,14 +14,31 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "kernel/operators.h"
 #include "kernel/array.h"
 #include "kernel/fcall.h"
 #include "kernel/concat.h"
 #include "kernel/file.h"
 
 
+/**
+ * Lxd\Lib\Certificate
+ *
+ * Provides certificate facilities to the application
+ *
+ *<code>
+ * $crypt = new \Phalcon\Crypt();
+ *
+ * $key  = "le password";
+ * $text = "This is a secret text";
+ *
+ * $encrypted = $crypt->encrypt($text, $key);
+ *
+ * echo $crypt->decrypt($encrypted, $key);
+ *</code>
+ */
 ZEPHIR_INIT_CLASS(Lxd_Lib_Certificate) {
 
 	ZEPHIR_REGISTER_CLASS(Lxd\\Lib, Certificate, lxd, lib_certificate, lxd_lib_certificate_method_entry, ZEND_ACC_FINAL_CLASS);
@@ -47,7 +64,16 @@ PHP_METHOD(Lxd_Lib_Certificate, __construct) {
 		ZEPHIR_INIT_VAR(&cert_path);
 		ZVAL_STRING(&cert_path, "tmp/certificates");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(cert_path_param) != IS_STRING && Z_TYPE_P(cert_path_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'cert_path' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(cert_path_param) == IS_STRING)) {
 		zephir_get_strval(&cert_path, cert_path_param);
+	} else {
+		ZEPHIR_INIT_VAR(&cert_path);
+		ZVAL_EMPTY_STRING(&cert_path);
+	}
 	}
 
 
@@ -96,11 +122,20 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &ip_param);
 
-	zephir_get_strval(&ip, ip_param);
+	if (UNEXPECTED(Z_TYPE_P(ip_param) != IS_STRING && Z_TYPE_P(ip_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ip' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(ip_param) == IS_STRING)) {
+		zephir_get_strval(&ip, ip_param);
+	} else {
+		ZEPHIR_INIT_VAR(&ip);
+		ZVAL_EMPTY_STRING(&ip);
+	}
 
 
 	if (ZEPHIR_IS_EMPTY(&ip)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Server IP", "lxd/lib/certificate.zep", 18);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Server IP", "lxd/lib/certificate.zep", 51);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&_0);

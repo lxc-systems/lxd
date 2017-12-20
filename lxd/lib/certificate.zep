@@ -1,10 +1,35 @@
+/*
+ +------------------------------------------------------------------------+
+ | PHP LXD Extension                                                      |
+ +------------------------------------------------------------------------+
+ | Copyright (c)2017-2017 LXC.systems (https://github.com/lxc-systems/lxd)|
+ +------------------------------------------------------------------------+
+ | This source file is subject to GNU General Public License v2.0 License |
+ | that is bundled with this package in the file LICENSE.                 |
+ |                                                                        |
+ | If you did not receive a copy of the license and are unable to         |
+ | obtain it through the world-wide-web, please send an email             |
+ | to license@lxd.systems so we can send you a copy immediately.          |
+ +------------------------------------------------------------------------+
+ | Authors: Lawrence Cherone <lawrence@lxd.systems>                       |
+ +------------------------------------------------------------------------+
+ */
+
 namespace Lxd\Lib;
 
+/**
+ * Lxd\Lib\Certificate
+ *
+ * Provides SSL certificate facilities to the application
+ *
+ *<code>
+ *</code>
+ */
 final class Certificate
 {
     private cert_path;
 
-    public function __construct(string cert_path = "tmp/certificates") -> void
+    public function __construct(string! cert_path = "tmp/certificates") -> void
     {
         let this->cert_path = cert_path;
     }
@@ -12,7 +37,7 @@ final class Certificate
     /**
      * Generate certificate
      */
-    public function generate(string ip) -> array
+    public function generate(string! ip) -> array
     {
         if empty(ip) {
             throw new \Exception("Server IP");

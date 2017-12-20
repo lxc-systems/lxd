@@ -19,7 +19,7 @@ namespace Lxd\Endpoints\Containers;
 
 use Lxd\Endpoint;
 
-final class Files extends Endpoint
+final class Snapshots extends Endpoint
 {
     const ENDPOINT = "containers";
     
@@ -32,60 +32,54 @@ final class Files extends Endpoint
     {
         parent::__construct(config, curl, __CLASS__);
     }
-
+    
     /**
      *
      */
-    public function read(string! name, string! filepath) -> string
+    public function all(string! name) -> array
     {
-        return this->curl->get(
-            this->getBase(Files::ENDPOINT)."/".name."/files",
-            [
-                "path" : filepath
-            ]
+        var key, value, response = [
+            "metadata": []
+        ];
+
+        let response = this->curl->get(
+            this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots"
         );
+
+        for key, value in response["metadata"] {
+            let response["metadata"][key] = str_replace(
+                "/".this->getVersion()."/".Snapshots::ENDPOINT."/".name."/snapshots/", null, value
+            );
+        }
+
+        return response;
     }
 
     /**
      *
      */
-    public function write(
-        string! name, 
-        string! filepath, 
-        string! data, 
-        var mode = null,
-        int! uid = 0, 
-        int! gid = 0
-    ) -> array
+    public function info(string! name, string! snapshot) -> array
     {
-        var headers = [];
-
-        if is_int(uid) {
-            let headers[] = "X-LXD-uid: ".intval(uid);
-        }
-        
-        if is_int(gid) {
-            let headers[] = "X-LXD-gid: ".intval(gid);
-        }
-        
-        if mode !== null && is_numeric(mode) {
-            let headers[] = "X-LXD-mode: ".sprintf("%04d", decoct(mode));
-        }
-
-        return this->curl->post(
-            this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath,
-            data,
-            headers
+        return this->curl->get(
+            this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots/".snapshot
         );
     }
     
     /**
      *
      */
-    public function delete(string! name, string! filepath) -> array
+    public function remove(string! name, string! log) -> array
+    {
+        return this->delete(name, log);
+    }
+    
+    /**
+     *
+     */
+    public function delete(string! name, string! log) -> array
     {
         return this->curl->delete(
-            this->getBase(Files::ENDPOINT)."/".name."/files?path=".filepath
+            this->getBase(Logs::ENDPOINT)."/".name."/logs/".log
         );
     }
 
