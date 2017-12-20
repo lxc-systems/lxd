@@ -50,7 +50,7 @@ final class Files extends Endpoint
     }
 
     /**
-     * Read the contents of a file in container
+     * Read the contents from a file in container
      *
      * <code>
      *  $lxd->containers->files->read('conainer-name', '/path/to/file');

@@ -10,7 +10,7 @@
 
 #include "kernel/globals.h"
 
-#define PHP_LXD_NAME        "LXD Client"
+#define PHP_LXD_NAME        "LXD PHP Extension"
 #define PHP_LXD_VERSION     "0.0.1"
 #define PHP_LXD_EXTNAME     "lxd"
 #define PHP_LXD_AUTHOR      "Lawrence Cherone"

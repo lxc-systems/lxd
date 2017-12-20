@@ -1,6 +1,6 @@
 {
     "namespace": "lxd",
-    "name": "LXD Client",
+    "name": "LXD PHP Extension",
     "description": "PHP extension for interacting with LXD REST API's",
     "author": "Lawrence Cherone",
     "version": "0.0.1",

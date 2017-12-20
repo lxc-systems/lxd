@@ -80,7 +80,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, __construct) {
 }
 
 /**
- * Read the contents of a file in container
+ * Read the contents from a file in container
  *
  * <code>
  *  $lxd->containers->files->read('conainer-name', '/path/to/file');
