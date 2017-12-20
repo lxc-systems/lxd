@@ -81,7 +81,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, __construct) {
 /**
  * Read the contents of a file in container
  *
- * <code>  $lxd->containers->files->read('conainer-name', '/path/to/file');</code>
+ * <code> $lxd->containers->files->read('conainer-name', '/path/to/file'); </code>
  *
  * @param  string name     Name of container
  * @param  string filepath Full path to a file within the container
@@ -146,6 +146,8 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, read) {
 
 /**
  * Write to or Create a file in container
+ *
+ * <code> $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0); </code>
  *
  * @param  string name     Name of container
  * @param  string filepath Path to the output file in the container
@@ -252,7 +254,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		ZVAL_LONG(&_2$$3, zephir_get_intval(&_1$$3));
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZEPHIR_CONCAT_SV(&_3$$3, "X-LXD-uid: ", &_2$$3);
-		zephir_array_append(&headers, &_3$$3, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 93);
+		zephir_array_append(&headers, &_3$$3, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 95);
 	}
 	ZVAL_LONG(&_4, gid);
 	if (Z_TYPE_P(&_4) == IS_LONG) {
@@ -261,7 +263,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		ZVAL_LONG(&_6$$4, zephir_get_intval(&_5$$4));
 		ZEPHIR_INIT_VAR(&_7$$4);
 		ZEPHIR_CONCAT_SV(&_7$$4, "X-LXD-gid: ", &_6$$4);
-		zephir_array_append(&headers, &_7$$4, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 97);
+		zephir_array_append(&headers, &_7$$4, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 99);
 	}
 	_8 = Z_TYPE_P(mode) != IS_NULL;
 	if (_8) {
@@ -276,7 +278,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_12$$5);
 		ZEPHIR_CONCAT_SV(&_12$$5, "X-LXD-mode: ", &_11$$5);
-		zephir_array_append(&headers, &_12$$5, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 101);
+		zephir_array_append(&headers, &_12$$5, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 103);
 	}
 	zephir_read_property(&_13, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_15);
@@ -293,6 +295,8 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 
 /**
  * Delete a file in container
+ *
+ * <code> $lxd->containers->files->delete('container-name', '/path/to/file'); </code>
  *
  * @param  string name     Name of container
  * @param  string filepath Path of the file to delete
