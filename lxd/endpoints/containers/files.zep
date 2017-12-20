@@ -22,7 +22,8 @@ use Lxd\Endpoint;
 /**
  * Lxd\Endpoints\Containers\Files
  *
- * Provides containers files facilities to the api
+ * Provides containers files facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/containers/files.zep
  */
 final class Files extends Endpoint
 {
@@ -51,7 +52,9 @@ final class Files extends Endpoint
     /**
      * Read the contents of a file in container
      *
-     * <code> $lxd->containers->files->read('conainer-name', '/path/to/file'); </code>
+     * <code>
+     *   $lxd->containers->files->read('conainer-name', '/path/to/file');
+     * </code>
      *
      * @param  string name     Name of container
      * @param  string filepath Full path to a file within the container
@@ -70,7 +73,9 @@ final class Files extends Endpoint
     /**
      * Write to or Create a file in container
      *
-     * <code> $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0); </code>
+     * <code> 
+     *   $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0);
+     * </code>
      *
      * @param  string name     Name of container
      * @param  string filepath Path to the output file in the container
@@ -113,7 +118,9 @@ final class Files extends Endpoint
     /**
      * Delete a file in container
      *
-     * <code> $lxd->containers->files->delete('container-name', '/path/to/file'); </code>
+     * <code>
+     *   $lxd->containers->files->delete('container-name', '/path/to/file');
+     * </code>
      *
      * @param  string name     Name of container
      * @param  string filepath Path of the file to delete
