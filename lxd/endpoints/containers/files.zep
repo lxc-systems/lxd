@@ -19,14 +19,25 @@ namespace Lxd\Endpoints\Containers;
 
 use Lxd\Endpoint;
 
+/**
+ * Lxd\Endpoints\Containers\Files
+ *
+ * Provides containers files facilities to the api
+ */
 final class Files extends Endpoint
 {
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "containers";
-
+    
+    /**
+     * @var
+     */
     protected curl;
 
     /**
-     * Class construct handles parent chaining
+     * Class construct
      *
      * @param  array          config Config array which holds object configuration
      * @param  <Lxd\Lib\Curl> curl
@@ -38,7 +49,7 @@ final class Files extends Endpoint
     }
 
     /**
-     * Read the contents of a file in a container
+     * Read the contents of a file in container
      *
      * <code>$lxd->containers->files->read('conainer-name', '/path/to/file');</code>
      *
@@ -57,7 +68,7 @@ final class Files extends Endpoint
     }
 
     /**
-     * Write to or Create a file in a container
+     * Write to or Create a file in container
      *
      * @param  string name     Name of container
      * @param  string filepath Path to the output file in the container
@@ -98,10 +109,10 @@ final class Files extends Endpoint
     }
 
     /**
-     * Delete a file in a container
+     * Delete a file in container
      *
      * @param  string name     Name of container
-     * @param  string filepath Path to the output file in the container
+     * @param  string filepath Path of the file to delete
      * @return array
      */
     public function delete(string! name, string! filepath) -> array
