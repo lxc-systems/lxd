@@ -2,17 +2,16 @@ namespace Lxd\Endpoints\Containers;
 
 use Lxd\Endpoint;
 
-class Files extends Endpoint
+final class Files extends Endpoint
 {
     const ENDPOINT = "containers";
     
     protected curl;
-    private endpoint;
 
     /**
      *
      */
-    public function __construct(array config, resource curl) -> void
+    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }

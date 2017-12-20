@@ -3,7 +3,7 @@ namespace Lxd;
 use Lxd\Lib\Curl;
 use Lxd\Lib\Certificate;
 
-class Client
+final class Client
 {
 
     protected config;

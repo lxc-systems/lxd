@@ -30,7 +30,7 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoint) {
 
 	zend_declare_property_null(lxd_endpoint_ce, SL("curl"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(lxd_endpoint_ce, SL("endpoint"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(lxd_endpoint_ce, SL("endpoint"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -232,10 +232,10 @@ PHP_METHOD(Lxd_Endpoint, getBase) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "geturl", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "geturl", NULL, 3);
 	zephir_check_call_status();
 	zephir_get_strval(&_1, &_0);
-	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getversion", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getversion", NULL, 4);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	if (!(ZEPHIR_IS_EMPTY(&endpoint))) {
@@ -282,7 +282,7 @@ PHP_METHOD(Lxd_Endpoint, stripEndpoint) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getversion", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getversion", NULL, 4);
 	zephir_check_call_status();
 	zephir_read_property(&_2, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch_string(&_3, &_2, SL("endpoint"), PH_NOISY | PH_READONLY, "lxd/endpoint.zep", 71 TSRMLS_CC);

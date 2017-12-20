@@ -10,8 +10,8 @@ PHP_METHOD(Lxd_Endpoints_Operations, cancel);
 PHP_METHOD(Lxd_Endpoints_Operations, wait);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_operations___construct, 0, 0, 2)
-	ZEND_ARG_INFO(0, config)
-	ZEND_ARG_INFO(0, curl)
+	ZEND_ARG_ARRAY_INFO(0, config, 0)
+	ZEND_ARG_OBJ_INFO(0, curl, Lxd\\Endpoints\\Lxd\\Lib\\Curl, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_operations_info, 0, 0, 1)

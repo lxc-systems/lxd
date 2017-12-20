@@ -4,12 +4,12 @@ class Endpoint
 {
     protected config;
     protected curl;
-    private endpoint;
+    protected endpoint;
     
     /**
      *
      */
-    public function __construct(array config, curl, string endpoint = "") -> void
+    public function __construct(array config, <Lxd\Lib\Curl> curl, string endpoint = "") -> void
     {
         let this->config   = config;
         let this->curl     = curl;
@@ -42,7 +42,7 @@ class Endpoint
     /**
      *
      */
-    protected function getVersion() -> string
+    final protected function getVersion() -> string
     {
         return (string) this->config["version"];
     }  
@@ -50,7 +50,7 @@ class Endpoint
     /**
      *
      */
-    protected function getUrl() -> string
+    final protected function getUrl() -> string
     {
         return (string) this->config["url"];
     }  
@@ -58,7 +58,7 @@ class Endpoint
     /**
      *
      */
-    protected function getBase(string endpoint = null) -> string
+    final protected function getBase(string endpoint = null) -> string
     {
         return (string) this->getUrl()."/".this->getVersion().(!empty endpoint ? "/".endpoint : null);
     }   
@@ -66,7 +66,7 @@ class Endpoint
     /**
      *
      */
-    protected function stripEndpoint(string endpoint = null) -> string
+    final protected function stripEndpoint(string endpoint = null) -> string
     {
         return (string) str_replace("/".this->getVersion()."/".this->config["endpoint"]."/", null, endpoint);
     } 

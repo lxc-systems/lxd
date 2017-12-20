@@ -2,19 +2,26 @@ namespace Lxd\Endpoints;
 
 use Lxd\Endpoint;
 
-class Operations extends Endpoint
+final class Operations extends Endpoint
 {
-    protected curl;
-    private endpoint;
+    const ENDPOINT = "operations";
 
-    public function __construct(config, curl) -> void
+    protected curl;
+
+    /**
+     *
+     */
+    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }
 
+    /**
+     *
+     */
     public function all() -> array
     {
-        var response = this->curl->get(this->getBase()."/operations");
+        var response = this->curl->get(this->getBase(Operations::ENDPOINT));
 
         var ret = [], item, key, operation_id;
         for key, item in (array) response["metadata"] {
@@ -25,21 +32,30 @@ class Operations extends Endpoint
         return ret;
     }
 
+    /**
+     *
+     */
     public function info(uuid) -> array
     {
-        return this->curl->get(this->getBase()."/operations/".uuid);
+        return this->curl->get(this->getBase(Operations::ENDPOINT)."/".uuid);
     }
 
+    /**
+     *
+     */
     public function cancel(uuid) -> bool
     {
-        return this->curl->delete(this->getBase()."/operations/".uuid);
+        return this->curl->delete(this->getBase(Operations::ENDPOINT)."/".uuid);
     }
 
+    /**
+     *
+     */
     public function wait(uuid, int timeout = null) -> array
     {
         string endpoint;
-        
-        let endpoint = this->getBase()."/operations/".uuid."/wait";
+
+        let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
 
         if is_numeric(timeout) && timeout > 0 {
             let endpoint .= "?timeout=".timeout;

@@ -2,15 +2,16 @@ namespace Lxd\Endpoints;
 
 use Lxd\Endpoint;
 
-class Containers extends Endpoint
+final class Containers extends Endpoint
 {
+    const ENDPOINT = "containers";
+
     protected curl;
-    private endpoint;
 
     /**
      *
      */
-    public function __construct(array config, resource curl) -> void
+    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }
@@ -34,7 +35,7 @@ class Containers extends Endpoint
      */
     public function info(string name) -> array
     {
-        return this->curl->get(this->getBase()."/containers/".name);
+        return this->curl->get(this->getBase(Containers::ENDPOINT)."/".name);
     }
 
     /**
@@ -42,7 +43,7 @@ class Containers extends Endpoint
      */
     public function state(string name) -> array
     {
-        return this->curl->get(this->getBase()."/containers/".name."/state");
+        return this->curl->get(this->getBase(Containers::ENDPOINT)."/".name."/state");
     }
 
     /**
@@ -63,10 +64,14 @@ class Containers extends Endpoint
             "stateful" : stateful
         ], response;
 
-        let response = this->curl->put(this->getBase()."/containers/".name."/state", options);
+        let response = this->curl->put(
+            this->getBase(Containers::ENDPOINT)."/".name."/state", options
+        );
 
         if wait {
-            let response = this->curl->get(this->getBase()."/containers/".response["metadata"]["id"]."/wait?timeout=".timeout);
+            let response = this->curl->get(
+                this->getBase(Containers::ENDPOINT)."/".response["metadata"]["id"]."/wait?timeout=".timeout
+            );
         }
 
         return response;
@@ -302,10 +307,12 @@ class Containers extends Endpoint
             let opts = this->getLocalImageOptions(name, source, options);
         }
 
-        let response = this->curl->post(this->getBase()."containers", opts);
+        let response = this->curl->post(this->getBase(Containers::ENDPOINT), opts);
 
         if wait {
-            let response = this->curl->get(this->getBase()."/containers/".response["metadata"]["id"]."/wait");
+            let response = this->curl->get(
+                this->getBase(Containers::ENDPOINT)."/".response["metadata"]["id"]."/wait"
+            );
         }
 
         return response;
@@ -322,10 +329,12 @@ class Containers extends Endpoint
         let opts["source"]["type"]   = "copy";
         let opts["source"]["source"] = name;
 
-        let response = this->curl->post(this->getBase()."containers", opts);
+        let response = this->curl->post(this->getBase(Containers::ENDPOINT), opts);
 
         if wait {
-            let response = this->curl->get(this->getBase()."/containers/".response["metadata"]["id"]."/wait");
+            let response = this->curl->get(
+                this->getBase(Containers::ENDPOINT)."/".response["metadata"]["id"]."/wait"
+            );
         }
 
         return response;

@@ -2,17 +2,16 @@ namespace Lxd\Endpoints;
 
 use Lxd\Endpoint;
 
-class Certificates extends Endpoint
+final class Certificates extends Endpoint
 {
     const ENDPOINT = "certificates";
 
     protected curl;
-    private endpoint;
 
     /**
      *
      */
-    public function __construct(config, curl) -> void
+    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }

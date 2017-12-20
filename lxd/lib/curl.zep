@@ -1,10 +1,10 @@
 namespace Lxd\Lib;
 
-class Curl
+final class Curl
 {
 
-    private config  = [];
-    private options = [];
+    private config;
+    private options;
 
     /**
      *

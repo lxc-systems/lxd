@@ -1,6 +1,6 @@
 namespace Lxd\Lib;
 
-class Certificate
+final class Certificate
 {
     private cert_path;
 

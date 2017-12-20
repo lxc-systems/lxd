@@ -11,8 +11,8 @@ PHP_METHOD(Lxd_Endpoints_Certificates, delete);
 PHP_METHOD(Lxd_Endpoints_Certificates, remove);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_certificates___construct, 0, 0, 2)
-	ZEND_ARG_INFO(0, config)
-	ZEND_ARG_INFO(0, curl)
+	ZEND_ARG_ARRAY_INFO(0, config, 0)
+	ZEND_ARG_OBJ_INFO(0, curl, Lxd\\Endpoints\\Lxd\\Lib\\Curl, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_certificates_add, 0, 0, 1)
