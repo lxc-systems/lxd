@@ -53,7 +53,7 @@ final class Files extends Endpoint
      * Read the contents of a file in container
      *
      * <code>
-     *   $lxd->containers->files->read('conainer-name', '/path/to/file');
+     *  $lxd->containers->files->read('conainer-name', '/path/to/file');
      * </code>
      *
      * @param  string name     Name of container
@@ -74,7 +74,7 @@ final class Files extends Endpoint
      * Write to or Create a file in container
      *
      * <code> 
-     *   $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0);
+     *  $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0);
      * </code>
      *
      * @param  string name     Name of container
@@ -119,7 +119,7 @@ final class Files extends Endpoint
      * Delete a file in container
      *
      * <code>
-     *   $lxd->containers->files->delete('container-name', '/path/to/file');
+     *  $lxd->containers->files->delete('container-name', '/path/to/file');
      * </code>
      *
      * @param  string name     Name of container
