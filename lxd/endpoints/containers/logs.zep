@@ -2,7 +2,7 @@ namespace Lxd\Endpoints\Containers;
 
 use Lxd\Endpoint;
 
-class Logs extends Endpoint
+final class Logs extends Endpoint
 {
     const ENDPOINT = "containers";
     

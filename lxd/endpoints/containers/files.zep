@@ -36,9 +36,9 @@ final class Files extends Endpoint
         string name, 
         string filepath, 
         string data, 
+        var mode = null,
         var uid = null, 
-        var gid = null, 
-        var mode = null
+        var gid = null
     ) -> array
     {
         var headers = [];
