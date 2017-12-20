@@ -5,7 +5,7 @@ WIP!
  ## Connection
 
     $lxd = (new \Lxd\Client([
-        'certificate_path' => 'certificates'
+        'certificate_path' => 'certificates',
         'timeout' => 30
     ]))->connect('https://127.0.0.1:8443', 'lxd.server.secret');
 
@@ -66,5 +66,11 @@ WIP!
  ## Operations
  
      $lxd->operations->all();
+     
+     $lxd->operations->info('operation-uuid');
+     
+     $lxd->operations->cancel('operation-uuid');
+     
+     $lxd->operations->wait('operation-uuid' , 30);
  
  ## Profiles
