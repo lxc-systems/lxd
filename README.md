@@ -30,11 +30,11 @@ WIP!
  
  **Files**
  
-    $client->containers->files->read('container-name', '/path/to/file');
+    $lxd->containers->files->read('container-name', '/path/to/file');
     
-    $client->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0);
+    $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0);
     
-    $client->containers->files->delete('container-name', '/path/to/file');
+    $lxd->containers->files->delete('container-name', '/path/to/file');
  
  **Logs**
  
