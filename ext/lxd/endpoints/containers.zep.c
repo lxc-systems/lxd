@@ -202,10 +202,10 @@ PHP_METHOD(Lxd_Endpoints_Containers, state) {
  */
 PHP_METHOD(Lxd_Endpoints_Containers, setState) {
 
-	zval _10$$3;
-	zend_bool force, stateful, wait;
+	zval _12$$3;
+	zend_bool force, stateful, wait, _5;
 	zend_long timeout, ZEPHIR_LAST_CALL_STATUS;
-	zval *name_param = NULL, *action_param = NULL, *timeout_param = NULL, *force_param = NULL, *stateful_param = NULL, *wait_param = NULL, options, _0, response, _1, _2, _3, _4$$3, _5$$3, _6$$3, _7$$3, _8$$3, _9$$3;
+	zval *name_param = NULL, *action_param = NULL, *timeout_param = NULL, *force_param = NULL, *stateful_param = NULL, *wait_param = NULL, options, _0, response, _1, _2, _3, _4, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3;
 	zval name, action;
 	zval *this_ptr = getThis();
 
@@ -217,13 +217,14 @@ PHP_METHOD(Lxd_Endpoints_Containers, setState) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&_10$$3);
+	ZVAL_UNDEF(&_11$$3);
+	ZVAL_UNDEF(&_12$$3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 4, &name_param, &action_param, &timeout_param, &force_param, &stateful_param, &wait_param);
@@ -307,22 +308,27 @@ PHP_METHOD(Lxd_Endpoints_Containers, setState) {
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/state");
 	ZEPHIR_CALL_METHOD(&response, &_1, "put", NULL, 0, &_3, &options);
 	zephir_check_call_status();
-	if (wait) {
-		zephir_read_property(&_4$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_6$$3);
-		ZVAL_STRING(&_6$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_5$$3, this_ptr, "getbase", NULL, 10, &_6$$3);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 88 TSRMLS_CC);
+	_5 = !ZEPHIR_IS_STRING_IDENTICAL(&_4, "error");
+	if (_5) {
+		_5 = wait;
+	}
+	if (_5) {
+		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_8$$3);
+		ZVAL_STRING(&_8$$3, "operations");
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_7$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 90 TSRMLS_CC);
-		zephir_array_fetch_string(&_8$$3, &_7$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 90 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(&_9$$3);
-		ZEPHIR_CONCAT_VSVS(&_9$$3, &_5$$3, "/", &_8$$3, "/wait");
-		ZEPHIR_INIT_VAR(&_10$$3);
-		zephir_create_array(&_10$$3, 1, 0 TSRMLS_CC);
-		ZEPHIR_INIT_NVAR(&_6$$3);
-		ZVAL_LONG(&_6$$3, timeout);
-		zephir_array_update_string(&_10$$3, SL("timeout"), &_6$$3, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&response, &_4$$3, "get", NULL, 0, &_9$$3, &_10$$3);
+		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 90 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 90 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_11$$3);
+		ZEPHIR_CONCAT_VSVS(&_11$$3, &_7$$3, "/", &_10$$3, "/wait");
+		ZEPHIR_INIT_VAR(&_12$$3);
+		zephir_create_array(&_12$$3, 1, 0 TSRMLS_CC);
+		ZEPHIR_INIT_NVAR(&_8$$3);
+		ZVAL_LONG(&_8$$3, timeout);
+		zephir_array_update_string(&_12$$3, SL("timeout"), &_8$$3, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&response, &_6$$3, "get", NULL, 0, &_11$$3, &_12$$3);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&response);
@@ -1246,9 +1252,9 @@ PHP_METHOD(Lxd_Endpoints_Containers, getLocalImageOptions) {
 PHP_METHOD(Lxd_Endpoints_Containers, create) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool wait, _0, _2, _3, _5, _7;
-	zval options, _18$$8;
-	zval *name_param = NULL, *options_param = NULL, *wait_param = NULL, source, opts, response, _1, _4, _6, _8, _9, _10, _11, _12$$8, _13$$8, _14$$8, _15$$8, _16$$8, _17$$8, _19$$8, _20$$8;
+	zend_bool wait, _0, _2, _3, _5, _7, _13;
+	zval options, _20$$8;
+	zval *name_param = NULL, *options_param = NULL, *wait_param = NULL, source, opts, response, _1, _4, _6, _8, _9, _10, _11, _12, _14$$8, _15$$8, _16$$8, _17$$8, _18$$8, _19$$8, _21$$8, _22$$8;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -1263,16 +1269,17 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_10);
 	ZVAL_UNDEF(&_11);
-	ZVAL_UNDEF(&_12$$8);
-	ZVAL_UNDEF(&_13$$8);
+	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_14$$8);
 	ZVAL_UNDEF(&_15$$8);
 	ZVAL_UNDEF(&_16$$8);
 	ZVAL_UNDEF(&_17$$8);
-	ZVAL_UNDEF(&_19$$8);
-	ZVAL_UNDEF(&_20$$8);
-	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_18$$8);
+	ZVAL_UNDEF(&_19$$8);
+	ZVAL_UNDEF(&_21$$8);
+	ZVAL_UNDEF(&_22$$8);
+	ZVAL_UNDEF(&options);
+	ZVAL_UNDEF(&_20$$8);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &name_param, &options_param, &wait_param);
@@ -1350,23 +1357,28 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_9, "post", NULL, 0, &_10, &opts);
 	zephir_check_call_status();
-	if (wait) {
-		zephir_read_property(&_12$$8, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_14$$8);
-		ZVAL_STRING(&_14$$8, "operations");
-		ZEPHIR_CALL_METHOD(&_13$$8, this_ptr, "getbase", NULL, 10, &_14$$8);
+	zephir_array_fetch_string(&_12, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 332 TSRMLS_CC);
+	_13 = !ZEPHIR_IS_STRING_IDENTICAL(&_12, "error");
+	if (_13) {
+		_13 = wait;
+	}
+	if (_13) {
+		zephir_read_property(&_14$$8, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_16$$8);
+		ZVAL_STRING(&_16$$8, "operations");
+		ZEPHIR_CALL_METHOD(&_15$$8, this_ptr, "getbase", NULL, 10, &_16$$8);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_15$$8, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 334 TSRMLS_CC);
-		zephir_array_fetch_string(&_16$$8, &_15$$8, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 334 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(&_17$$8);
-		ZEPHIR_CONCAT_VSVS(&_17$$8, &_13$$8, "/", &_16$$8, "/wait");
-		ZEPHIR_INIT_VAR(&_18$$8);
-		zephir_create_array(&_18$$8, 1, 0 TSRMLS_CC);
-		zephir_read_property(&_19$$8, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_OBS_VAR(&_20$$8);
-		zephir_array_fetch_string(&_20$$8, &_19$$8, SL("timeout"), PH_NOISY, "lxd/endpoints/containers.zep", 337 TSRMLS_CC);
-		zephir_array_update_string(&_18$$8, SL("timeout"), &_20$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&response, &_12$$8, "get", NULL, 0, &_17$$8, &_18$$8);
+		zephir_array_fetch_string(&_17$$8, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 334 TSRMLS_CC);
+		zephir_array_fetch_string(&_18$$8, &_17$$8, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 334 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_19$$8);
+		ZEPHIR_CONCAT_VSVS(&_19$$8, &_15$$8, "/", &_18$$8, "/wait");
+		ZEPHIR_INIT_VAR(&_20$$8);
+		zephir_create_array(&_20$$8, 1, 0 TSRMLS_CC);
+		zephir_read_property(&_21$$8, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_OBS_VAR(&_22$$8);
+		zephir_array_fetch_string(&_22$$8, &_21$$8, SL("timeout"), PH_NOISY, "lxd/endpoints/containers.zep", 337 TSRMLS_CC);
+		zephir_array_update_string(&_20$$8, SL("timeout"), &_22$$8, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&response, &_14$$8, "get", NULL, 0, &_19$$8, &_20$$8);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&response);
@@ -1379,9 +1391,9 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool wait;
-	zval options, _9$$3;
-	zval *name_param = NULL, *copyName_param = NULL, *options_param = NULL, *wait_param = NULL, opts, response, _0, _1, _2, _3$$3, _4$$3, _5$$3, _6$$3, _7$$3, _8$$3, _10$$3, _11$$3;
+	zend_bool wait, _4;
+	zval options, _11$$3;
+	zval *name_param = NULL, *copyName_param = NULL, *options_param = NULL, *wait_param = NULL, opts, response, _0, _1, _2, _3, _5$$3, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _12$$3, _13$$3;
 	zval name, copyName;
 	zval *this_ptr = getThis();
 
@@ -1392,16 +1404,17 @@ PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_8$$3);
-	ZVAL_UNDEF(&_10$$3);
-	ZVAL_UNDEF(&_11$$3);
-	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_9$$3);
+	ZVAL_UNDEF(&_10$$3);
+	ZVAL_UNDEF(&_12$$3);
+	ZVAL_UNDEF(&_13$$3);
+	ZVAL_UNDEF(&options);
+	ZVAL_UNDEF(&_11$$3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &name_param, &copyName_param, &options_param, &wait_param);
@@ -1456,23 +1469,120 @@ PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "post", NULL, 0, &_2, &opts);
 	zephir_check_call_status();
-	if (wait) {
-		zephir_read_property(&_3$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_5$$3);
-		ZVAL_STRING(&_5$$3, "operations");
-		ZEPHIR_CALL_METHOD(&_4$$3, this_ptr, "getbase", NULL, 10, &_5$$3);
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 357 TSRMLS_CC);
+	_4 = !ZEPHIR_IS_STRING_IDENTICAL(&_3, "error");
+	if (_4) {
+		_4 = wait;
+	}
+	if (_4) {
+		zephir_read_property(&_5$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_INIT_VAR(&_7$$3);
+		ZVAL_STRING(&_7$$3, "operations");
+		ZEPHIR_CALL_METHOD(&_6$$3, this_ptr, "getbase", NULL, 10, &_7$$3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_6$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 359 TSRMLS_CC);
-		zephir_array_fetch_string(&_7$$3, &_6$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 359 TSRMLS_CC);
+		zephir_array_fetch_string(&_8$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 359 TSRMLS_CC);
+		zephir_array_fetch_string(&_9$$3, &_8$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 359 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_10$$3);
+		ZEPHIR_CONCAT_VSVS(&_10$$3, &_6$$3, "/", &_9$$3, "/wait");
+		ZEPHIR_INIT_VAR(&_11$$3);
+		zephir_create_array(&_11$$3, 1, 0 TSRMLS_CC);
+		zephir_read_property(&_12$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_OBS_VAR(&_13$$3);
+		zephir_array_fetch_string(&_13$$3, &_12$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers.zep", 362 TSRMLS_CC);
+		zephir_array_update_string(&_11$$3, SL("timeout"), &_13$$3, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&response, &_5$$3, "get", NULL, 0, &_10$$3, &_11$$3);
+		zephir_check_call_status();
+	}
+	RETURN_CCTOR(&response);
+
+}
+
+/**
+ *
+ */
+PHP_METHOD(Lxd_Endpoints_Containers, replace) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zend_bool wait, _5;
+	zval opts, _12$$3;
+	zval *name_param = NULL, *opts_param = NULL, *wait_param = NULL, response, _0, _1, _2, _3, _4, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3, _13$$3, _14$$3;
+	zval name;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&response);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_8$$3);
+	ZVAL_UNDEF(&_9$$3);
+	ZVAL_UNDEF(&_10$$3);
+	ZVAL_UNDEF(&_11$$3);
+	ZVAL_UNDEF(&_13$$3);
+	ZVAL_UNDEF(&_14$$3);
+	ZVAL_UNDEF(&opts);
+	ZVAL_UNDEF(&_12$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 1, &name_param, &opts_param, &wait_param);
+
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	ZEPHIR_OBS_COPY_OR_DUP(&opts, opts_param);
+	if (!wait_param) {
+		wait = 0;
+	} else {
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
+	}
+
+
+	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_2);
+	ZVAL_STRING(&_2, "containers");
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_3);
+	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
+	ZEPHIR_CALL_METHOD(&response, &_0, "put", NULL, 0, &_3, &opts);
+	zephir_check_call_status();
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 378 TSRMLS_CC);
+	_5 = !ZEPHIR_IS_STRING_IDENTICAL(&_4, "error");
+	if (_5) {
+		_5 = wait;
+	}
+	if (_5) {
+		zephir_read_property(&_6$$3, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_8$$3);
-		ZEPHIR_CONCAT_VSVS(&_8$$3, &_4$$3, "/", &_7$$3, "/wait");
-		ZEPHIR_INIT_VAR(&_9$$3);
-		zephir_create_array(&_9$$3, 1, 0 TSRMLS_CC);
-		zephir_read_property(&_10$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_OBS_VAR(&_11$$3);
-		zephir_array_fetch_string(&_11$$3, &_10$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers.zep", 362 TSRMLS_CC);
-		zephir_array_update_string(&_9$$3, SL("timeout"), &_11$$3, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&response, &_3$$3, "get", NULL, 0, &_8$$3, &_9$$3);
+		ZVAL_STRING(&_8$$3, "operations");
+		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 10, &_8$$3);
+		zephir_check_call_status();
+		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 380 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers.zep", 380 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_11$$3);
+		ZEPHIR_CONCAT_VSVS(&_11$$3, &_7$$3, "/", &_10$$3, "/wait");
+		ZEPHIR_INIT_VAR(&_12$$3);
+		zephir_create_array(&_12$$3, 1, 0 TSRMLS_CC);
+		zephir_read_property(&_13$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_OBS_VAR(&_14$$3);
+		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers.zep", 383 TSRMLS_CC);
+		zephir_array_update_string(&_12$$3, SL("timeout"), &_14$$3, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&response, &_6$$3, "get", NULL, 0, &_11$$3, &_12$$3);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&response);

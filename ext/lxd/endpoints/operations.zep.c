@@ -270,7 +270,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, wait) {
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSVS(&_2, &_0, "/", &uuid, "/wait");
 	zephir_get_strval(&endpoint, &_2);
-	ZEPHIR_CALL_FUNCTION(NULL, "print_r", NULL, 26, &endpoint);
+	ZEPHIR_CALL_FUNCTION(NULL, "print_r", NULL, 27, &endpoint);
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, timeout);
 	_4 = zephir_is_numeric(&_3);

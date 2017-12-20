@@ -85,7 +85,7 @@ final class Containers extends Endpoint
             this->getBase(Containers::ENDPOINT)."/".name."/state", options
         );
 
-        if wait {
+        if response["type"] !== "error" && wait {
             let response = this->curl->get(
                 this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
                 [
@@ -329,7 +329,7 @@ final class Containers extends Endpoint
 
         let response = this->curl->post(this->getBase(Containers::ENDPOINT), opts);
 
-        if wait {
+        if response["type"] !== "error" && wait {
             let response = this->curl->get(
                 this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
                 [
@@ -354,7 +354,7 @@ final class Containers extends Endpoint
 
         let response = this->curl->post(this->getBase(Containers::ENDPOINT), opts);
 
-        if wait {
+        if response["type"] !== "error" && wait {
             let response = this->curl->get(
                 this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
                 [
@@ -366,6 +366,27 @@ final class Containers extends Endpoint
         return response;
     }
 
+    /**
+     *
+     */
+    public function replace(string! name, array! opts, boolean! wait = false) -> array
+    {
+        var response;
+        
+        let response = this->curl->put(this->getBase(Containers::ENDPOINT)."/".name, opts);
+        
+        if response["type"] !== "error" && wait {
+            let response = this->curl->get(
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : this->config["timeout"]
+                ]
+            );
+        }
+        
+        return response;
+    }
+    
     /**
      *
      */

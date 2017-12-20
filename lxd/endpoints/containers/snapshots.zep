@@ -71,7 +71,7 @@ final class Snapshots extends Endpoint
     public function create(string! name, string! snapshot, boolean! stateful = false, boolean! wait = false) -> array
     {
         var options, response;
-        
+
         let options = [
             "name"     : snapshot,
             "stateful" : stateful
@@ -82,16 +82,91 @@ final class Snapshots extends Endpoint
             options
         );
 
-        if wait {
+        if response["type"] !== "error" && wait {
             let response = this->curl->get(
                 this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
                 [
-                    "timeout" : 30
+                    "timeout" : this->config["timeout"]
                 ]
             );
         }
-        
+
         return response;
+    }
+
+    /**
+     *
+     */
+    public function restore(string! name, string! snapshot, boolean! wait = false) -> array
+    {
+        var response, opts = [
+            "restore" : snapshot
+        ];
+
+        let response = this->curl->put(this->getBase(Snapshots::ENDPOINT)."/".name, opts);
+
+        if response["type"] !== "error" && wait {
+            let response = this->curl->get(
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : this->config["timeout"]
+                ]
+            );
+        }
+
+        return response;
+    }
+
+    /**
+     *
+     */
+    public function rename(string! name, string! snaphot, string! newSnapshot, boolean! wait = false) -> array
+    {
+        var response, opts = [
+            "name" : newSnapshot
+        ];
+
+        let response = this->curl->post(this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots/".snaphot, opts);
+
+        if response["type"] !== "error" && wait {
+            let response = this->curl->get(
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : this->config["timeout"]
+                ]
+            );
+        }
+
+        return response;
+    }
+    
+    /**
+     *
+     */
+    public function remove(string! name, string! snaphot, boolean! wait = false) -> array
+    {
+        var response;
+
+        let response = this->curl->delete(this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots/".snaphot);
+
+        if response["type"] !== "error" && wait {
+            let response = this->curl->get(
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : this->config["timeout"]
+                ]
+            );
+        }
+
+        return response;
+    }
+    
+    /**
+     *
+     */
+    public function delete(string! name, string! snaphot, boolean! wait = false) -> array
+    {
+        return this->remove(name, snaphot, wait);
     }
 
 }

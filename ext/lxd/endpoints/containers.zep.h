@@ -20,6 +20,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, getRemoteImageOptions);
 PHP_METHOD(Lxd_Endpoints_Containers, getLocalImageOptions);
 PHP_METHOD(Lxd_Endpoints_Containers, create);
 PHP_METHOD(Lxd_Endpoints_Containers, copy);
+PHP_METHOD(Lxd_Endpoints_Containers, replace);
 PHP_METHOD(Lxd_Endpoints_Containers, delete);
 PHP_METHOD(Lxd_Endpoints_Containers, remove);
 
@@ -124,6 +125,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_containers_copy, 0, 0, 2)
 	ZEND_ARG_INFO(0, wait)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_containers_replace, 0, 0, 2)
+	ZEND_ARG_INFO(0, name)
+	ZEND_ARG_ARRAY_INFO(0, opts, 0)
+	ZEND_ARG_INFO(0, wait)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_lxd_endpoints_containers_delete, 0, 0, 1)
 	ZEND_ARG_INFO(0, fingerprint)
 ZEND_END_ARG_INFO()
@@ -150,6 +157,7 @@ ZEPHIR_INIT_FUNCS(lxd_endpoints_containers_method_entry) {
 	PHP_ME(Lxd_Endpoints_Containers, getLocalImageOptions, arginfo_lxd_endpoints_containers_getlocalimageoptions, ZEND_ACC_PRIVATE)
 	PHP_ME(Lxd_Endpoints_Containers, create, arginfo_lxd_endpoints_containers_create, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Endpoints_Containers, copy, arginfo_lxd_endpoints_containers_copy, ZEND_ACC_PUBLIC)
+	PHP_ME(Lxd_Endpoints_Containers, replace, arginfo_lxd_endpoints_containers_replace, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Endpoints_Containers, delete, arginfo_lxd_endpoints_containers_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Endpoints_Containers, remove, arginfo_lxd_endpoints_containers_remove, ZEND_ACC_PUBLIC)
 	PHP_FE_END
