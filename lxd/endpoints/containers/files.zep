@@ -26,7 +26,11 @@ final class Files extends Endpoint
     protected curl;
 
     /**
+     * Class construct handles parent chaining
      *
+     * @param  array          config Config array which holds object configuration
+     * @param  <Lxd\Lib\Curl> curl
+     * @return void
      */
     public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
@@ -34,7 +38,11 @@ final class Files extends Endpoint
     }
 
     /**
+     * Read the contents of a file in a container
      *
+     * @param  string name     Name of container
+     * @param  string filepath Full path to a file within the container
+     * @return string
      */
     public function read(string! name, string! filepath) -> string
     {
@@ -47,7 +55,15 @@ final class Files extends Endpoint
     }
 
     /**
+     * Write to or Create a file in a container
      *
+     * @param  string name     Name of container
+     * @param  string filepath Path to the output file in the container
+     * @param  string data     Data to write to the file
+     * @param  octal mode      Permission bits in octal format e.g 0644
+     * @param  int   uid       System user id, 0 = root
+     * @param  int   gid       System group id, 0 = root
+     * @return array
      */
     public function write(
         string! name, 
@@ -80,7 +96,11 @@ final class Files extends Endpoint
     }
 
     /**
+     * Delete a file in a container
      *
+     * @param  string name     Name of container
+     * @param  string filepath Path to the output file in the container
+     * @return array
      */
     public function delete(string! name, string! filepath) -> array
     {
