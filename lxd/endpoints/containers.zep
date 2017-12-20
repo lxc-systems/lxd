@@ -74,12 +74,12 @@ final class Containers extends Endpoint
         boolean! stateful = false, 
         boolean! wait = false) -> array
     {
-        var options = [
+        var response, options = [
             "action"   : action,
             "timeout"  : timeout,
             "force"    : force,
             "stateful" : stateful
-        ], response;
+        ];
 
         let response = this->curl->put(
             this->getBase(Containers::ENDPOINT)."/".name."/state", options
@@ -205,9 +205,7 @@ final class Containers extends Endpoint
      */
     private function getOptions(string! name, array! options) -> array
     {
-        var only, opts;
-
-        let only = [
+        var opts, only = [
             "architecture",
             "profiles",
             "ephemeral",
@@ -226,9 +224,7 @@ final class Containers extends Endpoint
      */
     private function getEmptyOptions(string! name, array! options) -> array
     {
-        var attrs, attr, opts;
-
-        let attrs = [
+        var attr, opts, attrs = [
             "alias",
             "fingerprint",
             "properties",
@@ -255,18 +251,16 @@ final class Containers extends Endpoint
      */
     private function getRemoteImageOptions(string! name, array! source, array! options) -> array
     {
-        var only, opts, remoteOptions;
-
-        if isset options["protocol"] && !in_array(options["protocol"], ["lxd", "simplestreams"]) {
-            throw new \Exception("Invalid protocol.  Valid choices: lxd, simplestreams");
-        }
-
-        let only = [
+        var opts, remoteOptions, only = [
             "server",
             "secret",
             "protocol",
             "certificate"
         ];
+
+        if isset options["protocol"] && !in_array(options["protocol"], ["lxd", "simplestreams"]) {
+            throw new \Exception("Invalid protocol.  Valid choices: lxd, simplestreams");
+        }
 
         let remoteOptions          = array_intersect_key(options, array_flip(only));
         let opts                   = this->getOptions(name, options);
@@ -282,9 +276,7 @@ final class Containers extends Endpoint
      */
     private function getLocalImageOptions(string! name, array! source, array! options) -> array
     {
-        var attrs, attr, opts;
-
-        let attrs = [
+        var opts, attr, attrs = [
             "secret",
             "protocol",
             "certificate"

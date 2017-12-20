@@ -6,6 +6,7 @@ WIP!
 
     $lxd = (new \Lxd\Client([
         'certificate_path' => 'certificates'
+        'timeout' => 30
     ]))->connect('https://127.0.0.1:8443', 'lxd.server.secret');
 
  ## Host
@@ -45,6 +46,18 @@ WIP!
     $lxd->containers->logs->remove('container-name', 'log.name.log'); // alias for delete
     
     $lxd->containers->logs->delete('container-name', 'log.name.log');
+    
+ **Snapshots**
+ 
+    $lxd->containers->snapshots->all('container-name');
+    
+    $lxd->containers->snapshots->create('container-name', 'snapshot-name');
+    
+    $lxd->containers->snapshots->restore('container-name', 'snapshot-name');
+    
+    $lxd->containers->snapshots->rename('container-name', 'snapshot-name', 'new-snapshot-name');
+    
+    $lxd->containers->snapshots->remove('container-name', 'snapshot-name');
 
  ## Images
  
