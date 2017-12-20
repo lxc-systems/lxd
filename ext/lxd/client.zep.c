@@ -16,10 +16,11 @@
 #include "kernel/array.h"
 #include "kernel/object.h"
 #include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/fcall.h"
-#include "kernel/exception.h"
 #include "kernel/file.h"
 #include "kernel/time.h"
 #include "kernel/math.h"
@@ -70,7 +71,7 @@ PHP_METHOD(Lxd_Client, __construct) {
 		ZEPHIR_INIT_VAR(&config);
 		array_init(&config);
 	} else {
-		zephir_get_arrval(&config, config_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&config, config_param);
 	}
 
 
@@ -140,7 +141,16 @@ PHP_METHOD(Lxd_Client, __get) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &endpoint_param);
 
-	zephir_get_strval(&endpoint, endpoint_param);
+	if (UNEXPECTED(Z_TYPE_P(endpoint_param) != IS_STRING && Z_TYPE_P(endpoint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'endpoint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(endpoint_param) == IS_STRING)) {
+		zephir_get_strval(&endpoint, endpoint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&endpoint);
+		ZVAL_EMPTY_STRING(&endpoint);
+	}
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -260,13 +270,31 @@ PHP_METHOD(Lxd_Client, connect) {
 		ZEPHIR_INIT_VAR(&url);
 		ZVAL_STRING(&url, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(url_param) != IS_STRING && Z_TYPE_P(url_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'url' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(url_param) == IS_STRING)) {
 		zephir_get_strval(&url, url_param);
+	} else {
+		ZEPHIR_INIT_VAR(&url);
+		ZVAL_EMPTY_STRING(&url);
+	}
 	}
 	if (!secret_param) {
 		ZEPHIR_INIT_VAR(&secret);
 		ZVAL_STRING(&secret, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(secret_param) != IS_STRING && Z_TYPE_P(secret_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'secret' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(secret_param) == IS_STRING)) {
 		zephir_get_strval(&secret, secret_param);
+	} else {
+		ZEPHIR_INIT_VAR(&secret);
+		ZVAL_EMPTY_STRING(&secret);
+	}
 	}
 
 
@@ -364,16 +392,33 @@ PHP_METHOD(Lxd_Client, connectable) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &ip_param, &port_param, &timeout_param);
 
-	zephir_get_strval(&ip, ip_param);
+	if (UNEXPECTED(Z_TYPE_P(ip_param) != IS_STRING && Z_TYPE_P(ip_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'ip' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(ip_param) == IS_STRING)) {
+		zephir_get_strval(&ip, ip_param);
+	} else {
+		ZEPHIR_INIT_VAR(&ip);
+		ZVAL_EMPTY_STRING(&ip);
+	}
 	if (!port_param) {
 		port = 8443;
 	} else {
-		port = zephir_get_intval(port_param);
+	if (UNEXPECTED(Z_TYPE_P(port_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'port' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	port = Z_LVAL_P(port_param);
 	}
 	if (!timeout_param) {
 		timeout = 10;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 
 

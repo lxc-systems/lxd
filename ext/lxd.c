@@ -29,6 +29,7 @@ zend_class_entry *lxd_endpoints_certificates_ce;
 zend_class_entry *lxd_endpoints_containers_ce;
 zend_class_entry *lxd_endpoints_containers_files_ce;
 zend_class_entry *lxd_endpoints_containers_logs_ce;
+zend_class_entry *lxd_endpoints_containers_snapshots_ce;
 zend_class_entry *lxd_endpoints_operations_ce;
 zend_class_entry *lxd_lib_certificate_ce;
 zend_class_entry *lxd_lib_curl_ce;
@@ -49,6 +50,7 @@ static PHP_MINIT_FUNCTION(lxd)
 	ZEPHIR_INIT(Lxd_Endpoints_Containers);
 	ZEPHIR_INIT(Lxd_Endpoints_Containers_Files);
 	ZEPHIR_INIT(Lxd_Endpoints_Containers_Logs);
+	ZEPHIR_INIT(Lxd_Endpoints_Containers_Snapshots);
 	ZEPHIR_INIT(Lxd_Endpoints_Operations);
 	ZEPHIR_INIT(Lxd_Lib_Certificate);
 	ZEPHIR_INIT(Lxd_Lib_Curl);

@@ -14,9 +14,11 @@
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
-#include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
+#include "kernel/operators.h"
 #include "kernel/concat.h"
 
 
@@ -50,7 +52,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, __construct) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &config_param, &curl);
 
-	zephir_get_arrval(&config, config_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&config, config_param);
 
 
 	ZEPHIR_INIT_VAR(&_1);
@@ -134,18 +136,29 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 PHP_METHOD(Lxd_Endpoints_Operations, info) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uuid, uuid_sub, _0, _1, _2, _3;
+	zval *uuid_param = NULL, _0, _1, _2, _3;
+	zval uuid;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&uuid_sub);
+	ZVAL_UNDEF(&uuid);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &uuid);
+	zephir_fetch_params(1, 1, 0, &uuid_param);
 
+	if (UNEXPECTED(Z_TYPE_P(uuid_param) != IS_STRING && Z_TYPE_P(uuid_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uuid' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(uuid_param) == IS_STRING)) {
+		zephir_get_strval(&uuid, uuid_param);
+	} else {
+		ZEPHIR_INIT_VAR(&uuid);
+		ZVAL_EMPTY_STRING(&uuid);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
@@ -154,7 +167,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, info) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", uuid);
+	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &uuid);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -167,18 +180,29 @@ PHP_METHOD(Lxd_Endpoints_Operations, info) {
 PHP_METHOD(Lxd_Endpoints_Operations, cancel) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uuid, uuid_sub, _0, _1, _2, _3;
+	zval *uuid_param = NULL, _0, _1, _2, _3;
+	zval uuid;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&uuid_sub);
+	ZVAL_UNDEF(&uuid);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &uuid);
+	zephir_fetch_params(1, 1, 0, &uuid_param);
 
+	if (UNEXPECTED(Z_TYPE_P(uuid_param) != IS_STRING && Z_TYPE_P(uuid_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uuid' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(uuid_param) == IS_STRING)) {
+		zephir_get_strval(&uuid, uuid_param);
+	} else {
+		ZEPHIR_INIT_VAR(&uuid);
+		ZVAL_EMPTY_STRING(&uuid);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
@@ -187,7 +211,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, cancel) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", uuid);
+	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &uuid);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "delete", NULL, 0, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -200,28 +224,42 @@ PHP_METHOD(Lxd_Endpoints_Operations, cancel) {
 PHP_METHOD(Lxd_Endpoints_Operations, wait) {
 
 	zend_bool _4;
-	zval endpoint, _6$$3;
 	zend_long timeout, ZEPHIR_LAST_CALL_STATUS;
-	zval *uuid, uuid_sub, *timeout_param = NULL, _0, _1, _2, _3, _7, _5$$3;
+	zval *uuid_param = NULL, *timeout_param = NULL, _0, _1, _2, _3, _7, _5$$3;
+	zval uuid, endpoint, _6$$3;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&uuid_sub);
+	ZVAL_UNDEF(&uuid);
+	ZVAL_UNDEF(&endpoint);
+	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_5$$3);
-	ZVAL_UNDEF(&endpoint);
-	ZVAL_UNDEF(&_6$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &uuid, &timeout_param);
+	zephir_fetch_params(1, 1, 1, &uuid_param, &timeout_param);
 
+	if (UNEXPECTED(Z_TYPE_P(uuid_param) != IS_STRING && Z_TYPE_P(uuid_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uuid' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(uuid_param) == IS_STRING)) {
+		zephir_get_strval(&uuid, uuid_param);
+	} else {
+		ZEPHIR_INIT_VAR(&uuid);
+		ZVAL_EMPTY_STRING(&uuid);
+	}
 	if (!timeout_param) {
 		timeout = 0;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 
 
@@ -230,7 +268,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, wait) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getbase", NULL, 10, &_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
-	ZEPHIR_CONCAT_VSVS(&_2, &_0, "/", uuid, "/wait");
+	ZEPHIR_CONCAT_VSVS(&_2, &_0, "/", &uuid, "/wait");
 	zephir_get_strval(&endpoint, &_2);
 	ZVAL_LONG(&_3, timeout);
 	_4 = zephir_is_numeric(&_3);

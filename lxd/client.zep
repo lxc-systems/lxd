@@ -13,7 +13,7 @@ final class Client
     /**
      *
      */
-    public function __construct(array config = []) -> void
+    public function __construct(array! config = []) -> void
     {
         let this->config = array_merge([
             "url"      : null,
@@ -42,7 +42,7 @@ final class Client
     /**
      *
      */
-    public function __get(string endpoint)
+    public function __get(string! endpoint)
     {
         string ns = __NAMESPACE__."\\Endpoints\\".ucfirst(endpoint);
 
@@ -72,7 +72,7 @@ final class Client
     /**
      *
      */
-    public function connect(string url = null, string secret = null)
+    public function connect(string! url = null, string! secret = null)
     {
         var ip, port, ping;
 
@@ -118,7 +118,7 @@ final class Client
      *
      * @return int - response time -1 for error
      */
-    public function connectable(string ip, int port = 8443, int timeout = 10)
+    public function connectable(string! ip, int! port = 8443, int! timeout = 10)
     {
         ulong start, stop; var time, sock; 
 

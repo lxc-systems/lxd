@@ -14,11 +14,12 @@
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
-#include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
+#include "kernel/operators.h"
 #include "kernel/concat.h"
-#include "kernel/exception.h"
 
 
 ZEPHIR_INIT_CLASS(Lxd_Endpoints_Containers) {
@@ -51,7 +52,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, __construct) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &config_param, &curl);
 
-	zephir_get_arrval(&config, config_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&config, config_param);
 
 
 	ZEPHIR_INIT_VAR(&_1);
@@ -127,7 +128,16 @@ PHP_METHOD(Lxd_Endpoints_Containers, info) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
@@ -162,7 +172,16 @@ PHP_METHOD(Lxd_Endpoints_Containers, state) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
@@ -208,27 +227,61 @@ PHP_METHOD(Lxd_Endpoints_Containers, setState) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 4, &name_param, &action_param, &timeout_param, &force_param, &stateful_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_strval(&action, action_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	if (UNEXPECTED(Z_TYPE_P(action_param) != IS_STRING && Z_TYPE_P(action_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'action' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(action_param) == IS_STRING)) {
+		zephir_get_strval(&action, action_param);
+	} else {
+		ZEPHIR_INIT_VAR(&action);
+		ZVAL_EMPTY_STRING(&action);
+	}
 	if (!timeout_param) {
 		timeout = 30;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 	if (!force_param) {
 		force = 0;
 	} else {
-		force = zephir_get_boolval(force_param);
+	if (UNEXPECTED(Z_TYPE_P(force_param) != IS_TRUE && Z_TYPE_P(force_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'force' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	force = (Z_TYPE_P(force_param) == IS_TRUE);
 	}
 	if (!stateful_param) {
 		stateful = 0;
 	} else {
-		stateful = zephir_get_boolval(stateful_param);
+	if (UNEXPECTED(Z_TYPE_P(stateful_param) != IS_TRUE && Z_TYPE_P(stateful_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'stateful' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	stateful = (Z_TYPE_P(stateful_param) == IS_TRUE);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -293,26 +346,51 @@ PHP_METHOD(Lxd_Endpoints_Containers, start) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 4, &name_param, &timeout_param, &force_param, &stateful_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 	if (!timeout_param) {
 		timeout = 30;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 	if (!force_param) {
 		force = 0;
 	} else {
-		force = zephir_get_boolval(force_param);
+	if (UNEXPECTED(Z_TYPE_P(force_param) != IS_TRUE && Z_TYPE_P(force_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'force' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	force = (Z_TYPE_P(force_param) == IS_TRUE);
 	}
 	if (!stateful_param) {
 		stateful = 0;
 	} else {
-		stateful = zephir_get_boolval(stateful_param);
+	if (UNEXPECTED(Z_TYPE_P(stateful_param) != IS_TRUE && Z_TYPE_P(stateful_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'stateful' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	stateful = (Z_TYPE_P(stateful_param) == IS_TRUE);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -361,26 +439,51 @@ PHP_METHOD(Lxd_Endpoints_Containers, stop) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 4, &name_param, &timeout_param, &force_param, &stateful_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 	if (!timeout_param) {
 		timeout = 30;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 	if (!force_param) {
 		force = 0;
 	} else {
-		force = zephir_get_boolval(force_param);
+	if (UNEXPECTED(Z_TYPE_P(force_param) != IS_TRUE && Z_TYPE_P(force_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'force' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	force = (Z_TYPE_P(force_param) == IS_TRUE);
 	}
 	if (!stateful_param) {
 		stateful = 0;
 	} else {
-		stateful = zephir_get_boolval(stateful_param);
+	if (UNEXPECTED(Z_TYPE_P(stateful_param) != IS_TRUE && Z_TYPE_P(stateful_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'stateful' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	stateful = (Z_TYPE_P(stateful_param) == IS_TRUE);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -429,26 +532,51 @@ PHP_METHOD(Lxd_Endpoints_Containers, restart) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 4, &name_param, &timeout_param, &force_param, &stateful_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 	if (!timeout_param) {
 		timeout = 30;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 	if (!force_param) {
 		force = 0;
 	} else {
-		force = zephir_get_boolval(force_param);
+	if (UNEXPECTED(Z_TYPE_P(force_param) != IS_TRUE && Z_TYPE_P(force_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'force' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	force = (Z_TYPE_P(force_param) == IS_TRUE);
 	}
 	if (!stateful_param) {
 		stateful = 0;
 	} else {
-		stateful = zephir_get_boolval(stateful_param);
+	if (UNEXPECTED(Z_TYPE_P(stateful_param) != IS_TRUE && Z_TYPE_P(stateful_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'stateful' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	stateful = (Z_TYPE_P(stateful_param) == IS_TRUE);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -497,26 +625,51 @@ PHP_METHOD(Lxd_Endpoints_Containers, freeze) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 4, &name_param, &timeout_param, &force_param, &stateful_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 	if (!timeout_param) {
 		timeout = 30;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 	if (!force_param) {
 		force = 0;
 	} else {
-		force = zephir_get_boolval(force_param);
+	if (UNEXPECTED(Z_TYPE_P(force_param) != IS_TRUE && Z_TYPE_P(force_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'force' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	force = (Z_TYPE_P(force_param) == IS_TRUE);
 	}
 	if (!stateful_param) {
 		stateful = 0;
 	} else {
-		stateful = zephir_get_boolval(stateful_param);
+	if (UNEXPECTED(Z_TYPE_P(stateful_param) != IS_TRUE && Z_TYPE_P(stateful_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'stateful' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	stateful = (Z_TYPE_P(stateful_param) == IS_TRUE);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -565,26 +718,51 @@ PHP_METHOD(Lxd_Endpoints_Containers, unfreeze) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 4, &name_param, &timeout_param, &force_param, &stateful_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 	if (!timeout_param) {
 		timeout = 30;
 	} else {
-		timeout = zephir_get_intval(timeout_param);
+	if (UNEXPECTED(Z_TYPE_P(timeout_param) != IS_LONG)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'timeout' must be a int") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	timeout = Z_LVAL_P(timeout_param);
 	}
 	if (!force_param) {
 		force = 0;
 	} else {
-		force = zephir_get_boolval(force_param);
+	if (UNEXPECTED(Z_TYPE_P(force_param) != IS_TRUE && Z_TYPE_P(force_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'force' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	force = (Z_TYPE_P(force_param) == IS_TRUE);
 	}
 	if (!stateful_param) {
 		stateful = 0;
 	} else {
-		stateful = zephir_get_boolval(stateful_param);
+	if (UNEXPECTED(Z_TYPE_P(stateful_param) != IS_TRUE && Z_TYPE_P(stateful_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'stateful' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	stateful = (Z_TYPE_P(stateful_param) == IS_TRUE);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -638,7 +816,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, getSource) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &options_param);
 
-	zephir_get_arrval(&options, options_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	if (zephir_array_isset_string(&options, SL("source"))) {
@@ -749,8 +927,17 @@ PHP_METHOD(Lxd_Endpoints_Containers, getOptions) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &options_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_arrval(&options, options_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	ZEPHIR_INIT_VAR(&only);
@@ -805,8 +992,17 @@ PHP_METHOD(Lxd_Endpoints_Containers, getEmptyOptions) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &options_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_arrval(&options, options_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	ZEPHIR_INIT_VAR(&attrs);
@@ -891,9 +1087,18 @@ PHP_METHOD(Lxd_Endpoints_Containers, getRemoteImageOptions) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &name_param, &source_param, &options_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_arrval(&source, source_param);
-	zephir_get_arrval(&options, options_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	ZEPHIR_OBS_COPY_OR_DUP(&source, source_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	_0 = zephir_array_isset_string(&options, SL("protocol"));
@@ -973,9 +1178,18 @@ PHP_METHOD(Lxd_Endpoints_Containers, getLocalImageOptions) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &name_param, &source_param, &options_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_arrval(&source, source_param);
-	zephir_get_arrval(&options, options_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	ZEPHIR_OBS_COPY_OR_DUP(&source, source_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	ZEPHIR_INIT_VAR(&attrs);
@@ -1056,12 +1270,25 @@ PHP_METHOD(Lxd_Endpoints_Containers, create) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &name_param, &options_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_arrval(&options, options_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -1163,18 +1390,40 @@ PHP_METHOD(Lxd_Endpoints_Containers, copy) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &name_param, &copyName_param, &options_param, &wait_param);
 
-	zephir_get_strval(&name, name_param);
-	zephir_get_strval(&copyName, copyName_param);
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
+	if (UNEXPECTED(Z_TYPE_P(copyName_param) != IS_STRING && Z_TYPE_P(copyName_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'copyName' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(copyName_param) == IS_STRING)) {
+		zephir_get_strval(&copyName, copyName_param);
+	} else {
+		ZEPHIR_INIT_VAR(&copyName);
+		ZVAL_EMPTY_STRING(&copyName);
+	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
 	} else {
-		zephir_get_arrval(&options, options_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 	}
 	if (!wait_param) {
 		wait = 0;
 	} else {
-		wait = zephir_get_boolval(wait_param);
+	if (UNEXPECTED(Z_TYPE_P(wait_param) != IS_TRUE && Z_TYPE_P(wait_param) != IS_FALSE)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'wait' must be a bool") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	wait = (Z_TYPE_P(wait_param) == IS_TRUE);
 	}
 
 
@@ -1223,7 +1472,16 @@ PHP_METHOD(Lxd_Endpoints_Containers, delete) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &fingerprint_param);
 
-	zephir_get_strval(&fingerprint, fingerprint_param);
+	if (UNEXPECTED(Z_TYPE_P(fingerprint_param) != IS_STRING && Z_TYPE_P(fingerprint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'fingerprint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(fingerprint_param) == IS_STRING)) {
+		zephir_get_strval(&fingerprint, fingerprint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&fingerprint);
+		ZVAL_EMPTY_STRING(&fingerprint);
+	}
 
 
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 22, &fingerprint);
@@ -1250,7 +1508,16 @@ PHP_METHOD(Lxd_Endpoints_Containers, remove) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &fingerprint_param);
 
-	zephir_get_strval(&fingerprint, fingerprint_param);
+	if (UNEXPECTED(Z_TYPE_P(fingerprint_param) != IS_STRING && Z_TYPE_P(fingerprint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'fingerprint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(fingerprint_param) == IS_STRING)) {
+		zephir_get_strval(&fingerprint, fingerprint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&fingerprint);
+		ZVAL_EMPTY_STRING(&fingerprint);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);

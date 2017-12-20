@@ -9,7 +9,7 @@ class Endpoint
     /**
      *
      */
-    public function __construct(array config, <Lxd\Lib\Curl> curl, string endpoint = "") -> void
+    public function __construct(array! config, <Lxd\Lib\Curl> curl, string! endpoint = "") -> void
     {
         let this->config   = config;
         let this->curl     = curl;
@@ -19,7 +19,7 @@ class Endpoint
     /**
      *
      */
-    public function __get(string method)
+    public function __get(string! method)
     {
         string ns; let ns = this->endpoint."\\".ucfirst(method);
 
@@ -58,7 +58,7 @@ class Endpoint
     /**
      *
      */
-    final protected function getBase(string endpoint = null) -> string
+    final protected function getBase(string! endpoint = null) -> string
     {
         return (string) this->getUrl()."/".this->getVersion().(!empty endpoint ? "/".endpoint : null);
     }   
@@ -66,7 +66,7 @@ class Endpoint
     /**
      *
      */
-    final protected function stripEndpoint(string endpoint = null) -> string
+    final protected function stripEndpoint(string! endpoint = null) -> string
     {
         return (string) str_replace("/".this->getVersion()."/".this->config["endpoint"]."/", null, endpoint);
     } 

@@ -11,7 +11,7 @@ final class Certificates extends Endpoint
     /**
      *
      */
-    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
+    public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }
@@ -37,7 +37,7 @@ final class Certificates extends Endpoint
     /**
      *
      */
-    public function add(certificate, string password = null, string name = null) -> array
+    public function add(string! certificate, string! password = null, string! name = null) -> array
     {
         var raw, pem, options = [];
 
@@ -75,7 +75,7 @@ final class Certificates extends Endpoint
     /**
      *
      */
-    public function info(fingerprint) -> array
+    public function info(string! fingerprint) -> array
     {
         return this->curl->get(this->getBase(Certificates::ENDPOINT)."/".fingerprint);
     }
@@ -83,7 +83,7 @@ final class Certificates extends Endpoint
     /**
      *
      */
-    public function delete(fingerprint) -> bool
+    public function delete(string! fingerprint) -> bool
     {
         return this->remove(fingerprint);
     }
@@ -91,7 +91,7 @@ final class Certificates extends Endpoint
     /**
      *
      */
-    public function remove(fingerprint) -> bool
+    public function remove(string! fingerprint) -> bool
     {
         return this->curl->delete(this->getBase(Certificates::ENDPOINT)."/".fingerprint);
     }

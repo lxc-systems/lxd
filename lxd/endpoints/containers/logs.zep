@@ -11,7 +11,7 @@ final class Logs extends Endpoint
     /**
      *
      */
-    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
+    public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }
@@ -19,7 +19,7 @@ final class Logs extends Endpoint
     /**
      *
      */
-    public function all(string name)
+    public function all(string! name) -> array
     {
         var key, value, response = [
             "metadata": []
@@ -41,7 +41,7 @@ final class Logs extends Endpoint
     /**
      *
      */
-    public function read(string name, string log) -> string
+    public function read(string! name, string! log) -> string
     {
         return this->curl->get(
             this->getBase(Logs::ENDPOINT)."/".name."/logs/".log
@@ -51,7 +51,7 @@ final class Logs extends Endpoint
     /**
      *
      */
-    public function remove(string name, string log) -> array
+    public function remove(string! name, string! log) -> array
     {
         return this->delete(name, log);
     }
@@ -59,7 +59,7 @@ final class Logs extends Endpoint
     /**
      *
      */
-    public function delete(string name, string log) -> array
+    public function delete(string! name, string! log) -> array
     {
         return this->curl->delete(
             this->getBase(Logs::ENDPOINT)."/".name."/logs/".log

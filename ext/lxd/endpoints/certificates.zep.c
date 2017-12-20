@@ -14,11 +14,12 @@
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
-#include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/array.h"
 #include "kernel/object.h"
 #include "kernel/file.h"
-#include "kernel/exception.h"
+#include "kernel/operators.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
 
@@ -53,7 +54,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, __construct) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &config_param, &curl);
 
-	zephir_get_arrval(&config, config_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&config, config_param);
 
 
 	ZEPHIR_INIT_VAR(&_1);
@@ -129,11 +130,13 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	zval _5;
 	zend_bool _0;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval password, name;
-	zval *certificate, certificate_sub, *password_param = NULL, *name_param = NULL, __$null, raw, pem, options, _1, _2, _3, _4, _6, _7, _8, _9;
+	zval *certificate_param = NULL, *password_param = NULL, *name_param = NULL, __$null, raw, pem, options, _1, _2, _3, _4, _6, _7, _8, _9;
+	zval certificate, password, name;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&certificate_sub);
+	ZVAL_UNDEF(&certificate);
+	ZVAL_UNDEF(&password);
+	ZVAL_UNDEF(&name);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&raw);
 	ZVAL_UNDEF(&pem);
@@ -146,32 +149,58 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&password);
-	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_5);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 2, &certificate, &password_param, &name_param);
+	zephir_fetch_params(1, 1, 2, &certificate_param, &password_param, &name_param);
 
+	if (UNEXPECTED(Z_TYPE_P(certificate_param) != IS_STRING && Z_TYPE_P(certificate_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'certificate' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(certificate_param) == IS_STRING)) {
+		zephir_get_strval(&certificate, certificate_param);
+	} else {
+		ZEPHIR_INIT_VAR(&certificate);
+		ZVAL_EMPTY_STRING(&certificate);
+	}
 	if (!password_param) {
 		ZEPHIR_INIT_VAR(&password);
 		ZVAL_STRING(&password, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(password_param) != IS_STRING && Z_TYPE_P(password_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'password' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(password_param) == IS_STRING)) {
 		zephir_get_strval(&password, password_param);
+	} else {
+		ZEPHIR_INIT_VAR(&password);
+		ZVAL_EMPTY_STRING(&password);
+	}
 	}
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
 		ZVAL_STRING(&name, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(&name);
+		ZVAL_EMPTY_STRING(&name);
+	}
 	}
 
 
 	ZEPHIR_INIT_VAR(&options);
 	array_init(&options);
-	_0 = !((zephir_file_exists(certificate TSRMLS_CC) == SUCCESS));
+	_0 = !((zephir_file_exists(&certificate TSRMLS_CC) == SUCCESS));
 	if (!(_0)) {
-		ZEPHIR_CALL_FUNCTION(&_1, "is_file", NULL, 12, certificate);
+		ZEPHIR_CALL_FUNCTION(&_1, "is_file", NULL, 12, &certificate);
 		zephir_check_call_status();
 		_0 = !zephir_is_true(&_1);
 	}
@@ -180,7 +209,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 		return;
 	}
 	ZEPHIR_INIT_VAR(&raw);
-	zephir_file_get_contents(&raw, certificate TSRMLS_CC);
+	zephir_file_get_contents(&raw, &certificate TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "BEGIN CERTIFICATE");
 	ZEPHIR_INIT_VAR(&_3);
@@ -228,18 +257,29 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *fingerprint, fingerprint_sub, _0, _1, _2, _3;
+	zval *fingerprint_param = NULL, _0, _1, _2, _3;
+	zval fingerprint;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&fingerprint_sub);
+	ZVAL_UNDEF(&fingerprint);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &fingerprint);
+	zephir_fetch_params(1, 1, 0, &fingerprint_param);
 
+	if (UNEXPECTED(Z_TYPE_P(fingerprint_param) != IS_STRING && Z_TYPE_P(fingerprint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'fingerprint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(fingerprint_param) == IS_STRING)) {
+		zephir_get_strval(&fingerprint, fingerprint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&fingerprint);
+		ZVAL_EMPTY_STRING(&fingerprint);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
@@ -248,7 +288,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", fingerprint);
+	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &fingerprint);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -261,17 +301,28 @@ PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 PHP_METHOD(Lxd_Endpoints_Certificates, delete) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *fingerprint, fingerprint_sub;
+	zval *fingerprint_param = NULL;
+	zval fingerprint;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&fingerprint_sub);
+	ZVAL_UNDEF(&fingerprint);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &fingerprint);
+	zephir_fetch_params(1, 1, 0, &fingerprint_param);
+
+	if (UNEXPECTED(Z_TYPE_P(fingerprint_param) != IS_STRING && Z_TYPE_P(fingerprint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'fingerprint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(fingerprint_param) == IS_STRING)) {
+		zephir_get_strval(&fingerprint, fingerprint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&fingerprint);
+		ZVAL_EMPTY_STRING(&fingerprint);
+	}
 
 
-
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 13, fingerprint);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 13, &fingerprint);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -283,18 +334,29 @@ PHP_METHOD(Lxd_Endpoints_Certificates, delete) {
 PHP_METHOD(Lxd_Endpoints_Certificates, remove) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *fingerprint, fingerprint_sub, _0, _1, _2, _3;
+	zval *fingerprint_param = NULL, _0, _1, _2, _3;
+	zval fingerprint;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&fingerprint_sub);
+	ZVAL_UNDEF(&fingerprint);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &fingerprint);
+	zephir_fetch_params(1, 1, 0, &fingerprint_param);
 
+	if (UNEXPECTED(Z_TYPE_P(fingerprint_param) != IS_STRING && Z_TYPE_P(fingerprint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'fingerprint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(fingerprint_param) == IS_STRING)) {
+		zephir_get_strval(&fingerprint, fingerprint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&fingerprint);
+		ZVAL_EMPTY_STRING(&fingerprint);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
@@ -303,7 +365,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, remove) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 10, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
-	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", fingerprint);
+	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &fingerprint);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "delete", NULL, 0, &_3);
 	zephir_check_call_status();
 	RETURN_MM();

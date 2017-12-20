@@ -11,7 +11,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
+    public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }
@@ -33,7 +33,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function info(string name) -> array
+    public function info(string! name) -> array
     {
         return this->curl->get(this->getBase(Containers::ENDPOINT)."/".name);
     }
@@ -41,7 +41,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function state(string name) -> array
+    public function state(string! name) -> array
     {
         return this->curl->get(this->getBase(Containers::ENDPOINT)."/".name."/state");
     }
@@ -50,12 +50,12 @@ final class Containers extends Endpoint
      *
      */
     public function setState(
-        string name, 
-        string action, 
-        int timeout = 30, 
-        boolean force = false, 
-        boolean stateful = false, 
-        boolean wait = false) -> array
+        string! name, 
+        string! action, 
+        int! timeout = 30, 
+        boolean! force = false, 
+        boolean! stateful = false, 
+        boolean! wait = false) -> array
     {
         var options = [
             "action"   : action,
@@ -81,11 +81,11 @@ final class Containers extends Endpoint
      *
      */
     public function start(
-        string name,
-        int timeout = 30, 
-        boolean force = false, 
-        boolean stateful = false, 
-        boolean wait = false) -> array
+        string! name,
+        int! timeout = 30, 
+        boolean! force = false, 
+        boolean! stateful = false, 
+        boolean! wait = false) -> array
     {
         return this->setState(name, "start", timeout, force, stateful, wait);
     }
@@ -94,11 +94,11 @@ final class Containers extends Endpoint
      *
      */
     public function stop(
-        string name,
-        int timeout = 30, 
-        boolean force = false, 
-        boolean stateful = false, 
-        boolean wait = false) -> array
+        string! name,
+        int! timeout = 30, 
+        boolean! force = false, 
+        boolean! stateful = false, 
+        boolean! wait = false) -> array
     {
         return this->setState(name, "stop", timeout, force, stateful, wait);
     }
@@ -107,11 +107,11 @@ final class Containers extends Endpoint
      *
      */
     public function restart(
-        string name,
-        int timeout = 30, 
-        boolean force = false, 
-        boolean stateful = false, 
-        boolean wait = false) -> array
+        string! name,
+        int! timeout = 30, 
+        boolean! force = false, 
+        boolean! stateful = false, 
+        boolean! wait = false) -> array
     {
         return this->setState(name, "restart", timeout, force, stateful, wait);
     }
@@ -120,11 +120,11 @@ final class Containers extends Endpoint
      *
      */
     public function freeze(
-        string name,
-        int timeout = 30, 
-        boolean force = false, 
-        boolean stateful = false, 
-        boolean wait = false) -> array
+        string! name,
+        int! timeout = 30, 
+        boolean! force = false, 
+        boolean! stateful = false, 
+        boolean! wait = false) -> array
     {
         return this->setState(name, "freeze", timeout, force, stateful, wait);
     }
@@ -133,11 +133,11 @@ final class Containers extends Endpoint
      *
      */
     public function unfreeze(
-        string name,
-        int timeout = 30, 
-        boolean force = false, 
-        boolean stateful = false, 
-        boolean wait = false) -> array
+        string! name,
+        int! timeout = 30, 
+        boolean! force = false, 
+        boolean! stateful = false, 
+        boolean! wait = false) -> array
     {
         return this->setState(name, "unfreeze", timeout, force, stateful, wait);
     }
@@ -145,7 +145,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    private function getSource(array options) -> array
+    private function getSource(array! options) -> array
     {
         var only, opts, attr;
 
@@ -183,7 +183,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    private function getOptions(string name, array options) -> array
+    private function getOptions(string! name, array! options) -> array
     {
         var only, opts;
 
@@ -204,7 +204,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    private function getEmptyOptions(string name, array options) -> array
+    private function getEmptyOptions(string! name, array! options) -> array
     {
         var attrs, attr, opts;
 
@@ -233,7 +233,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    private function getRemoteImageOptions(string name, array source, array options) -> array
+    private function getRemoteImageOptions(string! name, array! source, array! options) -> array
     {
         var only, opts, remoteOptions;
 
@@ -260,7 +260,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    private function getLocalImageOptions(string name, array source, array options) -> array
+    private function getLocalImageOptions(string! name, array! source, array! options) -> array
     {
         var attrs, attr, opts;
 
@@ -286,7 +286,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function create(string name, array options, boolean wait = false) -> array
+    public function create(string! name, array! options, boolean! wait = false) -> array
     {
         var source, opts, response;
 
@@ -321,7 +321,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function copy(string name, string copyName, array options = [], boolean wait = false) -> array
+    public function copy(string! name, string! copyName, array! options = [], boolean! wait = false) -> array
     {
         var opts, response;
 
@@ -343,7 +343,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function delete(string fingerprint) -> bool
+    public function delete(string! fingerprint) -> bool
     {
         return this->remove(fingerprint);
     }
@@ -351,7 +351,7 @@ final class Containers extends Endpoint
     /**
      *
      */
-    public function remove(string fingerprint) -> bool
+    public function remove(string! fingerprint) -> bool
     {
         return this->curl->delete(this->getBase()."/".fingerprint);
     }

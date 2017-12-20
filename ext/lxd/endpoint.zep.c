@@ -13,13 +13,14 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
+#include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
-#include "kernel/exception.h"
 
 
 ZEPHIR_INIT_CLASS(Lxd_Endpoint) {
@@ -53,12 +54,21 @@ PHP_METHOD(Lxd_Endpoint, __construct) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &config_param, &curl, &endpoint_param);
 
-	zephir_get_arrval(&config, config_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&config, config_param);
 	if (!endpoint_param) {
 		ZEPHIR_INIT_VAR(&endpoint);
 		ZVAL_STRING(&endpoint, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(endpoint_param) != IS_STRING && Z_TYPE_P(endpoint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'endpoint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(endpoint_param) == IS_STRING)) {
 		zephir_get_strval(&endpoint, endpoint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&endpoint);
+		ZVAL_EMPTY_STRING(&endpoint);
+	}
 	}
 
 
@@ -100,7 +110,16 @@ PHP_METHOD(Lxd_Endpoint, __get) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &method_param);
 
-	zephir_get_strval(&method, method_param);
+	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
+		zephir_get_strval(&method, method_param);
+	} else {
+		ZEPHIR_INIT_VAR(&method);
+		ZVAL_EMPTY_STRING(&method);
+	}
 
 
 	zephir_read_property(&_0, this_ptr, SL("endpoint"), PH_NOISY_CC | PH_READONLY);
@@ -228,7 +247,16 @@ PHP_METHOD(Lxd_Endpoint, getBase) {
 		ZEPHIR_INIT_VAR(&endpoint);
 		ZVAL_STRING(&endpoint, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(endpoint_param) != IS_STRING && Z_TYPE_P(endpoint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'endpoint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(endpoint_param) == IS_STRING)) {
 		zephir_get_strval(&endpoint, endpoint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&endpoint);
+		ZVAL_EMPTY_STRING(&endpoint);
+	}
 	}
 
 
@@ -277,7 +305,16 @@ PHP_METHOD(Lxd_Endpoint, stripEndpoint) {
 		ZEPHIR_INIT_VAR(&endpoint);
 		ZVAL_STRING(&endpoint, "");
 	} else {
+	if (UNEXPECTED(Z_TYPE_P(endpoint_param) != IS_STRING && Z_TYPE_P(endpoint_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'endpoint' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(endpoint_param) == IS_STRING)) {
 		zephir_get_strval(&endpoint, endpoint_param);
+	} else {
+		ZEPHIR_INIT_VAR(&endpoint);
+		ZVAL_EMPTY_STRING(&endpoint);
+	}
 	}
 
 

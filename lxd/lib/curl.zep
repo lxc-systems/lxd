@@ -9,7 +9,7 @@ final class Curl
     /**
      *
      */
-    public function __construct(array config = []) -> void
+    public function __construct(array! config = []) -> void
     {
         //
         let this->config = config;
@@ -35,7 +35,7 @@ final class Curl
      *  GET
      *  Should handle non json response, like with /containers/files
      */
-    public function get(string url, array parameters = [], array headers = []) -> array|string
+    public function get(string! url, array! parameters = [], array! headers = []) -> array|string
     {
         var query, curl, body, response;
 
@@ -75,7 +75,7 @@ final class Curl
      *  POST
      *  Should handle non array data parameters, like with /containers/files
      */
-    public function post(string url, var parameters = null, array headers = []) -> array
+    public function post(string! url, var parameters = null, array! headers = []) -> array
     {
         var curl, body;
         
@@ -89,7 +89,7 @@ final class Curl
 
         //
         let this->options[CURLOPT_POST] = true;
-        let this->options[CURLOPT_POSTFIELDS] = parameters;
+        let this->options[CURLOPT_POSTFIELDS] = (string) parameters;
         
         //
         if !empty headers {
@@ -114,7 +114,7 @@ final class Curl
     /**
      *  PUT
      */
-    public function put(string url, array parameters = [], array headers = []) -> array
+    public function put(string! url, array! parameters = [], array! headers = []) -> array
     {
         var curl, body;
 
@@ -148,7 +148,7 @@ final class Curl
     /**
      *  DELETE
      */
-    public function delete(string url, array headers = []) -> array
+    public function delete(string! url, array! headers = []) -> array
     {
         var curl, body;
 

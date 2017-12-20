@@ -62,6 +62,7 @@ if test "$PHP_LXD" = "yes"; then
 	lxd/endpoints/containers.zep.c
 	lxd/endpoints/containers/files.zep.c
 	lxd/endpoints/containers/logs.zep.c
+	lxd/endpoints/containers/snapshots.zep.c
 	lxd/endpoints/operations.zep.c
 	lxd/lib/certificate.zep.c
 	lxd/lib/curl.zep.c "

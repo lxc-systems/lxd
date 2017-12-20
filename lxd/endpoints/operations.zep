@@ -11,7 +11,7 @@ final class Operations extends Endpoint
     /**
      *
      */
-    public function __construct(array config, <Lxd\Lib\Curl> curl) -> void
+    public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
         parent::__construct(config, curl, __CLASS__);
     }
@@ -35,7 +35,7 @@ final class Operations extends Endpoint
     /**
      *
      */
-    public function info(uuid) -> array
+    public function info(string! uuid) -> array
     {
         return this->curl->get(this->getBase(Operations::ENDPOINT)."/".uuid);
     }
@@ -43,7 +43,7 @@ final class Operations extends Endpoint
     /**
      *
      */
-    public function cancel(uuid) -> bool
+    public function cancel(string! uuid) -> bool
     {
         return this->curl->delete(this->getBase(Operations::ENDPOINT)."/".uuid);
     }
@@ -51,7 +51,7 @@ final class Operations extends Endpoint
     /**
      *
      */
-    public function wait(uuid, int timeout = null) -> array
+    public function wait(string! uuid, int! timeout = null) -> array
     {
         string endpoint;
 
