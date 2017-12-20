@@ -70,6 +70,8 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, __construct) {
 /**
  * Read the contents of a file in a container
  *
+ * <code>$lxd->containers->files->read('conainer-name', '/path/to/file');</code>
+ *
  * @param  string name     Name of container
  * @param  string filepath Full path to a file within the container
  * @return string
@@ -239,7 +241,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		ZVAL_LONG(&_2$$3, zephir_get_intval(&_1$$3));
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZEPHIR_CONCAT_SV(&_3$$3, "X-LXD-uid: ", &_2$$3);
-		zephir_array_append(&headers, &_3$$3, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 80);
+		zephir_array_append(&headers, &_3$$3, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 82);
 	}
 	ZVAL_LONG(&_4, gid);
 	if (Z_TYPE_P(&_4) == IS_LONG) {
@@ -248,7 +250,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		ZVAL_LONG(&_6$$4, zephir_get_intval(&_5$$4));
 		ZEPHIR_INIT_VAR(&_7$$4);
 		ZEPHIR_CONCAT_SV(&_7$$4, "X-LXD-gid: ", &_6$$4);
-		zephir_array_append(&headers, &_7$$4, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 84);
+		zephir_array_append(&headers, &_7$$4, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 86);
 	}
 	_8 = Z_TYPE_P(mode) != IS_NULL;
 	if (_8) {
@@ -263,7 +265,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_12$$5);
 		ZEPHIR_CONCAT_SV(&_12$$5, "X-LXD-mode: ", &_11$$5);
-		zephir_array_append(&headers, &_12$$5, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 88);
+		zephir_array_append(&headers, &_12$$5, PH_SEPARATE, "lxd/endpoints/containers/files.zep", 90);
 	}
 	zephir_read_property(&_13, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_15);
