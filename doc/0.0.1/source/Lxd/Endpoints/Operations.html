@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="LXD Client API doc" name="description">
+    <title>
+                    LXD Client API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    LXD Client Documentation <span class="version">v0.0.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/Lxd/Endpoints/Operations.html">Lxd\Endpoints\Operations</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/Lxd/Endpoints/Operations.html">Class</a>
+
+                <a class="zep-button" href="https://github.com/lxc-systems/lxd/tree/master/lxd/endpoints/operations.zep">Github</a>
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd.html">Lxd</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd/Endpoints.html">Endpoints</a>
+        </span>
+                <h1 class="class-name">Operations</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace Lxd\Endpoints;
+
+use Lxd\Endpoint;
+
+final class Operations extends Endpoint
+{
+    const ENDPOINT = "operations";
+
+    protected curl;
+
+    /**
+     *
+     */
+    public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
+    {
+        parent::__construct(config, curl, __CLASS__);
+    }
+
+    /**
+     *
+     */
+    public function all() -> array
+    {
+        var response = this->curl->get(this->getBase(Operations::ENDPOINT));
+
+        var ret = [], item, key, operation_id;
+        for key, item in (array) response["metadata"] {
+            for operation_id in item {
+                let ret[key][] = this->stripEndpoint(operation_id);
+            }
+        }
+        return ret;
+    }
+
+    /**
+     *
+     */
+    public function info(string! uuid) -> array
+    {
+        return this->curl->get(this->getBase(Operations::ENDPOINT)."/".uuid);
+    }
+
+    /**
+     *
+     */
+    public function cancel(string! uuid) -> bool
+    {
+        return this->curl->delete(this->getBase(Operations::ENDPOINT)."/".uuid);
+    }
+
+    /**
+     *
+     */
+    public function wait(string! uuid, int! timeout = null) -> array
+    {
+        string endpoint;
+
+        let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
+
+        if is_numeric(timeout) && timeout > 0 {
+            let endpoint .= "?timeout=".timeout;
+        }
+
+        return this->curl->get(endpoint);
+    }
+
+}
+</pre>                </div>
+            </div>
+        </div>
+    </body>
+</html>

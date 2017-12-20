@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="LXD Client API doc" name="description">
+    <title>
+                    LXD Client API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    LXD Client Documentation <span class="version">v0.0.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/Lxd/Endpoints/Certificates.html">Lxd\Endpoints\Certificates</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/Lxd/Endpoints/Certificates.html">Class</a>
+
+                <a class="zep-button" href="https://github.com/lxc-systems/lxd/tree/master/lxd/endpoints/certificates.zep">Github</a>
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd.html">Lxd</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd/Endpoints.html">Endpoints</a>
+        </span>
+                <h1 class="class-name">Certificates</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace Lxd\Endpoints;
+
+use Lxd\Endpoint;
+
+final class Certificates extends Endpoint
+{
+    const ENDPOINT = "certificates";
+
+    protected curl;
+
+    /**
+     *
+     */
+    public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
+    {
+        parent::__construct(config, curl, __CLASS__);
+    }
+
+    /**
+     *
+     */
+    public function all() -> array
+    {
+        var key, value, response = [
+            "metadata": []
+        ];
+
+        let response = this->curl->get(this->getBase(Certificates::ENDPOINT));
+
+        for key, value in response["metadata"] {
+            let response["metadata"][key] = this->stripEndpoint(value);
+        }
+
+        return response;
+    }
+
+    /**
+     *
+     */
+    public function add(string! certificate, string! password = null, string! name = null) -> array
+    {
+        var raw, pem, options = [];
+
+        if !file_exists(certificate) || !is_file(certificate) {
+            throw new \Exception("Certificate not found.");
+        }
+
+        //
+        let raw = file_get_contents(certificate);
+        
+        // check its PEM format
+        if strpos(raw, "BEGIN CERTIFICATE") === false {
+            throw new \Exception("Certificate not in PEM format.");
+        }
+        
+        //
+        let pem = trim(str_replace([
+            "-----BEGIN CERTIFICATE-----",
+            "-----END CERTIFICATE-----"
+        ], null, raw));
+
+        //
+        let options["type"] = "client";
+        let options["certificate"] = pem;
+        if (name !== null) {
+            let options["name"] = name;
+        }
+        if (password !== null) {
+            let options["password"] = password;
+        }
+
+        return this->curl->post(this->getBase(Certificates::ENDPOINT), options);
+    }
+
+    /**
+     *
+     */
+    public function info(string! fingerprint) -> array
+    {
+        return this->curl->get(this->getBase(Certificates::ENDPOINT)."/".fingerprint);
+    }
+
+    /**
+     *
+     */
+    public function delete(string! fingerprint) -> bool
+    {
+        return this->remove(fingerprint);
+    }
+
+    /**
+     *
+     */
+    public function remove(string! fingerprint) -> bool
+    {
+        return this->curl->delete(this->getBase(Certificates::ENDPOINT)."/".fingerprint);
+    }
+
+}
+</pre>                </div>
+            </div>
+        </div>
+    </body>
+</html>

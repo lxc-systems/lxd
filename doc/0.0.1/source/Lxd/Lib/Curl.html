@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="LXD Client API doc" name="description">
+    <title>
+                    LXD Client API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    LXD Client Documentation <span class="version">v0.0.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a href="../../../class/Lxd/Lib/Curl.html">Lxd\Lib\Curl</a></li>
+                <li><a >Source</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header source clearfix">
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../class/Lxd/Lib/Curl.html">Class</a>
+
+                <a class="zep-button" href="https://github.com/lxc-systems/lxd/tree/master/lxd/lib/curl.zep">Github</a>
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd.html">Lxd</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd/Lib.html">Lib</a>
+        </span>
+                <h1 class="class-name">Curl</h1>
+    </div>
+    
+</div>
+
+
+<pre class="zephir-source-file prettyprint linenums">namespace Lxd\Lib;
+
+final class Curl
+{
+
+    private config;
+    private options;
+
+    /**
+     *
+     */
+    public function __construct(array! config = []) -> void
+    {
+        //
+        let this->config = config;
+
+        //
+        let this->options = [
+            CURLOPT_RETURNTRANSFER : true,
+            CURLOPT_SSL_VERIFYPEER : false,
+            CURLOPT_SSL_VERIFYHOST : false,
+            CURLOPT_HTTPHEADER     : [
+                "Content-Type: application/json"
+            ]
+        ];
+
+        //
+        if (this->config["certificate_path"] && this->config["ip"]) {
+            let this->options[CURLOPT_SSLKEY]  = this->config["certificate_path"]."/".this->config["ip"]."/private.key";
+            let this->options[CURLOPT_SSLCERT] = this->config["certificate_path"]."/".this->config["ip"]."/client.pem";
+        }
+    }
+
+    /**
+     *  GET
+     *  Should handle non json response, like with /containers/files
+     */
+    public function get(string! url, array! parameters = [], array! headers = []) -> array|string
+    {
+        var query, curl, body, response;
+
+        //
+        let query = http_build_query(parameters);
+
+        //
+        let curl = curl_init(url.(!empty query ? "?".query : null));
+        
+        //
+        if !empty headers {
+            var header; for header in headers {
+                let this->options[CURLOPT_HTTPHEADER][] = header;
+            } 
+        }
+
+        //
+        curl_setopt_array(curl, this->options);
+
+        //
+        let body = (string) curl_exec(curl);
+        
+        //
+        curl_close(curl);
+        
+        //
+        let response = json_decode(body, true);
+        
+        if (json_last_error() === JSON_ERROR_NONE) {
+            return (array) response;
+        }
+        
+        return (string) body;
+    }
+
+    /**
+     *  POST
+     *  Should handle non array data parameters, like with /containers/files
+     */
+    public function post(string! url, var parameters = null, array! headers = []) -> array
+    {
+        var curl, body;
+        
+        //
+        if is_array(parameters) {
+            let parameters = json_encode(parameters);
+        }
+
+        //
+        let curl = curl_init(url);
+
+        //
+        let this->options[CURLOPT_POST] = true;
+        let this->options[CURLOPT_POSTFIELDS] = (string) parameters;
+        
+        //
+        if !empty headers {
+            var header; for header in headers {
+                let this->options[CURLOPT_HTTPHEADER][] = header;
+            } 
+        }
+
+        //
+        curl_setopt_array(curl, this->options);
+
+        //
+        let body = (string) curl_exec(curl);
+
+        //
+        curl_close(curl);
+
+        //
+        return (array) json_decode(body, true);
+    }
+
+    /**
+     *  PUT
+     */
+    public function put(string! url, array! parameters = [], array! headers = []) -> array
+    {
+        var curl, body;
+
+        //
+        let curl = curl_init(url);
+
+        //
+        let this->options[CURLOPT_CUSTOMREQUEST] = "PUT";
+        let this->options[CURLOPT_POSTFIELDS] = json_encode(parameters);
+        
+        //
+        if !empty headers {
+            var header; for header in headers {
+                let this->options[CURLOPT_HTTPHEADER][] = header;
+            } 
+        }
+
+        //
+        curl_setopt_array(curl, this->options);
+
+        //
+        let body = (string) curl_exec(curl);
+
+        //
+        curl_close(curl);
+
+        //
+        return (array) json_decode(body, true);
+    }
+
+    /**
+     *  DELETE
+     */
+    public function delete(string! url, array! headers = []) -> array
+    {
+        var curl, body;
+
+        //
+        let curl = curl_init(url);
+
+        //
+        let this->options[CURLOPT_CUSTOMREQUEST] = "DELETE";
+        
+        //
+        if !empty headers {
+            var header; for header in headers {
+                let this->options[CURLOPT_HTTPHEADER][] = header;
+            } 
+        }
+
+        //
+        curl_setopt_array(curl, this->options);
+
+        //
+        let body = (string) curl_exec(curl);
+
+        //
+        curl_close(curl);
+
+        //
+        return (array) json_decode(body, true);
+    }
+
+}</pre>                </div>
+            </div>
+        </div>
+    </body>
+</html>
