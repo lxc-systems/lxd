@@ -40,6 +40,10 @@ final class Containers extends Endpoint
     {
         var ret = [], item;
         var response = this->curl->get(this->getBase());
+          
+        if response["type"] === "error" {
+            return response;
+        }
 
         for item in (array) response["metadata"] {
             let ret[] = this->stripEndpoint(item);

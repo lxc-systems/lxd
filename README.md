@@ -12,6 +12,8 @@ WIP!
  ## Host
    
     $lxd->info();
+    
+    $lxd->resources();
 
  ## Certificates
  

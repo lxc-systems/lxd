@@ -19,8 +19,8 @@
 #include "kernel/array.h"
 #include "kernel/object.h"
 #include "kernel/concat.h"
-#include "kernel/string.h"
 #include "kernel/operators.h"
+#include "kernel/string.h"
 
 
 ZEPHIR_INIT_CLASS(Lxd_Endpoints_Containers_Logs) {
@@ -69,11 +69,11 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, __construct) {
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 
-	zend_string *_7;
-	zend_ulong _6;
-	zephir_fcall_cache_entry *_10 = NULL;
+	zend_string *_8;
+	zend_ulong _7;
+	zephir_fcall_cache_entry *_11 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *name_param = NULL, __$null, key, value, response, _0, _1, _2, _3, _4, *_5, _8$$3, _9$$3, _11$$3;
+	zval *name_param = NULL, __$null, key, value, response, _0, _1, _2, _3, _4, _5, *_6, _9$$4, _10$$4, _12$$4;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -87,9 +87,10 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_8$$3);
-	ZVAL_UNDEF(&_9$$3);
-	ZVAL_UNDEF(&_11$$3);
+	ZVAL_UNDEF(&_5);
+	ZVAL_UNDEF(&_9$$4);
+	ZVAL_UNDEF(&_10$$4);
+	ZVAL_UNDEF(&_12$$4);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -120,25 +121,29 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/logs");
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 49 TSRMLS_CC);
-	zephir_is_iterable(&_4, 0, "lxd/endpoints/containers/logs.zep", 55);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_4), _6, _7, _5)
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 49 TSRMLS_CC);
+	if (ZEPHIR_IS_STRING_IDENTICAL(&_4, "error")) {
+		RETURN_CCTOR(&response);
+	}
+	zephir_array_fetch_string(&_5, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 53 TSRMLS_CC);
+	zephir_is_iterable(&_5, 0, "lxd/endpoints/containers/logs.zep", 59);
+	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_5), _7, _8, _6)
 	{
 		ZEPHIR_INIT_NVAR(&key);
-		if (_7 != NULL) { 
-			ZVAL_STR_COPY(&key, _7);
+		if (_8 != NULL) { 
+			ZVAL_STR_COPY(&key, _8);
 		} else {
-			ZVAL_LONG(&key, _6);
+			ZVAL_LONG(&key, _7);
 		}
 		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _5);
-		ZEPHIR_INIT_NVAR(&_8$$3);
-		ZEPHIR_CALL_METHOD(&_9$$3, this_ptr, "getversion", &_10, 4);
+		ZVAL_COPY(&value, _6);
+		ZEPHIR_INIT_NVAR(&_9$$4);
+		ZEPHIR_CALL_METHOD(&_10$$4, this_ptr, "getversion", &_11, 4);
 		zephir_check_call_status();
-		ZEPHIR_INIT_LNVAR(_11$$3);
-		ZEPHIR_CONCAT_SVSSSVS(&_11$$3, "/", &_9$$3, "/", "containers", "/", &name, "/logs/");
-		zephir_fast_str_replace(&_8$$3, &_11$$3, &__$null, &value TSRMLS_CC);
-		zephir_array_update_multi(&response, &_8$$3 TSRMLS_CC, SL("sz"), 3, SL("metadata"), &key);
+		ZEPHIR_INIT_LNVAR(_12$$4);
+		ZEPHIR_CONCAT_SVSSSVS(&_12$$4, "/", &_10$$4, "/", "containers", "/", &name, "/logs/");
+		zephir_fast_str_replace(&_9$$4, &_12$$4, &__$null, &value TSRMLS_CC);
+		zephir_array_update_multi(&response, &_9$$4 TSRMLS_CC, SL("sz"), 3, SL("metadata"), &key);
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);

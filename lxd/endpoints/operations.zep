@@ -39,6 +39,10 @@ final class Operations extends Endpoint
     public function all() -> array
     {
         var response = this->curl->get(this->getBase(Operations::ENDPOINT));
+        
+        if response["type"] === "error" {
+            return response;
+        }
 
         var ret = [], item, key, operation_id;
         for key, item in (array) response["metadata"] {
@@ -71,10 +75,8 @@ final class Operations extends Endpoint
     public function wait(string! uuid, int! timeout = null) -> array
     {
         string endpoint;
-
-        let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
         
-        print_r(endpoint);
+        let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
 
         if is_numeric(timeout) && timeout > 0 {
             let endpoint .= "?timeout=".timeout;

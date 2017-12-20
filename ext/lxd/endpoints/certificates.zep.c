@@ -18,8 +18,8 @@
 #include "kernel/exception.h"
 #include "kernel/array.h"
 #include "kernel/object.h"
-#include "kernel/file.h"
 #include "kernel/operators.h"
+#include "kernel/file.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
 
@@ -70,10 +70,10 @@ PHP_METHOD(Lxd_Endpoints_Certificates, __construct) {
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 
-	zend_string *_6;
-	zend_ulong _5;
-	zval key, value, response, _0, _1, _2, _3, *_4, _7$$3;
-	zephir_fcall_cache_entry *_8 = NULL;
+	zend_string *_7;
+	zend_ulong _6;
+	zval key, value, response, _0, _1, _2, _3, _4, *_5, _8$$4;
+	zephir_fcall_cache_entry *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -84,7 +84,8 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_8$$4);
 
 	ZEPHIR_MM_GROW();
 
@@ -100,21 +101,25 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 47 TSRMLS_CC);
-	zephir_is_iterable(&_3, 0, "lxd/endpoints/certificates.zep", 51);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_3), _5, _6, _4)
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 47 TSRMLS_CC);
+	if (ZEPHIR_IS_STRING_IDENTICAL(&_3, "error")) {
+		RETURN_CCTOR(&response);
+	}
+	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 51 TSRMLS_CC);
+	zephir_is_iterable(&_4, 0, "lxd/endpoints/certificates.zep", 55);
+	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_4), _6, _7, _5)
 	{
 		ZEPHIR_INIT_NVAR(&key);
-		if (_6 != NULL) { 
-			ZVAL_STR_COPY(&key, _6);
+		if (_7 != NULL) { 
+			ZVAL_STR_COPY(&key, _7);
 		} else {
-			ZVAL_LONG(&key, _5);
+			ZVAL_LONG(&key, _6);
 		}
 		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _4);
-		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "stripendpoint", &_8, 11, &value);
+		ZVAL_COPY(&value, _5);
+		ZEPHIR_CALL_METHOD(&_8$$4, this_ptr, "stripendpoint", &_9, 11, &value);
 		zephir_check_call_status();
-		zephir_array_update_multi(&response, &_7$$3 TSRMLS_CC, SL("sz"), 3, SL("metadata"), &key);
+		zephir_array_update_multi(&response, &_8$$4 TSRMLS_CC, SL("sz"), 3, SL("metadata"), &key);
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
@@ -205,7 +210,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 		_0 = !zephir_is_true(&_1);
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not found.", "lxd/endpoints/certificates.zep", 62);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not found.", "lxd/endpoints/certificates.zep", 66);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&raw);
@@ -215,7 +220,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_fast_strpos(&_3, &raw, &_2, 0 );
 	if (ZEPHIR_IS_FALSE_IDENTICAL(&_3)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not in PEM format.", "lxd/endpoints/certificates.zep", 70);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not in PEM format.", "lxd/endpoints/certificates.zep", 74);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&_4);

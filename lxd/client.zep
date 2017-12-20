@@ -50,11 +50,7 @@ final class Client
         if !isset this->config["timeout"] || !is_numeric(this->config["timeout"]) {
             let this->config["timeout"] = 10;
         }
-        
-        //
-        if !<Lxd\Lib\Curl> (this->curl) {
-            let this->curl = new Curl(this->config);
-        }
+
     }
 
     /**
@@ -85,6 +81,18 @@ final class Client
         }
 
         return this->curl->get(this->config["url"]."/".this->config["version"]);
+    }  
+    
+    /**
+     *
+     */
+    public function resources() -> array
+    {
+        if !<Lxd\Lib\Curl> (this->curl) {
+            let this->curl = new Curl(this->config);
+        }
+
+        return this->curl->get(this->config["url"]."/".this->config["version"]."/resources");
     }
 
     /**

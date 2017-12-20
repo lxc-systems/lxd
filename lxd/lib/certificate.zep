@@ -39,8 +39,8 @@ final class Certificate
      */
     public function generate(string! ip) -> array
     {
-        if empty(ip) {
-            throw new \Exception("Server IP");
+        if !filter_var(ip, FILTER_VALIDATE_IP) {
+            throw new \InvalidArgumentException("Parameter must be a valid IP address.");
         }
 
         // generate private key

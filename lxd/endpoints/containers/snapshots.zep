@@ -45,6 +45,10 @@ final class Snapshots extends Endpoint
         let response = this->curl->get(
             this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots"
         );
+        
+        if response["type"] === "error" {
+            return response;
+        }
 
         for key, value in response["metadata"] {
             let response["metadata"][key] = str_replace(

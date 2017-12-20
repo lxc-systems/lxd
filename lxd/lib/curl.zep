@@ -173,6 +173,43 @@ final class Curl
         //
         return (array) json_decode(body, true);
     }
+    
+    /**
+     *  PATCH
+     */
+    public function patch(string! url, array! parameters = [], array! headers = []) -> array
+    {
+        var curl, body;
+                
+        //
+        this->setOptions();
+
+        //
+        let curl = curl_init(url);
+
+        //
+        let this->options[CURLOPT_CUSTOMREQUEST] = "PATCH";
+        let this->options[CURLOPT_POSTFIELDS] = json_encode(parameters);
+
+        //
+        if !empty headers {
+            var header; for header in headers {
+                let this->options[CURLOPT_HTTPHEADER][] = header;
+            } 
+        }
+
+        //
+        curl_setopt_array(curl, this->options);
+
+        //
+        let body = (string) curl_exec(curl);
+
+        //
+        curl_close(curl);
+
+        //
+        return (array) json_decode(body, true);
+    }
 
     /**
      *  DELETE

@@ -45,6 +45,10 @@ final class Logs extends Endpoint
         let response = this->curl->get(
             this->getBase(Logs::ENDPOINT)."/".name."/logs"
         );
+        
+        if response["type"] === "error" {
+            return response;
+        }
 
         for key, value in response["metadata"] {
             let response["metadata"][key] = str_replace(

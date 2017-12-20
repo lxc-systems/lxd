@@ -44,6 +44,10 @@ final class Certificates extends Endpoint
 
         let response = this->curl->get(this->getBase(Certificates::ENDPOINT));
 
+        if response["type"] === "error" {
+            return response;
+        }
+
         for key, value in response["metadata"] {
             let response["metadata"][key] = this->stripEndpoint(value);
         }
@@ -64,12 +68,12 @@ final class Certificates extends Endpoint
 
         //
         let raw = file_get_contents(certificate);
-        
+
         // check its PEM format
         if strpos(raw, "BEGIN CERTIFICATE") === false {
             throw new \Exception("Certificate not in PEM format.");
         }
-        
+
         //
         let pem = trim(str_replace([
             "-----BEGIN CERTIFICATE-----",

@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Lxd_Client);
 PHP_METHOD(Lxd_Client, __construct);
 PHP_METHOD(Lxd_Client, __get);
 PHP_METHOD(Lxd_Client, info);
+PHP_METHOD(Lxd_Client, resources);
 PHP_METHOD(Lxd_Client, connect);
 PHP_METHOD(Lxd_Client, connectable);
 
@@ -32,6 +33,7 @@ ZEPHIR_INIT_FUNCS(lxd_client_method_entry) {
 	PHP_ME(Lxd_Client, __construct, arginfo_lxd_client___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Lxd_Client, __get, arginfo_lxd_client___get, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Client, info, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Lxd_Client, resources, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Client, connect, arginfo_lxd_client_connect, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Client, connectable, arginfo_lxd_client_connectable, ZEND_ACC_PUBLIC)
 	PHP_FE_END

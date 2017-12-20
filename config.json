@@ -4,7 +4,7 @@
     "description": "PHP extension for interacting with LXD REST API's",
     "author": "Lawrence Cherone",
     "version": "0.0.1",
-    "verbose": false,
+    "verbose": true,
     "requires": {
         "extensions": []
     },

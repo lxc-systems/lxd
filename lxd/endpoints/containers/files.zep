@@ -22,7 +22,7 @@ use Lxd\Endpoint;
 final class Files extends Endpoint
 {
     const ENDPOINT = "containers";
-    
+
     protected curl;
 
     /**
@@ -63,11 +63,11 @@ final class Files extends Endpoint
         if is_int(uid) {
             let headers[] = "X-LXD-uid: ".intval(uid);
         }
-        
+
         if is_int(gid) {
             let headers[] = "X-LXD-gid: ".intval(gid);
         }
-        
+
         if mode !== null && is_numeric(mode) {
             let headers[] = "X-LXD-mode: ".sprintf("%04d", decoct(mode));
         }
@@ -78,7 +78,7 @@ final class Files extends Endpoint
             headers
         );
     }
-    
+
     /**
      *
      */
