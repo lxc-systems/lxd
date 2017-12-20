@@ -27,7 +27,7 @@ WIP!
         'certificates/127.0.0.1/cert.crt',
 	   'lxd.server.secret',
 	   'My Client Certificate'
-    )
+    );
 
  ## Containers
  
