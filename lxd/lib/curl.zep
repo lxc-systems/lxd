@@ -30,7 +30,10 @@ final class Curl
     {
         //
         let this->config = config;
+    }
 
+    final private function setOptions() -> void
+    {
         //
         let this->options = [
             CURLOPT_RETURNTRANSFER : true,
@@ -46,7 +49,7 @@ final class Curl
             let this->options[CURLOPT_SSLKEY]  = this->config["certificate_path"]."/".this->config["ip"]."/private.key";
             let this->options[CURLOPT_SSLCERT] = this->config["certificate_path"]."/".this->config["ip"]."/client.pem";
         }
-    }
+    } 
 
     /**
      *  GET
@@ -55,13 +58,16 @@ final class Curl
     public function get(string! url, array! parameters = [], array! headers = []) -> array|string
     {
         var query, curl, body, response;
+        
+        //
+        this->setOptions();
 
         //
         let query = http_build_query(parameters);
 
         //
         let curl = curl_init(url.(!empty query ? "?".query : null));
-        
+
         //
         if !empty headers {
             var header; for header in headers {
@@ -74,17 +80,17 @@ final class Curl
 
         //
         let body = (string) curl_exec(curl);
-        
+
         //
         curl_close(curl);
-        
+
         //
         let response = json_decode(body, true);
-        
+
         if (json_last_error() === JSON_ERROR_NONE) {
             return (array) response;
         }
-        
+
         return (string) body;
     }
 
@@ -95,7 +101,10 @@ final class Curl
     public function post(string! url, var parameters = null, array! headers = []) -> array
     {
         var curl, body;
-        
+                
+        //
+        this->setOptions();
+
         //
         if is_array(parameters) {
             let parameters = json_encode(parameters);
@@ -107,7 +116,7 @@ final class Curl
         //
         let this->options[CURLOPT_POST] = true;
         let this->options[CURLOPT_POSTFIELDS] = (string) parameters;
-        
+
         //
         if !empty headers {
             var header; for header in headers {
@@ -134,6 +143,9 @@ final class Curl
     public function put(string! url, array! parameters = [], array! headers = []) -> array
     {
         var curl, body;
+                
+        //
+        this->setOptions();
 
         //
         let curl = curl_init(url);
@@ -141,7 +153,7 @@ final class Curl
         //
         let this->options[CURLOPT_CUSTOMREQUEST] = "PUT";
         let this->options[CURLOPT_POSTFIELDS] = json_encode(parameters);
-        
+
         //
         if !empty headers {
             var header; for header in headers {
@@ -168,13 +180,16 @@ final class Curl
     public function delete(string! url, array! headers = []) -> array
     {
         var curl, body;
+                
+        //
+        this->setOptions();
 
         //
         let curl = curl_init(url);
 
         //
         let this->options[CURLOPT_CUSTOMREQUEST] = "DELETE";
-        
+
         //
         if !empty headers {
             var header; for header in headers {

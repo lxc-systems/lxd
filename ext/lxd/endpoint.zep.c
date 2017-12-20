@@ -170,7 +170,7 @@ PHP_METHOD(Lxd_Endpoint, __get) {
 		ZEPHIR_CONCAT_SVS(&_13$$5, "Endpoint ", &ns, ", not implemented.");
 		ZEPHIR_CALL_METHOD(NULL, &_12$$5, "__construct", NULL, 2, &_13$$5);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_12$$5, "lxd/endpoint.zep", 38 TSRMLS_CC);
+		zephir_throw_exception_debug(&_12$$5, "lxd/endpoint.zep", 55 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -194,7 +194,7 @@ PHP_METHOD(Lxd_Endpoint, getVersion) {
 
 	zephir_read_property(&_0, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_array_fetch_string(&_1, &_0, SL("version"), PH_NOISY, "lxd/endpoint.zep", 47 TSRMLS_CC);
+	zephir_array_fetch_string(&_1, &_0, SL("version"), PH_NOISY, "lxd/endpoint.zep", 64 TSRMLS_CC);
 	zephir_get_strval(&_2, &_1);
 	RETURN_CTOR(&_2);
 
@@ -217,7 +217,7 @@ PHP_METHOD(Lxd_Endpoint, getUrl) {
 
 	zephir_read_property(&_0, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_array_fetch_string(&_1, &_0, SL("url"), PH_NOISY, "lxd/endpoint.zep", 55 TSRMLS_CC);
+	zephir_array_fetch_string(&_1, &_0, SL("url"), PH_NOISY, "lxd/endpoint.zep", 72 TSRMLS_CC);
 	zephir_get_strval(&_2, &_1);
 	RETURN_CTOR(&_2);
 
@@ -322,7 +322,7 @@ PHP_METHOD(Lxd_Endpoint, stripEndpoint) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getversion", NULL, 4);
 	zephir_check_call_status();
 	zephir_read_property(&_2, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch_string(&_3, &_2, SL("endpoint"), PH_NOISY | PH_READONLY, "lxd/endpoint.zep", 71 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &_2, SL("endpoint"), PH_NOISY | PH_READONLY, "lxd/endpoint.zep", 88 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_4);
 	ZEPHIR_CONCAT_SVSVS(&_4, "/", &_1, "/", &_3, "/");
 	zephir_fast_str_replace(&_0, &_4, &__$null, &endpoint TSRMLS_CC);

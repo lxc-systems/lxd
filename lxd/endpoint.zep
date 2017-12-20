@@ -22,7 +22,7 @@ class Endpoint
     protected config;
     protected curl;
     protected endpoint;
-    
+
     /**
      *
      */
@@ -32,7 +32,7 @@ class Endpoint
         let this->curl     = curl;
         let this->endpoint = endpoint;
     }
-    
+
     /**
      *
      */
@@ -55,7 +55,7 @@ class Endpoint
             throw new \Exception("Endpoint ".ns.", not implemented.");
         }
     }
-    
+
     /**
      *
      */
@@ -63,7 +63,7 @@ class Endpoint
     {
         return (string) this->config["version"];
     }  
-    
+
     /**
      *
      */
@@ -71,7 +71,7 @@ class Endpoint
     {
         return (string) this->config["url"];
     }  
-    
+
     /**
      *
      */
@@ -79,13 +79,13 @@ class Endpoint
     {
         return (string) this->getUrl()."/".this->getVersion().(!empty endpoint ? "/".endpoint : null);
     }   
-    
+
     /**
      *
      */
     final protected function stripEndpoint(string! endpoint = null) -> string
     {
         return (string) str_replace("/".this->getVersion()."/".this->config["endpoint"]."/", null, endpoint);
-    } 
+    }
 
 }

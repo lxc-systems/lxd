@@ -26,17 +26,9 @@
 /**
  * Lxd\Lib\Certificate
  *
- * Provides certificate facilities to the application
+ * Provides SSL certificate facilities to the application
  *
  *<code>
- * $crypt = new \Phalcon\Crypt();
- *
- * $key  = "le password";
- * $text = "This is a secret text";
- *
- * $encrypted = $crypt->encrypt($text, $key);
- *
- * echo $crypt->decrypt($encrypted, $key);
  *</code>
  */
 ZEPHIR_INIT_CLASS(Lxd_Lib_Certificate) {
@@ -135,7 +127,7 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 
 
 	if (ZEPHIR_IS_EMPTY(&ip)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Server IP", "lxd/lib/certificate.zep", 51);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Server IP", "lxd/lib/certificate.zep", 43);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&_0);

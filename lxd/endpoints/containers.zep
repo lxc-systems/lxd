@@ -87,7 +87,10 @@ final class Containers extends Endpoint
 
         if wait {
             let response = this->curl->get(
-                this->getBase(Containers::ENDPOINT)."/".response["metadata"]["id"]."/wait?timeout=".timeout
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : timeout
+                ]
             );
         }
 
@@ -328,7 +331,10 @@ final class Containers extends Endpoint
 
         if wait {
             let response = this->curl->get(
-                this->getBase(Containers::ENDPOINT)."/".response["metadata"]["id"]."/wait"
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : this->config["timeout"]
+                ]
             );
         }
 
@@ -350,7 +356,10 @@ final class Containers extends Endpoint
 
         if wait {
             let response = this->curl->get(
-                this->getBase(Containers::ENDPOINT)."/".response["metadata"]["id"]."/wait"
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : this->config["timeout"]
+                ]
             );
         }
 

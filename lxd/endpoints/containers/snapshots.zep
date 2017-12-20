@@ -22,7 +22,7 @@ use Lxd\Endpoint;
 final class Snapshots extends Endpoint
 {
     const ENDPOINT = "containers";
-    
+
     protected curl;
 
     /**
@@ -32,7 +32,7 @@ final class Snapshots extends Endpoint
     {
         parent::__construct(config, curl, __CLASS__);
     }
-    
+
     /**
      *
      */
@@ -64,23 +64,34 @@ final class Snapshots extends Endpoint
             this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots/".snapshot
         );
     }
-    
+
     /**
      *
      */
-    public function remove(string! name, string! log) -> array
+    public function create(string! name, string! snapshot, boolean! stateful = false, boolean! wait = false) -> array
     {
-        return this->delete(name, log);
-    }
-    
-    /**
-     *
-     */
-    public function delete(string! name, string! log) -> array
-    {
-        return this->curl->delete(
-            this->getBase(Logs::ENDPOINT)."/".name."/logs/".log
+        var options, response;
+        
+        let options = [
+            "name"     : snapshot,
+            "stateful" : stateful
+        ];
+
+        let response = this->curl->post(
+            this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots",
+            options
         );
+
+        if wait {
+            let response = this->curl->get(
+                this->getBase(\Lxd\Endpoints\Operations::ENDPOINT)."/".response["metadata"]["id"]."/wait",
+                [
+                    "timeout" : 30
+                ]
+            );
+        }
+        
+        return response;
     }
 
 }

@@ -73,6 +73,8 @@ final class Operations extends Endpoint
         string endpoint;
 
         let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
+        
+        print_r(endpoint);
 
         if is_numeric(timeout) && timeout > 0 {
             let endpoint .= "?timeout=".timeout;

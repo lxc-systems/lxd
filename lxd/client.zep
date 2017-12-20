@@ -47,12 +47,8 @@ final class Client
         }
 
         // check and set client timeout
-        if !isset this->config["timeout"] {
+        if !isset this->config["timeout"] || !is_numeric(this->config["timeout"]) {
             let this->config["timeout"] = 10;
-        } else {
-            if !is_numeric(this->config["timeout"]) {
-                let this->config["timeout"] = 10;
-            }
         }
     }
 
@@ -104,7 +100,7 @@ final class Client
         let this->config["port"]   = port;
         let this->config["secret"] = secret;
 
-        let ping = this->connectable(ip, port, this->config["timeout"]);
+        let ping = this->connectable(ip, port, 3);
 
         if ping === -1 {
             throw new \Exception("Could not connect.");

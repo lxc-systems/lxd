@@ -100,9 +100,9 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 	ZEPHIR_INIT_VAR(&ret);
 	array_init(&ret);
 	ZEPHIR_OBS_VAR(&_3);
-	zephir_array_fetch_string(&_3, &response, SL("metadata"), PH_NOISY, "lxd/endpoints/operations.zep", 27 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &response, SL("metadata"), PH_NOISY, "lxd/endpoints/operations.zep", 44 TSRMLS_CC);
 	zephir_get_arrval(&_4, &_3);
-	zephir_is_iterable(&_4, 0, "lxd/endpoints/operations.zep", 32);
+	zephir_is_iterable(&_4, 0, "lxd/endpoints/operations.zep", 49);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_4), _6, _7, _5)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -113,7 +113,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 		}
 		ZEPHIR_INIT_NVAR(&item);
 		ZVAL_COPY(&item, _5);
-		zephir_is_iterable(&item, 0, "lxd/endpoints/operations.zep", 31);
+		zephir_is_iterable(&item, 0, "lxd/endpoints/operations.zep", 48);
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&item), _8$$3)
 		{
 			ZEPHIR_INIT_NVAR(&operation_id);
@@ -270,6 +270,8 @@ PHP_METHOD(Lxd_Endpoints_Operations, wait) {
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSVS(&_2, &_0, "/", &uuid, "/wait");
 	zephir_get_strval(&endpoint, &_2);
+	ZEPHIR_CALL_FUNCTION(NULL, "print_r", NULL, 26, &endpoint);
+	zephir_check_call_status();
 	ZVAL_LONG(&_3, timeout);
 	_4 = zephir_is_numeric(&_3);
 	if (_4) {
