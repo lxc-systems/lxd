@@ -98,7 +98,7 @@ final class Containers extends Endpoint
     }
 
     /**
-     * Main set state method for container, methods below are shortcuts.
+     * Main set state method for a container, methods below are shortcuts.
      *
      * <code>
      *  $lxd->containers->setState('container-name', 'start', 30, true, true, true);

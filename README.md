@@ -1,6 +1,9 @@
-# LXD Client - PHP Extension
+# PHP LXD Client 
 
-WIP!
+Delivered as a C extension!
+
+ - See INSTALL.md on how to install.
+ - See https://lxc-systems.github.io/lxd/ for docs.
 
  ## Connection
 
