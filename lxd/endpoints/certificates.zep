@@ -21,8 +21,14 @@ use Lxd\Endpoint;
 
 final class Certificates extends Endpoint
 {
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "certificates";
 
+    /**
+     * @var
+     */
     protected curl;
 
     /**
@@ -38,7 +44,13 @@ final class Certificates extends Endpoint
     }
 
     /**
+     * List all trusted certificates on the server.
      *
+     * <code>
+     *  $lxd->certificates->all();
+     * </code>
+     *
+     * @return array
      */
     public function all() -> array
     {
@@ -60,7 +72,16 @@ final class Certificates extends Endpoint
     }
 
     /**
+     * Add a new trusted certificate to the server.
      *
+     * <code>
+     *  $lxd->certificates->add('./local-certificate-path.pem', 'lxd-server-secret', 'certificate-label');
+     * </code>
+     *
+     * @param  string certificate  Path to PEM certificate
+     * @param  string password     LXD server secret
+     * @param  string name         Name/Label of certificate
+     * @return array
      */
     public function add(string! certificate, string! password = null, string! name = null) -> array
     {
@@ -98,7 +119,14 @@ final class Certificates extends Endpoint
     }
 
     /**
+     * Show information of a certificate.
      *
+     * <code>
+     *  $lxd->certificates->info('cerfiticate-fingerprint');
+     * </code>
+     *
+     * @param  string fingerprint  Fingerprint of certificate
+     * @return array
      */
     public function info(string! fingerprint) -> array
     {
@@ -106,7 +134,14 @@ final class Certificates extends Endpoint
     }
 
     /**
+     * Remove a trusted certificate - alias of delete.
      *
+     * <code>
+     *  $lxd->certificates->delete('cerfiticate-fingerprint');
+     * </code>
+     *
+     * @param  string fingerprint  Fingerprint of certificate
+     * @return array
      */
     public function delete(string! fingerprint) -> bool
     {
@@ -114,7 +149,14 @@ final class Certificates extends Endpoint
     }
 
     /**
+     * Delete a trusted certificate.
      *
+     * <code>
+     *  $lxd->certificates->remove('cerfiticate-fingerprint');
+     * </code>
+     *
+     * @param  string fingerprint  Fingerprint of certificate
+     * @return array
      */
     public function remove(string! fingerprint) -> bool
     {

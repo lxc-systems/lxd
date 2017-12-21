@@ -21,8 +21,14 @@ use Lxd\Endpoint;
 
 final class Networks extends Endpoint
 {
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "networks";
 
+    /**
+     * @var
+     */
     protected curl;
 
     /**
@@ -47,7 +53,7 @@ final class Networks extends Endpoint
         ];
 
         let response = this->curl->get(this->getBase(Networks::ENDPOINT));
-        
+
         if response["type"] === "error" {
             return response;
         }
@@ -72,7 +78,7 @@ final class Networks extends Endpoint
         ];
 
         let response = this->curl->get(this->getBase(Networks::ENDPOINT)."/".name);
-                
+
         if response["type"] === "error" {
             return response;
         }
@@ -179,7 +185,7 @@ final class Networks extends Endpoint
     {
         return this->curl->delete(this->getBase(Networks::ENDPOINT)."/".name);
     }  
-    
+
     /**
      *
      */

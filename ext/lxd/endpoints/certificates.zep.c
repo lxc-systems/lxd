@@ -28,8 +28,14 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Certificates) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Lxd\\Endpoints, Certificates, lxd, endpoints_certificates, lxd_endpoint_ce, lxd_endpoints_certificates_method_entry, ZEND_ACC_FINAL_CLASS);
 
+	/**
+	 * @var
+	 */
 	zend_declare_property_null(lxd_endpoints_certificates_ce, SL("curl"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	/**
+	 * @var - Base API endpoint
+	 */
 	zephir_declare_class_constant_string(lxd_endpoints_certificates_ce, SL("ENDPOINT"), "certificates");
 
 	return SUCCESS;
@@ -70,7 +76,13 @@ PHP_METHOD(Lxd_Endpoints_Certificates, __construct) {
 }
 
 /**
+ * List all trusted certificates on the server.
  *
+ * <code>
+ *  $lxd->certificates->all();
+ * </code>
+ *
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 
@@ -105,12 +117,12 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 51 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 63 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_3, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 55 TSRMLS_CC);
-	zephir_is_iterable(&_4, 0, "lxd/endpoints/certificates.zep", 59);
+	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 67 TSRMLS_CC);
+	zephir_is_iterable(&_4, 0, "lxd/endpoints/certificates.zep", 71);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_4), _6, _7, _5)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -132,7 +144,16 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 }
 
 /**
+ * Add a new trusted certificate to the server.
  *
+ * <code>
+ *  $lxd->certificates->add('./local-certificate-path.pem', 'lxd-server-secret', 'certificate-label');
+ * </code>
+ *
+ * @param  string certificate  Path to PEM certificate
+ * @param  string password     LXD server secret
+ * @param  string name         Name/Label of certificate
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 
@@ -214,7 +235,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 		_0 = !zephir_is_true(&_1);
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not found.", "lxd/endpoints/certificates.zep", 70);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not found.", "lxd/endpoints/certificates.zep", 91);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&raw);
@@ -224,7 +245,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_fast_strpos(&_3, &raw, &_2, 0 );
 	if (ZEPHIR_IS_FALSE_IDENTICAL(&_3)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not in PEM format.", "lxd/endpoints/certificates.zep", 78);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not in PEM format.", "lxd/endpoints/certificates.zep", 99);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&_4);
@@ -261,7 +282,14 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 }
 
 /**
+ * Show information of a certificate.
  *
+ * <code>
+ *  $lxd->certificates->info('cerfiticate-fingerprint');
+ * </code>
+ *
+ * @param  string fingerprint  Fingerprint of certificate
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 
@@ -305,7 +333,14 @@ PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 }
 
 /**
+ * Remove a trusted certificate - alias of delete.
  *
+ * <code>
+ *  $lxd->certificates->delete('cerfiticate-fingerprint');
+ * </code>
+ *
+ * @param  string fingerprint  Fingerprint of certificate
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, delete) {
 
@@ -338,7 +373,14 @@ PHP_METHOD(Lxd_Endpoints_Certificates, delete) {
 }
 
 /**
+ * Delete a trusted certificate.
  *
+ * <code>
+ *  $lxd->certificates->remove('cerfiticate-fingerprint');
+ * </code>
+ *
+ * @param  string fingerprint  Fingerprint of certificate
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, remove) {
 

@@ -113,7 +113,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List all trusted certificates on the server.                </div>
             </div>
             </div>
 </li>
@@ -130,7 +130,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Add a new trusted certificate to the server.                </div>
             </div>
             </div>
 </li>
@@ -147,7 +147,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Show information of a certificate.                </div>
             </div>
             </div>
 </li>
@@ -164,7 +164,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Remove a trusted certificate - alias of delete.                </div>
             </div>
             </div>
 </li>
@@ -181,7 +181,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Delete a trusted certificate.                </div>
             </div>
             </div>
 </li>
@@ -223,9 +223,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List all trusted certificates on the server.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->certificates->all();
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -243,9 +245,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Add a new trusted certificate to the server.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->certificates->add('./local-certificate-path.pem', 'lxd-server-secret', 'certificate-label');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -263,9 +267,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Show information of a certificate.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->certificates->info('cerfiticate-fingerprint');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -283,9 +289,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Remove a trusted certificate - alias of delete.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->certificates->delete('cerfiticate-fingerprint');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -303,9 +311,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Delete a trusted certificate.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->certificates->remove('cerfiticate-fingerprint');
+     </code>                    </div>
                             </div>
         </div>
     </div>

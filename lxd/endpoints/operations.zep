@@ -21,8 +21,15 @@ use Lxd\Endpoint;
 
 final class Operations extends Endpoint
 {
+
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "operations";
 
+    /**
+     * @var
+     */
     protected curl;
 
     /**
@@ -43,7 +50,7 @@ final class Operations extends Endpoint
     public function all() -> array
     {
         var response = this->curl->get(this->getBase(Operations::ENDPOINT));
-        
+
         if response["type"] === "error" {
             return response;
         }
@@ -79,7 +86,7 @@ final class Operations extends Endpoint
     public function wait(string! uuid, int! timeout = null) -> array
     {
         string endpoint;
-        
+
         let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
 
         if is_numeric(timeout) && timeout > 0 {

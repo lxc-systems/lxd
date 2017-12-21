@@ -80,7 +80,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, __construct) {
 }
 
 /**
- * Read the contents from a file in container
+ * Read the contents from a file in container.
  *
  * <code>
  *  $lxd->containers->files->read('conainer-name', '/path/to/file');
@@ -148,7 +148,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, read) {
 }
 
 /**
- * Write to or Create a file in container
+ * Write to or Create a file in container.
  *
  * <code> 
  *  $lxd->containers->files->write('container-name', '/path/to/file', 'File Contents', 0644, 0, 0);
@@ -299,7 +299,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 }
 
 /**
- * Delete a file in container
+ * Delete a file in container.
  *
  * <code>
  *  $lxd->containers->files->delete('container-name', '/path/to/file');

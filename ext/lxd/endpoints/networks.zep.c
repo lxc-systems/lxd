@@ -27,8 +27,14 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Networks) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Lxd\\Endpoints, Networks, lxd, endpoints_networks, lxd_endpoint_ce, lxd_endpoints_networks_method_entry, ZEND_ACC_FINAL_CLASS);
 
+	/**
+	 * @var
+	 */
 	zend_declare_property_null(lxd_endpoints_networks_ce, SL("curl"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	/**
+	 * @var - Base API endpoint
+	 */
 	zephir_declare_class_constant_string(lxd_endpoints_networks_ce, SL("ENDPOINT"), "networks");
 
 	return SUCCESS;
@@ -106,14 +112,14 @@ PHP_METHOD(Lxd_Endpoints_Networks, all) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/networks.zep", 51 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/networks.zep", 57 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_3, "error")) {
 		RETURN_CCTOR(&response);
 	}
 	ZEPHIR_OBS_VAR(&_4);
-	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY, "lxd/endpoints/networks.zep", 56 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY, "lxd/endpoints/networks.zep", 62 TSRMLS_CC);
 	zephir_get_arrval(&_5, &_4);
-	zephir_is_iterable(&_5, 0, "lxd/endpoints/networks.zep", 60);
+	zephir_is_iterable(&_5, 0, "lxd/endpoints/networks.zep", 66);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_5), _7, _8, _6)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -198,15 +204,15 @@ PHP_METHOD(Lxd_Endpoints_Networks, info) {
 	ZEPHIR_CONCAT_VSV(&_4, &_3, "/", &name);
 	ZEPHIR_CALL_METHOD(&response, &_2, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_5, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/networks.zep", 76 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/networks.zep", 82 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_5, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_6, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/networks.zep", 81 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/networks.zep", 87 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(&_7);
-	zephir_array_fetch_string(&_7, &_6, SL("used_by"), PH_NOISY, "lxd/endpoints/networks.zep", 81 TSRMLS_CC);
+	zephir_array_fetch_string(&_7, &_6, SL("used_by"), PH_NOISY, "lxd/endpoints/networks.zep", 87 TSRMLS_CC);
 	zephir_get_arrval(&_8, &_7);
-	zephir_is_iterable(&_8, 0, "lxd/endpoints/networks.zep", 85);
+	zephir_is_iterable(&_8, 0, "lxd/endpoints/networks.zep", 91);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_8), _10, _11, _9)
 	{
 		ZEPHIR_INIT_NVAR(&key);

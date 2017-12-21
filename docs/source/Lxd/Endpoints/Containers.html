@@ -103,8 +103,14 @@ use Lxd\Endpoint;
 
 final class Containers extends Endpoint
 {
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "containers";
-
+    
+    /**
+     * @var
+     */
     protected curl;
 
     /**

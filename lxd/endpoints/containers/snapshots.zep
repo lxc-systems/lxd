@@ -20,9 +20,15 @@ namespace Lxd\Endpoints\Containers;
 use Lxd\Endpoint;
 
 final class Snapshots extends Endpoint
-{
+{    
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "containers";
 
+    /**
+     * @var
+     */
     protected curl;
 
     /**
@@ -38,7 +44,7 @@ final class Snapshots extends Endpoint
     }
 
     /**
-     * List of snapshots for a container
+     * List of snapshots for a container.
      *
      * <code>
      *  $lxd->containers->snapshots->all('conainer-name');
@@ -56,7 +62,7 @@ final class Snapshots extends Endpoint
         let response = this->curl->get(
             this->getBase(Snapshots::ENDPOINT)."/".name."/snapshots"
         );
-        
+
         if response["type"] === "error" {
             return response;
         }
@@ -71,7 +77,7 @@ final class Snapshots extends Endpoint
     }
 
     /**
-     * Show information on a snapshot
+     * Show information on a snapshot.
      *
      * <code>
      *  $lxd->containers->snapshots->all('conainer-name');
@@ -89,7 +95,7 @@ final class Snapshots extends Endpoint
     }
 
     /**
-     * Create a snapshot of a container
+     * Create a snapshot of a container.
      *
      * <code>
      *  $lxd->containers->snapshots->create('container-name', 'snapshot-name', false, true);
@@ -128,7 +134,7 @@ final class Snapshots extends Endpoint
     }
 
     /**
-     * Restore a container from a snapshot
+     * Restore a container from a snapshot.
      *
      * <code>
      *  $lxd->containers->snapshots->restore('container-name', 'snapshot-name', false, true);
@@ -161,7 +167,7 @@ final class Snapshots extends Endpoint
     }
 
     /**
-     * Rename a snapshot
+     * Rename a container snapshot.
      *
      * <code>
      *  $lxd->containers->snapshots->rename('container-name', 'snapshot-name', 'new-snapshot-name', false, true);
@@ -193,9 +199,9 @@ final class Snapshots extends Endpoint
 
         return response;
     }
-    
+
     /**
-     * Remove a snapshot
+     * Remove a container snapshot.
      *
      * <code>
      *  $lxd->containers->snapshots->remove('container-name', 'snapshot-name', true);
@@ -223,9 +229,9 @@ final class Snapshots extends Endpoint
 
         return response;
     }
-    
+
     /**
-     * Delete a snapshot - alias of remove
+     * Delete a container snapshot - alias of remove.
      *
      * <code>
      *  $lxd->containers->snapshots->delete('container-name', 'snapshot-name', true);
