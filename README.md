@@ -1,11 +1,11 @@
-# LXD PHP Extension
+# LXD Client - PHP Extension
 
 WIP!
 
  ## Connection
 
     $lxd = (new \Lxd\Client([
-        'certificate_path' => 'certificates',
+        'certificate_path' => '.certificates',
         'timeout' => 30
     ]))->connect('https://127.0.0.1:8443', 'lxd.server.secret');
     

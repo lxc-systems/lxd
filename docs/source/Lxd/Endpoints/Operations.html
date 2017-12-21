@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta content="LXD PHP Extension API doc" name="description">
+    <meta content="LXD PHP Client API doc" name="description">
     <title>
-                    LXD PHP Extension API Documentation
+                    LXD PHP Client API Documentation
             </title>
     <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
 
@@ -27,7 +27,7 @@
  <body onload="prettyPrint()">
         <div id="top-bar">
             <div id="top-left">
-                                    LXD PHP Extension Documentation <span class="version">v0.0.1</span>
+                                    LXD PHP Client Documentation <span class="version">v0.0.1</span>
                             </div>
             <div id="top-right">
             </div>
@@ -108,7 +108,11 @@ final class Operations extends Endpoint
     protected curl;
 
     /**
+     * Class construct
      *
+     * @param  array          config Config array which holds object configuration
+     * @param  <Lxd\Lib\Curl> curl
+     * @return void
      */
     public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {

@@ -35,7 +35,11 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Operations) {
 }
 
 /**
+ * Class construct
  *
+ * @param  array          config Config array which holds object configuration
+ * @param  <Lxd\Lib\Curl> curl
+ * @return void
  */
 PHP_METHOD(Lxd_Endpoints_Operations, __construct) {
 
@@ -98,16 +102,16 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/operations.zep", 43 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/operations.zep", 47 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_3, "error")) {
 		RETURN_CCTOR(&response);
 	}
 	ZEPHIR_INIT_VAR(&ret);
 	array_init(&ret);
 	ZEPHIR_OBS_VAR(&_4);
-	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY, "lxd/endpoints/operations.zep", 48 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY, "lxd/endpoints/operations.zep", 52 TSRMLS_CC);
 	zephir_get_arrval(&_5, &_4);
-	zephir_is_iterable(&_5, 0, "lxd/endpoints/operations.zep", 53);
+	zephir_is_iterable(&_5, 0, "lxd/endpoints/operations.zep", 57);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_5), _7, _8, _6)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -118,7 +122,7 @@ PHP_METHOD(Lxd_Endpoints_Operations, all) {
 		}
 		ZEPHIR_INIT_NVAR(&item);
 		ZVAL_COPY(&item, _6);
-		zephir_is_iterable(&item, 0, "lxd/endpoints/operations.zep", 52);
+		zephir_is_iterable(&item, 0, "lxd/endpoints/operations.zep", 56);
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&item), _9$$4)
 		{
 			ZEPHIR_INIT_NVAR(&operation_id);

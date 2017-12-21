@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta content="LXD PHP Extension API doc" name="description">
+    <meta content="LXD PHP Client API doc" name="description">
     <title>
-                    LXD PHP Extension API Documentation
+                    LXD PHP Client API Documentation
             </title>
     <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
 
@@ -27,7 +27,7 @@
  <body onload="prettyPrint()">
         <div id="top-bar">
             <div id="top-left">
-                                    LXD PHP Extension Documentation <span class="version">v0.0.1</span>
+                                    LXD PHP Client Documentation <span class="version">v0.0.1</span>
                             </div>
             <div id="top-right">
             </div>
@@ -111,7 +111,11 @@ final class Snapshots extends Endpoint
     protected curl;
 
     /**
+     * Class construct
      *
+     * @param  array          config Config array which holds object configuration
+     * @param  <Lxd\Lib\Curl> curl
+     * @return void
      */
     public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
@@ -119,7 +123,14 @@ final class Snapshots extends Endpoint
     }
 
     /**
+     * List of snapshots for a container
      *
+     * <code>
+     *  $lxd->containers->snapshots->all('conainer-name');
+     * </code>
+     *
+     * @param  string name  Name of container
+     * @return array
      */
     public function all(string! name) -> array
     {
@@ -145,7 +156,15 @@ final class Snapshots extends Endpoint
     }
 
     /**
+     * Show information on a snapshot
      *
+     * <code>
+     *  $lxd->containers->snapshots->all('conainer-name');
+     * </code>
+     *
+     * @param  string name      Name of container
+     * @param  string snapshot  Name of snapshot
+     * @return array
      */
     public function info(string! name, string! snapshot) -> array
     {
@@ -155,7 +174,17 @@ final class Snapshots extends Endpoint
     }
 
     /**
+     * Create a snapshot of a container
      *
+     * <code>
+     *  $lxd->containers->snapshots->create('container-name', 'snapshot-name', false, true);
+     * </code>
+     *
+     * @param  string   name     Name of container
+     * @param  string   snapshot Name of snapshot
+     * @param  boolean  stateful Save runtime state for a running container
+     * @param  boolean  wait     Wait for operation to finish
+     * @return array
      */
     public function create(string! name, string! snapshot, boolean! stateful = false, boolean! wait = false) -> array
     {
@@ -184,7 +213,17 @@ final class Snapshots extends Endpoint
     }
 
     /**
+     * Restore a container from a snapshot
      *
+     * <code>
+     *  $lxd->containers->snapshots->restore('container-name', 'snapshot-name', false, true);
+     * </code>
+     *
+     * @param  string   name     Name of container
+     * @param  string   snapshot Name of snapshot
+     * @param  boolean  stateful Save runtime state for a running container
+     * @param  boolean  wait     Wait for operation to finish
+     * @return array
      */
     public function restore(string! name, string! snapshot, boolean! wait = false) -> array
     {
@@ -207,7 +246,18 @@ final class Snapshots extends Endpoint
     }
 
     /**
+     * Rename a snapshot
      *
+     * <code>
+     *  $lxd->containers->snapshots->rename('container-name', 'snapshot-name', 'new-snapshot-name', false, true);
+     * </code>
+     *
+     * @param  string   name        Name of container
+     * @param  string   snapshot    Name of snapshot
+     * @param  boolean  newSnapshot New name for snapshot
+     * @param  boolean  stateful    Save runtime state for a running container
+     * @param  boolean  wait        Wait for operation to finish
+     * @return array
      */
     public function rename(string! name, string! snaphot, string! newSnapshot, boolean! wait = false) -> array
     {
@@ -230,7 +280,16 @@ final class Snapshots extends Endpoint
     }
     
     /**
+     * Remove a snapshot
      *
+     * <code>
+     *  $lxd->containers->snapshots->remove('container-name', 'snapshot-name', true);
+     * </code>
+     *
+     * @param  string   name        Name of container
+     * @param  string   snapshot    Name of snapshot
+     * @param  boolean  wait        Wait for operation to finish
+     * @return array
      */
     public function remove(string! name, string! snaphot, boolean! wait = false) -> array
     {
@@ -251,7 +310,16 @@ final class Snapshots extends Endpoint
     }
     
     /**
+     * Delete a snapshot - alias of remove
      *
+     * <code>
+     *  $lxd->containers->snapshots->delete('container-name', 'snapshot-name', true);
+     * </code>
+     *
+     * @param  string   name        Name of container
+     * @param  string   snapshot    Name of snapshot
+     * @param  boolean  wait        Wait for operation to finish
+     * @return array
      */
     public function delete(string! name, string! snaphot, boolean! wait = false) -> array
     {

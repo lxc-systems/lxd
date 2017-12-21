@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta content="LXD PHP Extension API doc" name="description">
+    <meta content="LXD PHP Client API doc" name="description">
     <title>
-                    LXD PHP Extension API Documentation
+                    LXD PHP Client API Documentation
             </title>
     <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
 
@@ -27,7 +27,7 @@
  <body onload="prettyPrint()">
         <div id="top-bar">
             <div id="top-left">
-                                    LXD PHP Extension Documentation <span class="version">v0.0.1</span>
+                                    LXD PHP Client Documentation <span class="version">v0.0.1</span>
                             </div>
             <div id="top-right">
             </div>
@@ -99,7 +99,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Class construct                </div>
             </div>
             </div>
 </li>
@@ -116,7 +116,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List of snapshots for a container                </div>
             </div>
             </div>
 </li>
@@ -133,7 +133,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Show information on a snapshot                </div>
             </div>
             </div>
 </li>
@@ -150,7 +150,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Create a snapshot of a container                </div>
             </div>
             </div>
 </li>
@@ -167,7 +167,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Restore a container from a snapshot                </div>
             </div>
             </div>
 </li>
@@ -184,7 +184,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Rename a snapshot                </div>
             </div>
             </div>
 </li>
@@ -201,7 +201,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Remove a snapshot                </div>
             </div>
             </div>
 </li>
@@ -218,7 +218,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Delete a snapshot - alias of remove                </div>
             </div>
             </div>
 </li>
@@ -240,7 +240,7 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Class construct                    </div>
                     <div class="description">
                                             </div>
                             </div>
@@ -260,9 +260,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List of snapshots for a container                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->all('conainer-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -280,9 +282,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Show information on a snapshot                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->all('conainer-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -300,9 +304,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Create a snapshot of a container                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->create('container-name', 'snapshot-name', false, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -320,9 +326,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Restore a container from a snapshot                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->restore('container-name', 'snapshot-name', false, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -340,9 +348,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Rename a snapshot                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->rename('container-name', 'snapshot-name', 'new-snapshot-name', false, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -360,9 +370,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Remove a snapshot                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->remove('container-name', 'snapshot-name', true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -380,9 +392,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Delete a snapshot - alias of remove                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->snapshots->delete('container-name', 'snapshot-name', true);
+     </code>                    </div>
                             </div>
         </div>
     </div>

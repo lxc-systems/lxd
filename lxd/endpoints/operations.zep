@@ -26,7 +26,11 @@ final class Operations extends Endpoint
     protected curl;
 
     /**
+     * Class construct
      *
+     * @param  array          config Config array which holds object configuration
+     * @param  <Lxd\Lib\Curl> curl
+     * @return void
      */
     public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {

@@ -37,7 +37,11 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Certificates) {
 }
 
 /**
+ * Class construct
  *
+ * @param  array          config Config array which holds object configuration
+ * @param  <Lxd\Lib\Curl> curl
+ * @return void
  */
 PHP_METHOD(Lxd_Endpoints_Certificates, __construct) {
 
@@ -101,12 +105,12 @@ PHP_METHOD(Lxd_Endpoints_Certificates, all) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 47 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 51 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_3, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 51 TSRMLS_CC);
-	zephir_is_iterable(&_4, 0, "lxd/endpoints/certificates.zep", 55);
+	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/certificates.zep", 55 TSRMLS_CC);
+	zephir_is_iterable(&_4, 0, "lxd/endpoints/certificates.zep", 59);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_4), _6, _7, _5)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -210,7 +214,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 		_0 = !zephir_is_true(&_1);
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not found.", "lxd/endpoints/certificates.zep", 66);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not found.", "lxd/endpoints/certificates.zep", 70);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&raw);
@@ -220,7 +224,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, add) {
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_fast_strpos(&_3, &raw, &_2, 0 );
 	if (ZEPHIR_IS_FALSE_IDENTICAL(&_3)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not in PEM format.", "lxd/endpoints/certificates.zep", 74);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(zend_exception_get_default(TSRMLS_C), "Certificate not in PEM format.", "lxd/endpoints/certificates.zep", 78);
 		return;
 	}
 	ZEPHIR_INIT_VAR(&_4);

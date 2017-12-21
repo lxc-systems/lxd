@@ -23,12 +23,24 @@
 #include "kernel/string.h"
 
 
+/**
+ * Lxd\Endpoints\Containers\Logs
+ *
+ * Provides containers logs facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/containers/logs.zep
+ */
 ZEPHIR_INIT_CLASS(Lxd_Endpoints_Containers_Logs) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Lxd\\Endpoints\\Containers, Logs, lxd, endpoints_containers_logs, lxd_endpoint_ce, lxd_endpoints_containers_logs_method_entry, ZEND_ACC_FINAL_CLASS);
 
+	/**
+	 * @var
+	 */
 	zend_declare_property_null(lxd_endpoints_containers_logs_ce, SL("curl"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	/**
+	 * @var - Base API endpoint
+	 */
 	zephir_declare_class_constant_string(lxd_endpoints_containers_logs_ce, SL("ENDPOINT"), "containers");
 
 	return SUCCESS;
@@ -36,7 +48,11 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Containers_Logs) {
 }
 
 /**
+ * Class construct
  *
+ * @param  array          config Config array which holds object configuration
+ * @param  <Lxd\Lib\Curl> curl
+ * @return void
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Logs, __construct) {
 
@@ -65,7 +81,14 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, __construct) {
 }
 
 /**
+ * List of logs for a container
  *
+ * <code>
+ *  $lxd->containers->logs->all('conainer-name');
+ * </code>
+ *
+ * @param  string name     Name of container
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 
@@ -121,12 +144,12 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/logs");
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 49 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 72 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_4, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_5, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 53 TSRMLS_CC);
-	zephir_is_iterable(&_5, 0, "lxd/endpoints/containers/logs.zep", 59);
+	zephir_array_fetch_string(&_5, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/logs.zep", 76 TSRMLS_CC);
+	zephir_is_iterable(&_5, 0, "lxd/endpoints/containers/logs.zep", 82);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_5), _7, _8, _6)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -152,7 +175,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 }
 
 /**
+ * Get the contents of a particular log file
  *
+ * <code>
+ *  $lxd->containers->logs->read('conainer-name', 'log-name.log');
+ * </code>
+ *
+ * @param  string name  Name of container
+ * @param  string log   Name of log
+ * @return string
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Logs, read) {
 
@@ -207,7 +238,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, read) {
 }
 
 /**
+ * Remove a particular log file
  *
+ * <code>
+ *  $lxd->containers->logs->remove('conainer-name', 'log-name.log');
+ * </code>
+ *
+ * @param  string name  Name of container
+ * @param  string log   Name of log
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Logs, remove) {
 
@@ -251,7 +290,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, remove) {
 }
 
 /**
+ * Delete a particular log file - alias of remove
  *
+ * <code>
+ *  $lxd->containers->logs->delete('conainer-name', 'log-name.log');
+ * </code>
+ *
+ * @param  string name  Name of container
+ * @param  string log   Name of log
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Logs, delete) {
 

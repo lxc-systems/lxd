@@ -19,14 +19,30 @@ namespace Lxd\Endpoints\Containers;
 
 use Lxd\Endpoint;
 
+/**
+ * Lxd\Endpoints\Containers\Logs
+ *
+ * Provides containers logs facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/containers/logs.zep
+ */
 final class Logs extends Endpoint
 {
+    /**
+     * @var - Base API endpoint
+     */
     const ENDPOINT = "containers";
     
-    protected curl;
-
     /**
+     * @var
+     */
+    protected curl;
+    
+    /**
+     * Class construct
      *
+     * @param  array          config Config array which holds object configuration
+     * @param  <Lxd\Lib\Curl> curl
+     * @return void
      */
     public function __construct(array! config, <Lxd\Lib\Curl> curl) -> void
     {
@@ -34,7 +50,14 @@ final class Logs extends Endpoint
     }
     
     /**
+     * List of logs for a container
      *
+     * <code>
+     *  $lxd->containers->logs->all('conainer-name');
+     * </code>
+     *
+     * @param  string name     Name of container
+     * @return array
      */
     public function all(string! name) -> array
     {
@@ -60,7 +83,15 @@ final class Logs extends Endpoint
     }
 
     /**
+     * Get the contents of a particular log file
      *
+     * <code>
+     *  $lxd->containers->logs->read('conainer-name', 'log-name.log');
+     * </code>
+     *
+     * @param  string name  Name of container
+     * @param  string log   Name of log
+     * @return string
      */
     public function read(string! name, string! log) -> string
     {
@@ -70,7 +101,15 @@ final class Logs extends Endpoint
     }
     
     /**
+     * Remove a particular log file
      *
+     * <code>
+     *  $lxd->containers->logs->remove('conainer-name', 'log-name.log');
+     * </code>
+     *
+     * @param  string name  Name of container
+     * @param  string log   Name of log
+     * @return array
      */
     public function remove(string! name, string! log) -> array
     {
@@ -78,7 +117,15 @@ final class Logs extends Endpoint
     }
     
     /**
+     * Delete a particular log file - alias of remove
      *
+     * <code>
+     *  $lxd->containers->logs->delete('conainer-name', 'log-name.log');
+     * </code>
+     *
+     * @param  string name  Name of container
+     * @param  string log   Name of log
+     * @return array
      */
     public function delete(string! name, string! log) -> array
     {

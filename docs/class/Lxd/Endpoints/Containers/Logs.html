@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta content="LXD PHP Extension API doc" name="description">
+    <meta content="LXD PHP Client API doc" name="description">
     <title>
-                    LXD PHP Extension API Documentation
+                    LXD PHP Client API Documentation
             </title>
     <link rel="stylesheet" type="text/css" href="../../../../asset/static/prettify.css" />
 
@@ -27,7 +27,7 @@
  <body onload="prettyPrint()">
         <div id="top-bar">
             <div id="top-left">
-                                    LXD PHP Extension Documentation <span class="version">v0.0.1</span>
+                                    LXD PHP Client Documentation <span class="version">v0.0.1</span>
                             </div>
             <div id="top-right">
             </div>
@@ -99,7 +99,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Class construct                </div>
             </div>
             </div>
 </li>
@@ -116,7 +116,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List of logs for a container                </div>
             </div>
             </div>
 </li>
@@ -133,7 +133,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Get the contents of a particular log file                </div>
             </div>
             </div>
 </li>
@@ -150,7 +150,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Remove a particular log file                </div>
             </div>
             </div>
 </li>
@@ -167,7 +167,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Delete a particular log file - alias of remove                </div>
             </div>
             </div>
 </li>
@@ -189,7 +189,7 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Class construct                    </div>
                     <div class="description">
                                             </div>
                             </div>
@@ -209,9 +209,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List of logs for a container                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->logs->all('conainer-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -229,9 +231,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Get the contents of a particular log file                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->logs->read('conainer-name', 'log-name.log');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -249,9 +253,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Remove a particular log file                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->logs->remove('conainer-name', 'log-name.log');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -269,9 +275,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Delete a particular log file - alias of remove                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->logs->delete('conainer-name', 'log-name.log');
+     </code>                    </div>
                             </div>
         </div>
     </div>

@@ -36,7 +36,11 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Containers_Snapshots) {
 }
 
 /**
+ * Class construct
  *
+ * @param  array          config Config array which holds object configuration
+ * @param  <Lxd\Lib\Curl> curl
+ * @return void
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, __construct) {
 
@@ -65,7 +69,14 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, __construct) {
 }
 
 /**
+ * List of snapshots for a container
  *
+ * <code>
+ *  $lxd->containers->snapshots->all('conainer-name');
+ * </code>
+ *
+ * @param  string name  Name of container
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, all) {
 
@@ -121,12 +132,12 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, all) {
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/snapshots");
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 49 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 60 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_4, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_5, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 53 TSRMLS_CC);
-	zephir_is_iterable(&_5, 0, "lxd/endpoints/containers/snapshots.zep", 59);
+	zephir_array_fetch_string(&_5, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 64 TSRMLS_CC);
+	zephir_is_iterable(&_5, 0, "lxd/endpoints/containers/snapshots.zep", 70);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_5), _7, _8, _6)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -152,7 +163,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, all) {
 }
 
 /**
+ * Show information on a snapshot
  *
+ * <code>
+ *  $lxd->containers->snapshots->all('conainer-name');
+ * </code>
+ *
+ * @param  string name      Name of container
+ * @param  string snapshot  Name of snapshot
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, info) {
 
@@ -207,7 +226,17 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, info) {
 }
 
 /**
+ * Create a snapshot of a container
  *
+ * <code>
+ *  $lxd->containers->snapshots->create('container-name', 'snapshot-name', false, true);
+ * </code>
+ *
+ * @param  string   name     Name of container
+ * @param  string   snapshot Name of snapshot
+ * @param  boolean  stateful Save runtime state for a running container
+ * @param  boolean  wait     Wait for operation to finish
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, create) {
 
@@ -295,7 +324,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, create) {
 	ZEPHIR_CONCAT_VSVS(&_3, &_2, "/", &name, "/snapshots");
 	ZEPHIR_CALL_METHOD(&response, &_1, "post", NULL, 0, &_3, &options);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 89 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 118 TSRMLS_CC);
 	_5 = !ZEPHIR_IS_STRING_IDENTICAL(&_4, "error");
 	if (_5) {
 		_5 = wait;
@@ -306,15 +335,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, create) {
 		ZVAL_STRING(&_8$$3, "operations");
 		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 11, &_8$$3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 91 TSRMLS_CC);
-		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 91 TSRMLS_CC);
+		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 120 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 120 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(&_11$$3);
 		ZEPHIR_CONCAT_VSVS(&_11$$3, &_7$$3, "/", &_10$$3, "/wait");
 		ZEPHIR_INIT_VAR(&_12$$3);
 		zephir_create_array(&_12$$3, 1, 0 TSRMLS_CC);
 		zephir_read_property(&_13$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_14$$3);
-		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 94 TSRMLS_CC);
+		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 123 TSRMLS_CC);
 		zephir_array_update_string(&_12$$3, SL("timeout"), &_14$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&response, &_6$$3, "get", NULL, 0, &_11$$3, &_12$$3);
 		zephir_check_call_status();
@@ -324,7 +353,17 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, create) {
 }
 
 /**
+ * Restore a container from a snapshot
  *
+ * <code>
+ *  $lxd->containers->snapshots->restore('container-name', 'snapshot-name', false, true);
+ * </code>
+ *
+ * @param  string   name     Name of container
+ * @param  string   snapshot Name of snapshot
+ * @param  boolean  stateful Save runtime state for a running container
+ * @param  boolean  wait     Wait for operation to finish
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, restore) {
 
@@ -400,7 +439,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, restore) {
 	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
 	ZEPHIR_CALL_METHOD(&response, &_0, "put", NULL, 0, &_3, &opts);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 112 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 151 TSRMLS_CC);
 	_5 = !ZEPHIR_IS_STRING_IDENTICAL(&_4, "error");
 	if (_5) {
 		_5 = wait;
@@ -411,15 +450,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, restore) {
 		ZVAL_STRING(&_8$$3, "operations");
 		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 11, &_8$$3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 114 TSRMLS_CC);
-		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 114 TSRMLS_CC);
+		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 153 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 153 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(&_11$$3);
 		ZEPHIR_CONCAT_VSVS(&_11$$3, &_7$$3, "/", &_10$$3, "/wait");
 		ZEPHIR_INIT_VAR(&_12$$3);
 		zephir_create_array(&_12$$3, 1, 0 TSRMLS_CC);
 		zephir_read_property(&_13$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_14$$3);
-		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 117 TSRMLS_CC);
+		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 156 TSRMLS_CC);
 		zephir_array_update_string(&_12$$3, SL("timeout"), &_14$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&response, &_6$$3, "get", NULL, 0, &_11$$3, &_12$$3);
 		zephir_check_call_status();
@@ -429,7 +468,18 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, restore) {
 }
 
 /**
+ * Rename a snapshot
  *
+ * <code>
+ *  $lxd->containers->snapshots->rename('container-name', 'snapshot-name', 'new-snapshot-name', false, true);
+ * </code>
+ *
+ * @param  string   name        Name of container
+ * @param  string   snapshot    Name of snapshot
+ * @param  boolean  newSnapshot New name for snapshot
+ * @param  boolean  stateful    Save runtime state for a running container
+ * @param  boolean  wait        Wait for operation to finish
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, rename) {
 
@@ -516,7 +566,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, rename) {
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/snapshots/", &snaphot);
 	ZEPHIR_CALL_METHOD(&response, &_0, "post", NULL, 0, &_3, &opts);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 135 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 185 TSRMLS_CC);
 	_5 = !ZEPHIR_IS_STRING_IDENTICAL(&_4, "error");
 	if (_5) {
 		_5 = wait;
@@ -527,15 +577,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, rename) {
 		ZVAL_STRING(&_8$$3, "operations");
 		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 11, &_8$$3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 137 TSRMLS_CC);
-		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 137 TSRMLS_CC);
+		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 187 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 187 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(&_11$$3);
 		ZEPHIR_CONCAT_VSVS(&_11$$3, &_7$$3, "/", &_10$$3, "/wait");
 		ZEPHIR_INIT_VAR(&_12$$3);
 		zephir_create_array(&_12$$3, 1, 0 TSRMLS_CC);
 		zephir_read_property(&_13$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_14$$3);
-		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 140 TSRMLS_CC);
+		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 190 TSRMLS_CC);
 		zephir_array_update_string(&_12$$3, SL("timeout"), &_14$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&response, &_6$$3, "get", NULL, 0, &_11$$3, &_12$$3);
 		zephir_check_call_status();
@@ -545,7 +595,16 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, rename) {
 }
 
 /**
+ * Remove a snapshot
  *
+ * <code>
+ *  $lxd->containers->snapshots->remove('container-name', 'snapshot-name', true);
+ * </code>
+ *
+ * @param  string   name        Name of container
+ * @param  string   snapshot    Name of snapshot
+ * @param  boolean  wait        Wait for operation to finish
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, remove) {
 
@@ -617,7 +676,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, remove) {
 	ZEPHIR_CONCAT_VSVSV(&_3, &_1, "/", &name, "/snapshots/", &snaphot);
 	ZEPHIR_CALL_METHOD(&response, &_0, "delete", NULL, 0, &_3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 156 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 215 TSRMLS_CC);
 	_5 = !ZEPHIR_IS_STRING_IDENTICAL(&_4, "error");
 	if (_5) {
 		_5 = wait;
@@ -628,15 +687,15 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, remove) {
 		ZVAL_STRING(&_8$$3, "operations");
 		ZEPHIR_CALL_METHOD(&_7$$3, this_ptr, "getbase", NULL, 11, &_8$$3);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 158 TSRMLS_CC);
-		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 158 TSRMLS_CC);
+		zephir_array_fetch_string(&_9$$3, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 217 TSRMLS_CC);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("id"), PH_NOISY | PH_READONLY, "lxd/endpoints/containers/snapshots.zep", 217 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(&_11$$3);
 		ZEPHIR_CONCAT_VSVS(&_11$$3, &_7$$3, "/", &_10$$3, "/wait");
 		ZEPHIR_INIT_VAR(&_12$$3);
 		zephir_create_array(&_12$$3, 1, 0 TSRMLS_CC);
 		zephir_read_property(&_13$$3, this_ptr, SL("config"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_14$$3);
-		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 161 TSRMLS_CC);
+		zephir_array_fetch_string(&_14$$3, &_13$$3, SL("timeout"), PH_NOISY, "lxd/endpoints/containers/snapshots.zep", 220 TSRMLS_CC);
 		zephir_array_update_string(&_12$$3, SL("timeout"), &_14$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&response, &_6$$3, "get", NULL, 0, &_11$$3, &_12$$3);
 		zephir_check_call_status();
@@ -646,7 +705,16 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, remove) {
 }
 
 /**
+ * Delete a snapshot - alias of remove
  *
+ * <code>
+ *  $lxd->containers->snapshots->delete('container-name', 'snapshot-name', true);
+ * </code>
+ *
+ * @param  string   name        Name of container
+ * @param  string   snapshot    Name of snapshot
+ * @param  boolean  wait        Wait for operation to finish
+ * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, delete) {
 
