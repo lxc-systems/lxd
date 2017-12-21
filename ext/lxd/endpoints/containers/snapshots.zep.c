@@ -773,7 +773,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Snapshots, delete) {
 	} else {
 		ZVAL_BOOL(&_0, 0);
 	}
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 27, &name, &snaphot, &_0);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 30, &name, &snaphot, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

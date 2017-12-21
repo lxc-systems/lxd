@@ -113,7 +113,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List all containers on the server.                </div>
             </div>
             </div>
 </li>
@@ -130,7 +130,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List all containers on the server.                </div>
             </div>
             </div>
 </li>
@@ -147,7 +147,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Get the current state of the container.                </div>
             </div>
             </div>
 </li>
@@ -164,7 +164,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Main set state mrthod for container, methods below are shortcuts.                </div>
             </div>
             </div>
 </li>
@@ -181,7 +181,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Start a container.                </div>
             </div>
             </div>
 </li>
@@ -198,7 +198,24 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Stop a container.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-shutdown">shutdown</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Shutdown a container - alias of stop.                </div>
             </div>
             </div>
 </li>
@@ -215,7 +232,24 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Restart a container.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-reboot">reboot</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Reboot a container - alias of restart.                </div>
             </div>
             </div>
 </li>
@@ -232,7 +266,24 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Freeze a container.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-pause">pause</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Pause a container - alias of freeze.                </div>
             </div>
             </div>
 </li>
@@ -249,7 +300,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Unfreeze a container.                </div>
             </div>
             </div>
 </li>
@@ -259,82 +310,14 @@
 <li class="class-method clearfix">
     <div class="method-summary">
         <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getSource">getSource</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            <span class="method-name"><a href="#method-details-thaw">thaw</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
                                     array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
-            </div>
-            </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="method-summary">
-        <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getOptions">getOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            <span class="method-return">
-                &nbsp;<strong>:</strong>&nbsp;
-                                    array                            </span>
-        </div>
-                    <div class="method-doc">
-                <div class="summary-text">
-                                    </div>
-            </div>
-            </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="method-summary">
-        <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getEmptyOptions">getEmptyOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            <span class="method-return">
-                &nbsp;<strong>:</strong>&nbsp;
-                                    array                            </span>
-        </div>
-                    <div class="method-doc">
-                <div class="summary-text">
-                                    </div>
-            </div>
-            </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="method-summary">
-        <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getRemoteImageOptions">getRemoteImageOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            <span class="method-return">
-                &nbsp;<strong>:</strong>&nbsp;
-                                    array                            </span>
-        </div>
-                    <div class="method-doc">
-                <div class="summary-text">
-                                    </div>
-            </div>
-            </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="method-summary">
-        <div class="method-signature">
-            <span class="method-name"><a href="#method-details-getLocalImageOptions">getLocalImageOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            <span class="method-return">
-                &nbsp;<strong>:</strong>&nbsp;
-                                    array                            </span>
-        </div>
-                    <div class="method-doc">
-                <div class="summary-text">
-                                    </div>
+                    Thaw a container - alias of unfreeze.                </div>
             </div>
             </div>
 </li>
@@ -395,14 +378,14 @@
 <li class="class-method clearfix">
     <div class="method-summary">
         <div class="method-signature">
-            <span class="method-name"><a href="#method-details-delete">delete</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>)
+            <span class="method-name"><a href="#method-details-getSource">getSource</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    bool                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Private method for getting container [source] options.                </div>
             </div>
             </div>
 </li>
@@ -412,14 +395,65 @@
 <li class="class-method clearfix">
     <div class="method-summary">
         <div class="method-signature">
-            <span class="method-name"><a href="#method-details-remove">remove</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>)
+            <span class="method-name"><a href="#method-details-getOptions">getOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    bool                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Private method for getting container [default] options.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-getEmptyOptions">getEmptyOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Private method for getting default container [empty] options.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-getRemoteImageOptions">getRemoteImageOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Private method for getting default container [remote] options.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-getLocalImageOptions">getLocalImageOptions</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Private method for getting default container [local] options.                </div>
             </div>
             </div>
 </li>
@@ -461,9 +495,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List all containers on the server.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->all();
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -481,9 +517,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List all containers on the server.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->all();
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -501,9 +539,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Get the current state of the container.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->state('container-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -521,9 +561,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Main set state mrthod for container, methods below are shortcuts.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->setState('container-name', 'start', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -541,9 +583,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Start a container.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->start('container-name', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -561,9 +605,33 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Stop a container.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->stop('container-name', 30, true, true, true);
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-shutdown"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">shutdown</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Shutdown a container - alias of stop.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->containers->shutdown('container-name', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -581,9 +649,33 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Restart a container.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->restart('container-name', 30, true, true, true);
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-reboot"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">reboot</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Reboot a container - alias of restart.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->containers->reboot('container-name', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -601,9 +693,33 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Freeze a container.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->freeze('container-name', 30, true, true, true);
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-pause"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">pause</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Pause a container - alias of freeze.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->containers->pause('container-name', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -621,9 +737,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Unfreeze a container.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->unfreeze('container-name', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -632,98 +750,20 @@
     
         
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getSource"></div>
+    <div class="hidden-anchor" id="method-details-thaw"></div>
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
-                                    <span class="visibility-private keyword">private</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getSource</span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">thaw</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">int</span> <span class="variable param-name">$timeout</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$force</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$stateful</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Thaw a container - alias of unfreeze.                    </div>
                     <div class="description">
-                                            </div>
-                            </div>
-        </div>
-    </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getOptions"></div>
-    <div class="method-details">
-        <div class="method-details-details">
-            <div class="method-signature">
-                                    <span class="visibility-private keyword">private</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            </div>
-            <div class="method-doc">
-                                    <div class="summary">
-                                            </div>
-                    <div class="description">
-                                            </div>
-                            </div>
-        </div>
-    </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getEmptyOptions"></div>
-    <div class="method-details">
-        <div class="method-details-details">
-            <div class="method-signature">
-                                    <span class="visibility-private keyword">private</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getEmptyOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            </div>
-            <div class="method-doc">
-                                    <div class="summary">
-                                            </div>
-                    <div class="description">
-                                            </div>
-                            </div>
-        </div>
-    </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getRemoteImageOptions"></div>
-    <div class="method-details">
-        <div class="method-details-details">
-            <div class="method-signature">
-                                    <span class="visibility-private keyword">private</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getRemoteImageOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            </div>
-            <div class="method-doc">
-                                    <div class="summary">
-                                            </div>
-                    <div class="description">
-                                            </div>
-                            </div>
-        </div>
-    </div>
-</li>
-
-    
-        
-<li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-getLocalImageOptions"></div>
-    <div class="method-details">
-        <div class="method-details-details">
-            <div class="method-signature">
-                                    <span class="visibility-private keyword">private</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">getLocalImageOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
-            </div>
-            <div class="method-doc">
-                                    <div class="summary">
-                                            </div>
-                    <div class="description">
-                                            </div>
+                        <code>
+      $lxd->containers->thaw('container-name', 30, true, true, true);
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -792,16 +832,17 @@
     
         
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-delete"></div>
+    <div class="hidden-anchor" id="method-details-getSource"></div>
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
-                                    <span class="visibility-public keyword">public</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">delete</span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>)
+                                    <span class="visibility-final keyword">final</span>
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getSource</span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Private method for getting container [source] options.                    </div>
                     <div class="description">
                                             </div>
                             </div>
@@ -812,16 +853,80 @@
     
         
 <li class="class-method clearfix">
-    <div class="hidden-anchor" id="method-details-remove"></div>
+    <div class="hidden-anchor" id="method-details-getOptions"></div>
     <div class="method-details">
         <div class="method-details-details">
             <div class="method-signature">
-                                    <span class="visibility-public keyword">public</span>
-                                <span class="keyword">function</span>&nbsp;<span class="method-name">remove</span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>)
+                                    <span class="visibility-final keyword">final</span>
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
             </div>
             <div class="method-doc">
                                     <div class="summary">
+                        Private method for getting container [default] options.                    </div>
+                    <div class="description">
                                             </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getEmptyOptions"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-final keyword">final</span>
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getEmptyOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Private method for getting default container [empty] options.                    </div>
+                    <div class="description">
+                                            </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getRemoteImageOptions"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-final keyword">final</span>
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getRemoteImageOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Private method for getting default container [remote] options.                    </div>
+                    <div class="description">
+                                            </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getLocalImageOptions"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-final keyword">final</span>
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getLocalImageOptions</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$source</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Private method for getting default container [local] options.                    </div>
                     <div class="description">
                                             </div>
                             </div>

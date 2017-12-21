@@ -661,7 +661,7 @@ PHP_METHOD(Lxd_Endpoints_Networks, delete) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 28, &name);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 31, &name);
 	zephir_check_call_status();
 	RETURN_MM();
 

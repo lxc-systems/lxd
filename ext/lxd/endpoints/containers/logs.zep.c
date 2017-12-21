@@ -283,7 +283,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, remove) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 26, &name, &log);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 29, &name, &log);
 	zephir_check_call_status();
 	RETURN_MM();
 

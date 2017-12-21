@@ -129,7 +129,7 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 
 
 	ZVAL_LONG(&_0, 275);
-	ZEPHIR_CALL_FUNCTION(&_1, "filter_var", NULL, 29, &ip, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "filter_var", NULL, 32, &ip, &_0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter must be a valid IP address.", "lxd/lib/certificate.zep", 43);
@@ -140,7 +140,7 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 	add_assoc_stringl_ex(&_2, SL("digest_alg"), SL("rsa"));
 	add_assoc_long_ex(&_2, SL("private_key_bits"), 2048);
 	add_assoc_long_ex(&_2, SL("private_key_type"), 0);
-	ZEPHIR_CALL_FUNCTION(&privkey, "openssl_pkey_new", NULL, 30, &_2);
+	ZEPHIR_CALL_FUNCTION(&privkey, "openssl_pkey_new", NULL, 33, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_create_array(&_3, 7, 0 TSRMLS_CC);
@@ -152,19 +152,19 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 	zephir_array_update_string(&_3, SL("commonName"), &ip, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(&_3, SL("emailAddress"), SL("NA"));
 	ZEPHIR_MAKE_REF(&privkey);
-	ZEPHIR_CALL_FUNCTION(&cert, "openssl_csr_new", NULL, 31, &_3, &privkey);
+	ZEPHIR_CALL_FUNCTION(&cert, "openssl_csr_new", NULL, 34, &_3, &privkey);
 	ZEPHIR_UNREF(&privkey);
 	zephir_check_call_status();
 	ZVAL_LONG(&_0, 1825);
-	ZEPHIR_CALL_FUNCTION(&_4, "openssl_csr_sign", NULL, 32, &cert, &__$null, &privkey, &_0);
+	ZEPHIR_CALL_FUNCTION(&_4, "openssl_csr_sign", NULL, 35, &cert, &__$null, &privkey, &_0);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&cert, &_4);
 	ZEPHIR_MAKE_REF(&certString);
-	ZEPHIR_CALL_FUNCTION(NULL, "openssl_x509_export", NULL, 33, &cert, &certString);
+	ZEPHIR_CALL_FUNCTION(NULL, "openssl_x509_export", NULL, 36, &cert, &certString);
 	ZEPHIR_UNREF(&certString);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&privkeyString);
-	ZEPHIR_CALL_FUNCTION(NULL, "openssl_pkey_export", NULL, 34, &privkey, &privkeyString);
+	ZEPHIR_CALL_FUNCTION(NULL, "openssl_pkey_export", NULL, 37, &privkey, &privkeyString);
 	ZEPHIR_UNREF(&privkeyString);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_5);
@@ -172,12 +172,12 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 	ZEPHIR_INIT_VAR(&_6);
 	ZVAL_STRING(&_6, "");
 	ZEPHIR_MAKE_REF(&p12String);
-	ZEPHIR_CALL_FUNCTION(NULL, "openssl_pkcs12_export", NULL, 35, &certString, &p12String, &privkeyString, &_6, &_5);
+	ZEPHIR_CALL_FUNCTION(NULL, "openssl_pkcs12_export", NULL, 38, &certString, &p12String, &privkeyString, &_6, &_5);
 	ZEPHIR_UNREF(&p12String);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&pemString);
 	ZEPHIR_CONCAT_VV(&pemString, &certString, &privkeyString);
-	ZEPHIR_CALL_FUNCTION(&_7, "sha1", NULL, 36, &pemString);
+	ZEPHIR_CALL_FUNCTION(&_7, "sha1", NULL, 39, &pemString);
 	zephir_check_call_status();
 	zephir_get_strval(&_8, &_7);
 	ZEPHIR_CPY_WRT(&pemHash, &_8);
@@ -187,7 +187,7 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 	zephir_get_strval(&cert_path, &_9);
 	if (!((zephir_file_exists(&cert_path TSRMLS_CC) == SUCCESS))) {
 		ZVAL_LONG(&_10$$4, 0755);
-		ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 37, &cert_path, &_10$$4, &__$true);
+		ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 40, &cert_path, &_10$$4, &__$true);
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_VAR(&_11);
@@ -206,7 +206,7 @@ PHP_METHOD(Lxd_Lib_Certificate, generate) {
 	zephir_array_update_string(return_value, SL("ip"), &ip, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("pem_hash"), &pemHash, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("cert_path"), &cert_path, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_FUNCTION(&_15, "date_create", NULL, 38);
+	ZEPHIR_CALL_FUNCTION(&_15, "date_create", NULL, 41);
 	zephir_check_call_status();
 	zephir_array_update_string(return_value, SL("created"), &_15, PH_COPY | PH_SEPARATE);
 	RETURN_MM();

@@ -275,11 +275,11 @@ PHP_METHOD(Lxd_Endpoints_Containers_Files, write) {
 		_8 = zephir_is_numeric(mode);
 	}
 	if (_8) {
-		ZEPHIR_CALL_FUNCTION(&_9$$5, "decoct", NULL, 24, mode);
+		ZEPHIR_CALL_FUNCTION(&_9$$5, "decoct", NULL, 27, mode);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_10$$5);
 		ZVAL_STRING(&_10$$5, "%04d");
-		ZEPHIR_CALL_FUNCTION(&_11$$5, "sprintf", NULL, 25, &_10$$5, &_9$$5);
+		ZEPHIR_CALL_FUNCTION(&_11$$5, "sprintf", NULL, 28, &_10$$5, &_9$$5);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_12$$5);
 		ZEPHIR_CONCAT_SV(&_12$$5, "X-LXD-mode: ", &_11$$5);
