@@ -134,7 +134,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, all) {
  * List all containers on the server.
  *
  * <code>
- *  $lxd->containers->all();
+ *  $lxd->containers->info('container-name');
  * </code>
  *
  * @param string name Name of container
