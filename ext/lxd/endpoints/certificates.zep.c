@@ -333,7 +333,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, info) {
 }
 
 /**
- * Remove a trusted certificate - alias of delete.
+ * Delete a trusted certificate - alias of remove.
  *
  * <code>
  *  $lxd->certificates->delete('cerfiticate-fingerprint');
@@ -373,7 +373,7 @@ PHP_METHOD(Lxd_Endpoints_Certificates, delete) {
 }
 
 /**
- * Delete a trusted certificate.
+ * Remove a trusted certificate.
  *
  * <code>
  *  $lxd->certificates->remove('cerfiticate-fingerprint');

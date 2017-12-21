@@ -22,7 +22,6 @@ Prerequisite packages are:
 Specific packages for common platforms:
 
 
-
     # Ubuntu
     sudo apt-get install php5-dev gcc make autoconf
 
@@ -34,6 +33,7 @@ Specific packages for common platforms:
 
     # Solaris
     pkg install php-56 gcc-48 make autoconf
+    
 
 Of course, you need to install PHP development headers and tools appropriate for your current PHP version.
 
@@ -42,7 +42,7 @@ Of course, you need to install PHP development headers and tools appropriate for
 Creating the extension:
 
 
-    git clone --depth=1 https://github.com/lxc-systems/lxd-php-extension.git ./lxd
+    git clone --depth=1 https://github.com/lxc-systems/lxd.git ./lxd
     cd lxd
     zephir build
     # Or, for PHP 7 use
@@ -53,8 +53,9 @@ Creating the extension:
    If the automatic installer failed to do this try moving extension manually.
 
 
-      # Use right path to the PHP extensions dir here
-      sudo cp ext/modules/lxd.so $(php-config --extension-dir)
+    # Use right path to the PHP extensions dir here
+    sudo cp ext/modules/lxd.so $(php-config --extension-dir)
+      
 
 Add extension to your PHP configuration:
 

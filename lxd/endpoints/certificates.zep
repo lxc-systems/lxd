@@ -134,7 +134,7 @@ final class Certificates extends Endpoint
     }
 
     /**
-     * Remove a trusted certificate - alias of delete.
+     * Delete a trusted certificate - alias of remove.
      *
      * <code>
      *  $lxd->certificates->delete('cerfiticate-fingerprint');
@@ -149,7 +149,7 @@ final class Certificates extends Endpoint
     }
 
     /**
-     * Delete a trusted certificate.
+     * Remove a trusted certificate.
      *
      * <code>
      *  $lxd->certificates->remove('cerfiticate-fingerprint');
