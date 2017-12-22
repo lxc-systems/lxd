@@ -36,6 +36,7 @@ final class Curl
     {
         //
         let this->options = [
+            CURLOPT_FOLLOWLOCATION : true,
             CURLOPT_RETURNTRANSFER : true,
             CURLOPT_SSL_VERIFYPEER : false,
             CURLOPT_SSL_VERIFYHOST : false,

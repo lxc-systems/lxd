@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="LXD PHP Client API doc" name="description">
+    <title>
+                    LXD PHP Client API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    LXD PHP Client Documentation <span class="version">v0.0.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a >Lxd\Endpoints\Images</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header clearfix">
+    
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../source/Lxd/Endpoints/Images.html">Source</a>
+
+                <a class="zep-button" href="https://github.com/lxc-systems/lxd/tree/master/lxd/endpoints/images.zep">Github</a>
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd.html">Lxd</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd/Endpoints.html">Endpoints</a>
+        </span>
+                <h1 class="class-name">Images</h1>
+    </div>
+
+</div>
+
+
+<div class="hidden-anchor"  id="methods"></div>
+<div class="methods-summary standard-bandeau">Methods</div>
+<ul class="method-summary-list">
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-__construct">__construct</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$curl</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    void
+                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Class construct                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-all">all</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$url</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    List of all images.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-info">info</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$url</span>, <span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>, <span class="param-data-type">string</span> <span class="variable param-name">$secret</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Get image info.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-create">create</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">array</span> <span class="variable param-name">$headers</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Create a new image.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-createFromRemote">createFromRemote</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$server</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$autoUpdate</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Create from remote.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-createFromContainer">createFromContainer</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Create an image from a container.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-createFromSnapshot">createFromSnapshot</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$container</span>, <span class="param-data-type">string</span> <span class="variable param-name">$snapshot</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Create an image from a snapshot                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-replace">replace</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Replace the configuration of a image                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-remove">remove</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Delete an image.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-getSource">getSource</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    void
+                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Get image source attribute                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-getOptions">getOptions</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    void
+                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Get the options for creating image                </div>
+            </div>
+            </div>
+</li>
+
+    </ul>
+
+<div class="hidden-anchor"  id="methods-details"></div>
+<div class="methods-summary standard-bandeau">Methods Details</div>
+<ul class="method-details-list">
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-__construct"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">__construct</span>(<span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$curl</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Class construct                    </div>
+                    <div class="description">
+                                            </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-all"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">all</span>(<span class="param-data-type">string</span> <span class="variable param-name">$url</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        List of all images.                    </div>
+                    <div class="description">
+                        <code>
+      // images on connected server
+      $lxd->images->all();
+     
+      // images on public image server. (URL must include /1.0/images)
+      $lxd->images->all("https://images.linuxcontainers.org:8443/1.0/images");
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-info"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">info</span>(<span class="param-data-type">string</span> <span class="variable param-name">$url</span>, <span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>, <span class="param-data-type">string</span> <span class="variable param-name">$secret</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Get image info.                    </div>
+                    <div class="description">
+                        <code>
+      // image info on connected server
+      $lxd->images->info(null, "images-fingerprint", "secret");
+     
+      // images on public image server. (URL must include /1.0/images)
+      $lxd->images->info("https://uk.images.linuxcontainers.org:8443/1.0/images", "images-fingerprint"));
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-create"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">create</span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">array</span> <span class="variable param-name">$headers</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Create a new image.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->images->create(
+          [],
+          [],
+          true
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-createFromRemote"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">createFromRemote</span>(<span class="param-data-type">string</span> <span class="variable param-name">$server</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$autoUpdate</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Create from remote.                    </div>
+                    <div class="description">
+                        <code>
+      // Import an image by alias
+      $lxd->images->createFromRemote(
+          "https://images.linuxcontainers.org:8443",
+          [
+              "alias" => "ubuntu/xenial/amd64",
+          ]
+      );
+     
+      // Import an image by fingerprint
+      $lxd->images->createFromRemote(
+          "https://images.linuxcontainers.org:8443",
+          [
+              "fingerprint" => "b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087",
+          ]
+      );     
+     
+      // Import an image by fingerprint, set auto update and wait for pull
+      $lxd->images->createFromRemote(
+          "https://images.linuxcontainers.org:8443",
+          [
+              "fingerprint" => "b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087",
+          ],
+          true,
+          true
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-createFromContainer"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">createFromContainer</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Create an image from a container.                    </div>
+                    <div class="description">
+                        <code>
+      // Create a private image from container.
+      $lxd->images->createFromContainer('container-name');
+     
+      // Create a public image from container
+      $lxd->images->createFromContainer(
+          'container-name',
+          [
+              'public' => true
+          ]
+      );     
+     
+      // Create an image from container, store properties with the new image and override its filename.
+      $lxd->images->createFromContainer(
+          'container-name',
+          [
+              'filename'   => 'ubuntu-trusty.tar.gz',
+              'properties' => ['os' => 'Ubuntu'],
+          ]
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-createFromSnapshot"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">createFromSnapshot</span>(<span class="param-data-type">string</span> <span class="variable param-name">$container</span>, <span class="param-data-type">string</span> <span class="variable param-name">$snapshot</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Create an image from a snapshot                    </div>
+                    <div class="description">
+                        <code>
+      // Create a private image from snapshot
+      $lxd->images->createFromSnapshot("container_name", "snapshot_name");
+     
+      // Create a public image from snapshot
+      $lxd->images->createFromSnapshot(
+          "container_name",
+          "snapshot_name",
+          [
+              "public" => true
+          ]
+      );
+     
+      // Store properties with the new image, and override its filename
+      $lxd->images->createFromSnapshot(
+          "container-name",
+          "snapshot-name",
+          [
+              "filename"   => "ubuntu-trusty.tar.gz",
+              "properties" => ["os" => "Ubuntu"]
+          ]
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-replace"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">replace</span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>, <span class="param-data-type">array</span> <span class="variable param-name">$options</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Replace the configuration of a image                    </div>
+                    <div class="description">
+                        Configuration is overwritten, not merged. Clients should
+     first call the info method to obtain the current configuration of a
+     image. The resulting objects metadata should be modified and then passed to
+     the update method.
+     
+     <code>
+      $image = $lxd->images->info(null, 'b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087');
+      $image['metadata']['public'] = true;
+      $lxd->images->replace('container-name', $image['metadata']);
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-remove"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">remove</span>(<span class="param-data-type">string</span> <span class="variable param-name">$fingerprint</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$wait</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Delete an image.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->images->remove('b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087', true);
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getSource"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getSource</span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Get image source attribute                    </div>
+                    <div class="description">
+                                            </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-getOptions"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-private keyword">private</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">getOptions</span>(<span class="param-data-type">array</span> <span class="variable param-name">$options</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Get the options for creating image                    </div>
+                    <div class="description">
+                                            </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    </ul>                </div>
+            </div>
+        </div>
+    </body>
+</html>

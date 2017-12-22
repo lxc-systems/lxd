@@ -11,7 +11,7 @@ if (PHP_LXD != "no") {
   }
   
   ADD_SOURCES(configure_module_dirname + "/lxd", "endpoint.zep.c client.zep.c", "lxd");
-	ADD_SOURCES(configure_module_dirname + "/lxd/endpoints", "certificates.zep.c containers.zep.c networks.zep.c operations.zep.c profiles.zep.c", "lxd");
+	ADD_SOURCES(configure_module_dirname + "/lxd/endpoints", "certificates.zep.c containers.zep.c images.zep.c networks.zep.c operations.zep.c profiles.zep.c", "lxd");
 	ADD_SOURCES(configure_module_dirname + "/lxd/endpoints/containers", "files.zep.c logs.zep.c snapshots.zep.c", "lxd");
 	ADD_SOURCES(configure_module_dirname + "/lxd/lib", "certificate.zep.c curl.zep.c", "lxd");
   ADD_FLAG("CFLAGS_LXD", "/D ZEPHIR_RELEASE /Oi /Ot /Oy /Ob2 /Gs /GF /Gy /GL");

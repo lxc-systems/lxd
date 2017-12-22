@@ -30,6 +30,7 @@ zend_class_entry *lxd_endpoints_containers_ce;
 zend_class_entry *lxd_endpoints_containers_files_ce;
 zend_class_entry *lxd_endpoints_containers_logs_ce;
 zend_class_entry *lxd_endpoints_containers_snapshots_ce;
+zend_class_entry *lxd_endpoints_images_ce;
 zend_class_entry *lxd_endpoints_networks_ce;
 zend_class_entry *lxd_endpoints_operations_ce;
 zend_class_entry *lxd_endpoints_profiles_ce;
@@ -53,6 +54,7 @@ static PHP_MINIT_FUNCTION(lxd)
 	ZEPHIR_INIT(Lxd_Endpoints_Containers_Files);
 	ZEPHIR_INIT(Lxd_Endpoints_Containers_Logs);
 	ZEPHIR_INIT(Lxd_Endpoints_Containers_Snapshots);
+	ZEPHIR_INIT(Lxd_Endpoints_Images);
 	ZEPHIR_INIT(Lxd_Endpoints_Networks);
 	ZEPHIR_INIT(Lxd_Endpoints_Operations);
 	ZEPHIR_INIT(Lxd_Endpoints_Profiles);

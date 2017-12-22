@@ -11,6 +11,7 @@
 #include "lxd/endpoints/containers/files.zep.h"
 #include "lxd/endpoints/containers/logs.zep.h"
 #include "lxd/endpoints/containers/snapshots.zep.h"
+#include "lxd/endpoints/images.zep.h"
 #include "lxd/endpoints/networks.zep.h"
 #include "lxd/endpoints/operations.zep.h"
 #include "lxd/endpoints/profiles.zep.h"
