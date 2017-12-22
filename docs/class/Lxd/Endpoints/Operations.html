@@ -113,7 +113,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List of all operations.                </div>
             </div>
             </div>
 </li>
@@ -130,7 +130,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Get information on an operation.                </div>
             </div>
             </div>
 </li>
@@ -147,7 +147,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Change operation to cancelling state.                </div>
             </div>
             </div>
 </li>
@@ -164,7 +164,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Wait for an operation to complete.                </div>
             </div>
             </div>
 </li>
@@ -206,9 +206,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List of all operations.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->operations->all();
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -226,9 +228,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Get information on an operation.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->operations->info('operation-uuid');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -246,9 +250,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Change operation to cancelling state.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->operations->cancel('operation-uuid');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -266,9 +272,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Wait for an operation to complete.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->operations->wait('operation-uuid', 30);
+     </code>                    </div>
                             </div>
         </div>
     </div>

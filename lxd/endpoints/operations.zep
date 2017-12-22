@@ -19,6 +19,12 @@ namespace Lxd\Endpoints;
 
 use Lxd\Endpoint;
 
+/**
+ * Lxd\Endpoints\Operations
+ *
+ * Provides operations facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/operations.zep
+ */
 final class Operations extends Endpoint
 {
 
@@ -45,7 +51,13 @@ final class Operations extends Endpoint
     }
 
     /**
+     * List of all operations.
      *
+     * <code>
+     *  $lxd->operations->all();
+     * </code>
+     *
+     * @return array
      */
     public function all() -> array
     {
@@ -65,7 +77,14 @@ final class Operations extends Endpoint
     }
 
     /**
+     * Get information on an operation.
      *
+     * <code>
+     *  $lxd->operations->info('operation-uuid');
+     * </code>
+     *
+     * @param  string uuid  Operation uuid
+     * @return array
      */
     public function info(string! uuid) -> array
     {
@@ -73,7 +92,14 @@ final class Operations extends Endpoint
     }
 
     /**
+     * Change operation to cancelling state.
      *
+     * <code>
+     *  $lxd->operations->cancel('operation-uuid');
+     * </code>
+     *
+     * @param  string uuid  Operation uuid
+     * @return array
      */
     public function cancel(string! uuid) -> bool
     {
@@ -81,15 +107,23 @@ final class Operations extends Endpoint
     }
 
     /**
+     * Wait for an operation to complete.
      *
+     * <code>
+     *  $lxd->operations->wait('operation-uuid', 30);
+     * </code>
+     *
+     * @param  string uuid     Operation uuid
+     * @param  int    timeout  Time to wait for operation
+     * @return array
      */
-    public function wait(string! uuid, int! timeout = null) -> array
+    public function wait(string! uuid, int! timeout = 0) -> array
     {
         string endpoint;
 
         let endpoint = this->getBase(Operations::ENDPOINT)."/".uuid."/wait";
 
-        if is_numeric(timeout) && timeout > 0 {
+        if timeout > 0 {
             let endpoint .= "?timeout=".timeout;
         }
 

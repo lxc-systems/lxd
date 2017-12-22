@@ -19,6 +19,12 @@ namespace Lxd\Endpoints;
 
 use Lxd\Endpoint;
 
+/**
+ * Lxd\Endpoints\Profiles
+ *
+ * Provides profiles facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/profiles.zep
+ */
 final class Profiles extends Endpoint
 {    
     /**
@@ -251,10 +257,7 @@ final class Profiles extends Endpoint
      * Rename profile.
      *
      * <code>
-     *  $lxd->profiles->rename(
-     *      'profile-name',
-     *      'new-profile-name'
-     *  );
+     *  $lxd->profiles->rename('profile-name', 'new-profile-name');
      * </code>
      *
      * @param  string name     Name of profile

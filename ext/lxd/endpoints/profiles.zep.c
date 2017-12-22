@@ -23,6 +23,12 @@
 #include "kernel/concat.h"
 
 
+/**
+ * Lxd\Endpoints\Profiles
+ *
+ * Provides profiles facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/profiles.zep
+ */
 ZEPHIR_INIT_CLASS(Lxd_Endpoints_Profiles) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Lxd\\Endpoints, Profiles, lxd, endpoints_profiles, lxd_endpoint_ce, lxd_endpoints_profiles_method_entry, ZEND_ACC_FINAL_CLASS);
@@ -119,12 +125,12 @@ PHP_METHOD(Lxd_Endpoints_Profiles, all) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 65 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 71 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_3, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 69 TSRMLS_CC);
-	zephir_is_iterable(&_4, 0, "lxd/endpoints/profiles.zep", 75);
+	zephir_array_fetch_string(&_4, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 75 TSRMLS_CC);
+	zephir_is_iterable(&_4, 0, "lxd/endpoints/profiles.zep", 81);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_4), _6, _7, _5)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -219,13 +225,13 @@ PHP_METHOD(Lxd_Endpoints_Profiles, info) {
 	ZEPHIR_CONCAT_VSV(&_4, &_3, "/", &name);
 	ZEPHIR_CALL_METHOD(&response, &_2, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_5, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 100 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, &response, SL("type"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 106 TSRMLS_CC);
 	if (ZEPHIR_IS_STRING_IDENTICAL(&_5, "error")) {
 		RETURN_CCTOR(&response);
 	}
-	zephir_array_fetch_string(&_6, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 104 TSRMLS_CC);
-	zephir_array_fetch_string(&_7, &_6, SL("used_by"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 104 TSRMLS_CC);
-	zephir_is_iterable(&_7, 0, "lxd/endpoints/profiles.zep", 110);
+	zephir_array_fetch_string(&_6, &response, SL("metadata"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 110 TSRMLS_CC);
+	zephir_array_fetch_string(&_7, &_6, SL("used_by"), PH_NOISY | PH_READONLY, "lxd/endpoints/profiles.zep", 110 TSRMLS_CC);
+	zephir_is_iterable(&_7, 0, "lxd/endpoints/profiles.zep", 116);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_7), _9, _10, _8)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -573,10 +579,7 @@ PHP_METHOD(Lxd_Endpoints_Profiles, replace) {
  * Rename profile.
  *
  * <code>
- *  $lxd->profiles->rename(
- *      'profile-name',
- *      'new-profile-name'
- *  );
+ *  $lxd->profiles->rename('profile-name', 'new-profile-name');
  * </code>
  *
  * @param  string name     Name of profile
@@ -652,7 +655,7 @@ PHP_METHOD(Lxd_Endpoints_Profiles, rename) {
 PHP_METHOD(Lxd_Endpoints_Profiles, remove) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *name_param = NULL, _0, _1, _2;
+	zval *name_param = NULL, _0, _1, _2, _3;
 	zval name;
 	zval *this_ptr = getThis();
 
@@ -660,6 +663,7 @@ PHP_METHOD(Lxd_Endpoints_Profiles, remove) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -676,13 +680,14 @@ PHP_METHOD(Lxd_Endpoints_Profiles, remove) {
 	}
 
 
-	ZEPHIR_INIT_VAR(&_1);
-	ZVAL_STRING(&_1, "profiles");
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getbase", NULL, 11, &_1);
-	zephir_check_call_status();
+	zephir_read_property(&_0, this_ptr, SL("curl"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
-	ZEPHIR_CONCAT_VSV(&_2, &_0, "/", &name);
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 32, &_2);
+	ZVAL_STRING(&_2, "profiles");
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "getbase", NULL, 11, &_2);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_3);
+	ZEPHIR_CONCAT_VSV(&_3, &_1, "/", &name);
+	ZEPHIR_RETURN_CALL_METHOD(&_0, "delete", NULL, 0, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -722,7 +727,7 @@ PHP_METHOD(Lxd_Endpoints_Profiles, delete) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 33, &name);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 32, &name);
 	zephir_check_call_status();
 	RETURN_MM();
 
