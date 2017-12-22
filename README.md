@@ -3,7 +3,7 @@
 Delivered as a C extension!
 
  - See INSTALL.md on how to install.
- - See https://lxc-systems.github.io/lxd/ for docs.
+ - See https://lxc-systems.github.io/lxd/ for API docs.
 
 
  ## Connection

@@ -81,7 +81,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, __construct) {
 }
 
 /**
- * List of logs for a container
+ * List logs for a container.
  *
  * <code>
  *  $lxd->containers->logs->all('conainer-name');
@@ -175,7 +175,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, all) {
 }
 
 /**
- * Get the contents of a particular log file
+ * Get the contents of a particular log file.
  *
  * <code>
  *  $lxd->containers->logs->read('conainer-name', 'log-name.log');
@@ -238,7 +238,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, read) {
 }
 
 /**
- * Remove a particular log file
+ * Remove a particular log file.
  *
  * <code>
  *  $lxd->containers->logs->remove('conainer-name', 'log-name.log');
@@ -290,7 +290,7 @@ PHP_METHOD(Lxd_Endpoints_Containers_Logs, remove) {
 }
 
 /**
- * Delete a particular log file - alias of remove
+ * Delete a particular log file - alias of remove.
  *
  * <code>
  *  $lxd->containers->logs->delete('conainer-name', 'log-name.log');

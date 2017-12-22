@@ -13,6 +13,7 @@
 #include "lxd/endpoints/containers/snapshots.zep.h"
 #include "lxd/endpoints/networks.zep.h"
 #include "lxd/endpoints/operations.zep.h"
+#include "lxd/endpoints/profiles.zep.h"
 #include "lxd/lib/certificate.zep.h"
 #include "lxd/lib/curl.zep.h"
 

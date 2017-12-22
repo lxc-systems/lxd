@@ -233,7 +233,7 @@ PHP_METHOD(Lxd_Endpoints_Containers, state) {
 }
 
 /**
- * Main set state method for container, methods below are shortcuts.
+ * Main set state method for a container, methods below are shortcuts.
  *
  * <code>
  *  $lxd->containers->setState('container-name', 'start', 30, true, true, true);

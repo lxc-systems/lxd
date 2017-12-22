@@ -50,7 +50,7 @@ final class Logs extends Endpoint
     }
     
     /**
-     * List of logs for a container
+     * List logs for a container.
      *
      * <code>
      *  $lxd->containers->logs->all('conainer-name');
@@ -83,7 +83,7 @@ final class Logs extends Endpoint
     }
 
     /**
-     * Get the contents of a particular log file
+     * Get the contents of a particular log file.
      *
      * <code>
      *  $lxd->containers->logs->read('conainer-name', 'log-name.log');
@@ -101,7 +101,7 @@ final class Logs extends Endpoint
     }
     
     /**
-     * Remove a particular log file
+     * Remove a particular log file.
      *
      * <code>
      *  $lxd->containers->logs->remove('conainer-name', 'log-name.log');
@@ -117,7 +117,7 @@ final class Logs extends Endpoint
     }
     
     /**
-     * Delete a particular log file - alias of remove
+     * Delete a particular log file - alias of remove.
      *
      * <code>
      *  $lxd->containers->logs->delete('conainer-name', 'log-name.log');

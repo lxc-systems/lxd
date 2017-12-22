@@ -4,7 +4,7 @@
     "description": "LXD client delivered as a C-extension for PHP",
     "author": "Lawrence Cherone",
     "version": "0.0.1",
-    "verbose": true,
+    "verbose": false,
     "requires": {
         "extensions": []
     },

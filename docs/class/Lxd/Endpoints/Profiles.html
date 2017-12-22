@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="LXD PHP Client API doc" name="description">
+    <title>
+                    LXD PHP Client API Documentation
+            </title>
+    <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+
+<script src="../../../asset/static/prettify.js"></script>
+<script src="../../../asset/api_definition.js"></script>
+
+
+                        <link rel="stylesheet" type="text/css" href="../../../asset/static/prettify.css" />
+                    <link rel="stylesheet" type="text/css" href="../../../asset/static/zephir-theme.css" />
+            
+    
+
+                        <script src="../../../asset/static/prettify.js"></script>
+                                    <script src="../../../asset/api_definition.js"></script>
+                    <script src="../../../asset/static/jquery.min.js"></script>
+                    <script src="../../../asset/static/zephir-doc.js"></script>
+                <script>var ZepCurrentPath = '../../../'</script>
+    </head>
+ <body onload="prettyPrint()">
+        <div id="top-bar">
+            <div id="top-left">
+                                    LXD PHP Client Documentation <span class="version">v0.0.1</span>
+                            </div>
+            <div id="top-right">
+            </div>
+        </div>
+        <div id="body">
+            <div id="body-left">
+                <div class="header-search">
+                    <input class="search-box" placeholder="Search for a class or namespace " type="text" />
+                    <div id="menu-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div id="body-right">
+                <div class="content">
+                    
+<div class="breadcrumb">
+    
+    <ul>
+        
+        <li><a href="../../../index.html">Home</a></li>
+        
+                <li><a href="../../../classes.html">Classes</a></li>
+                <li><a >Lxd\Endpoints\Profiles</a></li>
+                
+    </ul>
+    
+</div>
+<div class="class-header clearfix">
+    
+    
+    <div class="access-buttons">
+        <a class="zep-button" href="../../../source/Lxd/Endpoints/Profiles.html">Source</a>
+
+                <a class="zep-button" href="https://github.com/lxc-systems/lxd/tree/master/lxd/endpoints/profiles.zep">Github</a>
+            </div>
+    
+    <div class="class-full-name">
+        
+        <span class="class-type">Class</span>
+        
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd.html">Lxd</a>
+        </span>
+                <span class="namespace-piece">
+            <a href="../../../namespace/Lxd/Endpoints.html">Endpoints</a>
+        </span>
+                <h1 class="class-name">Profiles</h1>
+    </div>
+
+</div>
+
+
+<div class="hidden-anchor"  id="methods"></div>
+<div class="methods-summary standard-bandeau">Methods</div>
+<ul class="method-summary-list">
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-__construct">__construct</a></span>(<span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$curl</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    void
+                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Class construct                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-all">all</a></span>()
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    List of all profiles.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-info">info</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Show information on a profile.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-create">create</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">array</span> <span class="variable param-name">$devices</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Create a new profile.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-update">update</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">array</span> <span class="variable param-name">$devices</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Update profile.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-replace">replace</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">array</span> <span class="variable param-name">$devices</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Replace profile.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-rename">rename</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$newName</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Rename profile.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-remove">remove</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Remove a profile.                </div>
+            </div>
+            </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="method-summary">
+        <div class="method-signature">
+            <span class="method-name"><a href="#method-details-delete">delete</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
+            <span class="method-return">
+                &nbsp;<strong>:</strong>&nbsp;
+                                    array                            </span>
+        </div>
+                    <div class="method-doc">
+                <div class="summary-text">
+                    Delete a profile - alias of remove.                </div>
+            </div>
+            </div>
+</li>
+
+    </ul>
+
+<div class="hidden-anchor"  id="methods-details"></div>
+<div class="methods-summary standard-bandeau">Methods Details</div>
+<ul class="method-details-list">
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-__construct"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">__construct</span>(<span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">variable</span> <span class="variable param-name">$curl</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Class construct                    </div>
+                    <div class="description">
+                                            </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-all"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">all</span>()
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        List of all profiles.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->all();
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-info"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">info</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Show information on a profile.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->info('profile-name');
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-create"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">create</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">array</span> <span class="variable param-name">$devices</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Create a new profile.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->create(
+          'profile-name',
+          'My new profile',
+          ["limits.memory" => "1GB"],
+          [
+              "kvm" => [
+                  "type" => "unix-char",
+                  "path" => "/dev/kvm"
+              ],
+          ]
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-update"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">update</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">array</span> <span class="variable param-name">$devices</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Update profile.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->update(
+          'profile-name',
+          'My new profile',
+          ["limits.memory" => "1GB"],
+          [
+              "kvm" => [
+                  "type" => "unix-char",
+                  "path" => "/dev/kvm"
+              ],
+          ]
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-replace"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">replace</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">array</span> <span class="variable param-name">$devices</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Replace profile.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->replace(
+          'profile-name',
+          'My new profile',
+          ["limits.memory" => "1GB"],
+          [
+              "kvm" => [
+                  "type" => "unix-char",
+                  "path" => "/dev/kvm"
+              ],
+          ]
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-rename"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">rename</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$newName</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Rename profile.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->rename(
+          'profile-name',
+          'new-profile-name'
+      );
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-remove"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">remove</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Remove a profile.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->remove('profile-name');
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    
+        
+<li class="class-method clearfix">
+    <div class="hidden-anchor" id="method-details-delete"></div>
+    <div class="method-details">
+        <div class="method-details-details">
+            <div class="method-signature">
+                                    <span class="visibility-public keyword">public</span>
+                                <span class="keyword">function</span>&nbsp;<span class="method-name">delete</span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
+            </div>
+            <div class="method-doc">
+                                    <div class="summary">
+                        Delete a profile - alias of remove.                    </div>
+                    <div class="description">
+                        <code>
+      $lxd->profiles->delete('profile-name');
+     </code>                    </div>
+                            </div>
+        </div>
+    </div>
+</li>
+
+    </ul>                </div>
+            </div>
+        </div>
+    </body>
+</html>

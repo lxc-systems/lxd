@@ -65,6 +65,7 @@ if test "$PHP_LXD" = "yes"; then
 	lxd/endpoints/containers/snapshots.zep.c
 	lxd/endpoints/networks.zep.c
 	lxd/endpoints/operations.zep.c
+	lxd/endpoints/profiles.zep.c
 	lxd/lib/certificate.zep.c
 	lxd/lib/curl.zep.c "
 	PHP_NEW_EXTENSION(lxd, $lxd_sources, $ext_shared,,  $PHP_OPENSSL_INCS $PHP_LIBCURL_INCS )
