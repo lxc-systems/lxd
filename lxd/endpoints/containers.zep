@@ -360,7 +360,88 @@ final class Containers extends Endpoint
     }
 
     /**
+     * Create a container from an image (local or remote).
      *
+     *  // Create container from image specified by alias
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "alias" => "ubuntu/xenial/amd64",
+     *      ]
+     *  );
+     *
+     *  // Create container from image specified by fingerprint
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "fingerprint" => "097e75d6f7419d3a5e204d8125582f2d7bdd4ee4c35bd324513321c645f0c415",
+     *      ]
+     *  );
+     *
+     *  // Create container based on most recent match of image properties
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "properties" => [
+     *              "os"           => "ubuntu",
+     *              "release"      => "14.04",
+     *              "architecture" => "x86_64",
+     *          ],
+     *      ]
+     *  );
+     *
+     *  // Create an empty container
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "empty" => true,
+     *      ]
+     *  );
+     *
+     *  // Create container with custom configuration.
+     *  // - Set the MAC address of the container's eth0 device
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "alias"  => "ubuntu/xenial/amd64",
+     *          "config" => [
+     *              "volatile.eth0.hwaddr" => "aa:bb:cc:dd:ee:ff",
+     *          ],
+     *      ]
+     *  );
+     *
+     *  // Create container and apply profiles to it
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "alias"  => "ubuntu/xenial/amd64",
+     *          "profiles" => ["migratable", "unconfined"],
+     *      ]
+     *  );
+     *
+     *  // Create container from a publicly-accessible remote image
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "server" => "https://images.linuxcontainers.org:8443",
+     *          "alias"  => "ubuntu/xenial/amd64",
+     *      ]
+     *  );
+     *
+     *  // Create container from a private remote image (authenticated by a secret)
+     *  $lxd->containers->create(
+     *      "test",
+     *      [
+     *          "server" => "https://private.example.com:8443",
+     *          "alias" => "ubuntu/xenial/amd64",
+     *          "secret" => "my_secrect",
+     *      ]
+     *  );
+     *
+     * @param string   name     The name of the container
+     * @param array    options  Options to create the container
+     * @param boolean  wait     Wait for operation to finish
+     * @return array
      */
     public function create(string! name, array! options, boolean! wait = false) -> array
     {
@@ -398,7 +479,23 @@ final class Containers extends Endpoint
     }
 
     /**
+     * Create a copy of an existing local container.
      *
+     *  // Copy container
+     *  $lxd->containers->copy('existing', 'new');
+     *
+     *  // Copy container and apply profiles to it
+     *  $lxd->containers->copy(
+     *    'container-name',
+     *    'copy-container-name',
+     *    'profiles' => ['default', 'public']
+     *  );
+     *
+     * @param  string name     Name of existing container
+     * @param  string copyName Name of copied container
+     * @param  array  options  Options for copied container
+     * @param  bool   wait     Wait for operation to finish
+     * @return array
      */
     public function copy(string! name, string! copyName, array! options = [], boolean! wait = false) -> array
     {
@@ -423,7 +520,22 @@ final class Containers extends Endpoint
     }
 
     /**
+     * Replace the configuration of a container
      *
+     * Configuration is overwritten, not merged. Clients should
+     * first call the info method to obtain the current configuration of a
+     * container. The resulting objects metadata should be modified and then passed to
+     * the relace method.
+     *
+     *  // Change container to be ephemeral
+     *  $container = $lxd->containers->info('container-name');
+     *  $container['metadata']['ephemeral'] = true;
+     *  $lxd->containers->replace('container-name', $$container['metadata']);
+     *
+     * @param string   name       Name of container
+     * @param object   container  Container to update
+     * @param boolean  wait       Wait for operation to finish
+     * @return array
      */
     public function replace(string! name, array! opts, boolean! wait = false) -> array
     {
@@ -442,7 +554,7 @@ final class Containers extends Endpoint
 
         return response;
     }
-    
+
     /**
      * Private method for getting container [source] options.
      *

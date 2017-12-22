@@ -41,6 +41,126 @@ Delivered as a C extension!
 
  ## Containers
 
+ **Container**
+ 
+    $lxd->containers->all();
+
+    $lxd->containers->info('container-name');
+
+    $lxd->containers->state('container-name');
+
+    $lxd->containers->setState('container-name', 'start', 30, true, true, true);
+
+    $lxd->containers->start('container-name', 30, true, true, true);
+
+    $lxd->containers->stop('container-name', 30, true, true, true);
+
+    $lxd->containers->shutdown('container-name', 30, true, true, true);
+
+    $lxd->containers->restart('container-name', 30, true, true, true);
+
+    $lxd->containers->reboot('container-name', 30, true, true, true);
+
+    $lxd->containers->freeze('container-name', 30, true, true, true);
+
+    $lxd->containers->pause('container-name', 30, true, true, true);
+
+    $lxd->containers->unfreeze('container-name', 30, true, true, true);
+
+    $lxd->containers->thaw('container-name', 30, true, true, true);
+
+
+    // Create container from image specified by alias
+    $lxd->containers->create(
+        "test",
+        [
+            "alias" => "ubuntu/xenial/amd64",
+        ]
+    );
+
+    // Create container from image specified by fingerprint
+    $lxd->containers->create(
+        "test",
+        [
+            "fingerprint" => "097e75d6f7419d3a5e204d8125582f2d7bdd4ee4c35bd324513321c645f0c415",
+        ]
+    );
+
+    // Create container based on most recent match of image properties
+    $lxd->containers->create(
+        "test",
+        [
+            "properties" => [
+                "os"           => "ubuntu",
+                "release"      => "14.04",
+                "architecture" => "x86_64",
+            ],
+        ]
+    );
+
+    // Create an empty container
+    $lxd->containers->create(
+        "test",
+        [
+            "empty" => true,
+        ]
+    );
+
+    // Create container with custom configuration.
+    // - Set the MAC address of the container's eth0 device
+    $lxd->containers->create(
+        "test",
+        [
+            "alias"  => "ubuntu/xenial/amd64",
+            "config" => [
+                "volatile.eth0.hwaddr" => "aa:bb:cc:dd:ee:ff",
+            ],
+        ]
+    );
+
+    // Create container and apply profiles to it
+    $lxd->containers->create(
+        "test",
+        [
+            "alias"  => "ubuntu/xenial/amd64",
+            "profiles" => ["migratable", "unconfined"],
+        ]
+    );
+
+    // Create container from a publicly-accessible remote image
+    $lxd->containers->create(
+        "test",
+        [
+            "server" => "https://images.linuxcontainers.org:8443",
+            "alias"  => "ubuntu/xenial/amd64",
+        ]
+    );
+
+    // Create container from a private remote image (authenticated by a secret)
+    $lxd->containers->create(
+        "test",
+        [
+            "server" => "https://private.example.com:8443",
+            "alias" => "ubuntu/xenial/amd64",
+            "secret" => "my_secrect",
+        ]
+    );
+
+    // Copy container
+    $lxd->containers->copy('existing', 'new');
+
+    // Copy container and apply profiles to it
+    $lxd->containers->copy(
+        'container-name',
+        'copy-container-name',
+        'profiles' => ['default', 'public']
+    );
+
+    // Change container to be ephemeral
+    $container = $lxd->containers->info('container-name');
+    $container['metadata']['ephemeral'] = true;
+    $lxd->containers->replace('container-name', $$container['metadata']);
+
  **Files**
 
     $lxd->containers->files->read('container-name', '/path/to/file');
@@ -75,6 +195,79 @@ Delivered as a C extension!
 
 
  ## Images
+
+    $lxd->images->all();
+
+    $lxd->images->all("https://images.linuxcontainers.org:8443/1.0/images");
+
+    $lxd->images->info(null, "images-fingerprint", "secret");
+
+    $lxd->images->info("https://uk.images.linuxcontainers.org:8443/1.0/images", "images-fingerprint"));
+
+    $lxd->images->createFromRemote(
+        "https://images.linuxcontainers.org:8443",
+        [
+            "alias" => "ubuntu/xenial/amd64",
+        ]
+    );
+
+    $lxd->images->createFromRemote(
+        "https://images.linuxcontainers.org:8443",
+        [
+            "fingerprint" => "b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087",
+        ]
+    );     
+
+    $lxd->images->createFromRemote(
+        "https://images.linuxcontainers.org:8443",
+        [
+            "fingerprint" => "b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087",
+        ],
+        true,
+        true
+    );
+
+    $lxd->images->createFromContainer('container-name');
+
+    $lxd->images->createFromContainer(
+        'container-name',
+        [
+            'public' => true
+        ]
+    );     
+
+    $lxd->images->createFromContainer(
+        'container-name',
+        [
+            'filename'   => 'ubuntu-trusty.tar.gz',
+            'properties' => ['os' => 'Ubuntu'],
+        ]
+    );
+
+    $lxd->images->createFromSnapshot("container_name", "snapshot_name");
+
+    $lxd->images->createFromSnapshot(
+        "container_name",
+        "snapshot_name",
+        [
+            "public" => true
+        ]
+    );
+
+    $lxd->images->createFromSnapshot(
+        "container-name",
+        "snapshot-name",
+        [
+            "filename"   => "ubuntu-trusty.tar.gz",
+            "properties" => ["os" => "Ubuntu"]
+        ]
+    );
+
+    $image = $lxd->images->info(null, 'b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087');
+    $image['metadata']['public'] = true;
+    $lxd->images->replace('container-name', $image['metadata']);
+
+    $lxd->images->remove('b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087', true);
 
 
  ## Networks
@@ -117,3 +310,48 @@ Delivered as a C extension!
 
  ## Profiles
 
+    $lxd->profiles->all();
+
+    $lxd->profiles->info('profile-name');
+
+    $lxd->profiles->create(
+        'profile-name',
+        'My new profile',
+        ["limits.memory" => "1GB"],
+        [
+            "kvm" => [
+                "type" => "unix-char",
+                "path" => "/dev/kvm"
+            ],
+        ]
+    );
+
+    $lxd->profiles->update(
+        'profile-name',
+        'My new profile',
+        ["limits.memory" => "1GB"],
+        [
+            "kvm" => [
+                "type" => "unix-char",
+                "path" => "/dev/kvm"
+            ],
+        ]
+    );
+
+    $lxd->profiles->replace(
+        'profile-name',
+        'My new profile',
+        ["limits.memory" => "1GB"],
+        [
+            "kvm" => [
+                "type" => "unix-char",
+                "path" => "/dev/kvm"
+            ],
+        ]
+    );
+
+    $lxd->profiles->rename('profile-name', 'new-profile-name');
+
+    $lxd->profiles->remove('profile-name');
+
+    $lxd->profiles->delete('profile-name');
