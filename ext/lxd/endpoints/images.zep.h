@@ -85,7 +85,7 @@ ZEPHIR_INIT_FUNCS(lxd_endpoints_images_method_entry) {
 	PHP_ME(Lxd_Endpoints_Images, createFromSnapshot, arginfo_lxd_endpoints_images_createfromsnapshot, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Endpoints_Images, replace, arginfo_lxd_endpoints_images_replace, ZEND_ACC_PUBLIC)
 	PHP_ME(Lxd_Endpoints_Images, remove, arginfo_lxd_endpoints_images_remove, ZEND_ACC_PUBLIC)
-	PHP_ME(Lxd_Endpoints_Images, getSource, arginfo_lxd_endpoints_images_getsource, ZEND_ACC_PRIVATE)
-	PHP_ME(Lxd_Endpoints_Images, getOptions, arginfo_lxd_endpoints_images_getoptions, ZEND_ACC_PRIVATE)
+	PHP_ME(Lxd_Endpoints_Images, getSource, arginfo_lxd_endpoints_images_getsource, ZEND_ACC_FINAL|ZEND_ACC_PRIVATE)
+	PHP_ME(Lxd_Endpoints_Images, getOptions, arginfo_lxd_endpoints_images_getoptions, ZEND_ACC_FINAL|ZEND_ACC_PRIVATE)
 	PHP_FE_END
 };

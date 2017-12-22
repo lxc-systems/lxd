@@ -391,7 +391,7 @@ final class Images extends Endpoint
      * @param  array  options  Options for creating image
      * @return array
      */
-    private function getSource(array! options) -> array|<Exception>
+    final private function getSource(array! options) -> array|<Exception>
     {
         var attr, attrs = [
             "alias", "fingerprint"
@@ -413,7 +413,7 @@ final class Images extends Endpoint
      * @param  array  options Options for creating image
      * @return array
      */
-    private function getOptions(array! options) -> array
+    final private function getOptions(array! options) -> array
     {
         var only = [
             "filename",
