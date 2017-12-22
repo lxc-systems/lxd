@@ -38,7 +38,7 @@ final class Images extends Endpoint
     protected curl;
 
     /**
-     * Class construct
+     * Class construct.
      *
      * @param  array          config Config array which holds object configuration
      * @param  <Lxd\Lib\Curl> curl
@@ -275,7 +275,7 @@ final class Images extends Endpoint
     }
 
     /**
-     * Create an image from a snapshot
+     * Create an image from a snapshot.
      *
      * <code>
      *  // Create a private image from snapshot
@@ -318,7 +318,7 @@ final class Images extends Endpoint
     }
 
     /**
-     * Replace the configuration of a image
+     * Replace the configuration of a image.
      *
      * Configuration is overwritten, not merged. Clients should
      * first call the info method to obtain the current configuration of a
@@ -364,8 +364,8 @@ final class Images extends Endpoint
      *  $lxd->images->remove('b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087', true);
      * </code>
      *
-     * @param  string fingerprint Fingerprint of image
-     * @param  bool   wait        Wait for operation to finish
+     * @param  string  fingerprint  Fingerprint of image
+     * @param  bool    wait         Wait for operation to finish
      * @return array
      */
     public function remove(string! fingerprint, boolean! wait = false) -> array
@@ -386,9 +386,9 @@ final class Images extends Endpoint
     }
 
     /**
-     * Get image source attribute
+     * Get image source attribute.
      *
-     * @param  array $options Options for creating image
+     * @param  array  options  Options for creating image
      * @return array
      */
     private function getSource(array! options) -> array|<Exception>
@@ -407,10 +407,10 @@ final class Images extends Endpoint
     }    
 
     /**
-     * Get the options for creating image
+     * Get the options for creating image.
      *
-     * @param  string $name Name of image
-     * @param  array  $options Options for creating image
+     * @param  string name    Name of image
+     * @param  array  options Options for creating image
      * @return array
      */
     private function getOptions(array! options) -> array
