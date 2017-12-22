@@ -133,9 +133,9 @@ final class Images extends Endpoint
      *
      * <code>
      *  $lxd->images->create(
-     *      [],
-     *      [],
-     *      true
+     *      [],  // images options
+     *      [],  // API headers
+     *      true // wait for operation
      *  );
      * </code>
      *
@@ -391,7 +391,7 @@ final class Images extends Endpoint
      * @param  array $options Options for creating image
      * @return array
      */
-    private function getSource(array! options)
+    private function getSource(array! options) -> array|<Exception>
     {
         var attr, attrs = [
             "alias", "fingerprint"
@@ -413,7 +413,7 @@ final class Images extends Endpoint
      * @param  array  $options Options for creating image
      * @return array
      */
-    private function getOptions(array! options)
+    private function getOptions(array! options) -> array
     {
         var only = [
             "filename",

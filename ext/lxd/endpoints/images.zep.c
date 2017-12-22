@@ -317,9 +317,9 @@ PHP_METHOD(Lxd_Endpoints_Images, info) {
  *
  * <code>
  *  $lxd->images->create(
- *      [],
- *      [],
- *      true
+ *      [],  // images options
+ *      [],  // API headers
+ *      true // wait for operation
  *  );
  * </code>
  *
