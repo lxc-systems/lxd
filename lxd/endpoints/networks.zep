@@ -19,6 +19,12 @@ namespace Lxd\Endpoints;
 
 use Lxd\Endpoint;
 
+/**
+ * Lxd\Endpoints\Networks
+ *
+ * Provides networks facilities to the API
+ * @see https://github.com/lxc-systems/lxd/blob/master/lxd/endpoints/networks.zep
+ */
 final class Networks extends Endpoint
 {
     /**
@@ -44,7 +50,13 @@ final class Networks extends Endpoint
     }
 
     /**
+     * List of all networks.
      *
+     * <code>
+     *  $lxd->networks->all();
+     * </code>
+     *
+     * @return array
      */
     public function all() -> array
     {
@@ -67,7 +79,14 @@ final class Networks extends Endpoint
     }
 
     /**
+     * Show information on a network.
      *
+     * <code>
+     *  $lxd->networks->info('network-name');
+     * </code>
+     *
+     * @param  string name  Name of network
+     * @return array
      */
     public function info(string! name) -> array
     {
@@ -92,14 +111,36 @@ final class Networks extends Endpoint
     }
 
     /**
+     * Create new network.
      *
+     * <code>
+     *  $lxd->networks->create(
+     *      'network-name', 
+     *      'My Network', 
+     *      [
+     *          'ipv4.address' => '192.168.1.1/8',
+     *          'ipv4.nat' => 'true',
+     *          'ipv6.address' => '2001:470:b368:4242::1/64',
+     *          'ipv6.nat' => 'true'
+     *      ], 
+     *      'bridge',
+     *      true
+     *  );
+     * </code>
+     *
+     * @param  string   name         Name of new network
+     * @param  string   description  Decription of new network
+     * @param  array    config       Network configuration
+     * @param  string   type         Type of network
+     * @param  boolean  managed      LXD managed network
+     * @return array
      */
     public function create(
         string! name, 
         string! description, 
         array! config = [], 
         string! type = "bridge", 
-        boolean! managed = true) -> string
+        boolean! managed = true) -> array
     {
         var opt = [
             "name" : name,
@@ -116,9 +157,17 @@ final class Networks extends Endpoint
     }
 
     /**
+     * Rename network.
      *
+     * <code>
+     *  $lxd->networks->remove('network-name', 'new-network-name');
+     * </code>
+     *
+     * @param  string  name  Name of network
+     * @param  string  name  New name of network
+     * @return array
      */
-    public function rename(string! name, string! newName) -> string
+    public function rename(string! name, string! newName) -> array
     {
         var opt = [
             "name" : newName
@@ -131,14 +180,36 @@ final class Networks extends Endpoint
     }  
 
     /**
+     * Replace network.
      *
+     * <code>
+     *  $lxd->networks->replace(
+     *      'network-name', 
+     *      'My Network', 
+     *      [
+     *          'ipv4.address' => '192.168.1.1/8',
+     *          'ipv4.nat' => 'true',
+     *          'ipv6.address' => '2001:470:b368:4242::1/64',
+     *          'ipv6.nat' => 'true'
+     *      ], 
+     *      'bridge',
+     *      true
+     *  );
+     * </code>
+     *
+     * @param  string   name         Name of new network
+     * @param  string   description  Decription of new network
+     * @param  array    config       Network configuration
+     * @param  string   type         Type of network
+     * @param  boolean  managed      LXD managed network
+     * @return array
      */
     public function replace(
         string! name, 
         string! description, 
         array! config = [], 
         string! type = "bridge", 
-        boolean! managed = true) -> string
+        boolean! managed = true) -> array
     {
         var opt = [
             "name" : name,
@@ -155,14 +226,36 @@ final class Networks extends Endpoint
     }    
 
     /**
+     * Update network.
      *
+     * <code>
+     *  $lxd->networks->update(
+     *      'network-name', 
+     *      'My Network', 
+     *      [
+     *          'ipv4.address' => '192.168.1.1/8',
+     *          'ipv4.nat' => 'true',
+     *          'ipv6.address' => '2001:470:b368:4242::1/64',
+     *          'ipv6.nat' => 'true'
+     *      ], 
+     *      'bridge',
+     *      true
+     *  );
+     * </code>
+     *
+     * @param  string   name         Name of new network
+     * @param  string   description  Decription of new network
+     * @param  array    config       Network configuration
+     * @param  string   type         Type of network
+     * @param  boolean  managed      LXD managed network
+     * @return array
      */
     public function update(
         string! name, 
         string! description, 
         array! config = [], 
         string! type = "bridge", 
-        boolean! managed = true) -> string
+        boolean! managed = true) -> array
     {
         var opt = [
             "name" : name,
@@ -179,17 +272,31 @@ final class Networks extends Endpoint
     }
 
     /**
+     * Remove network.
      *
+     * <code>
+     *  $lxd->networks->remove('network-name');
+     * </code>
+     *
+     * @param  string  name  Name of new network
+     * @return array
      */
-    public function remove(string! name) -> string
+    public function remove(string! name) -> array
     {
         return this->curl->delete(this->getBase(Networks::ENDPOINT)."/".name);
     }  
 
     /**
+     * Delete network - alias of remove.
      *
+     * <code>
+     *  $lxd->networks->delete('network-name');
+     * </code>
+     *
+     * @param  string  name  Name of new network
+     * @return array
      */
-    public function delete(string! name) -> string
+    public function delete(string! name) -> array
     {
         return this->remove(name);
     }  

@@ -113,7 +113,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    List of all networks.                </div>
             </div>
             </div>
 </li>
@@ -130,7 +130,7 @@
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Show information on a network.                </div>
             </div>
             </div>
 </li>
@@ -143,11 +143,11 @@
             <span class="method-name"><a href="#method-details-create">create</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">string</span> <span class="variable param-name">$type</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$managed</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    string                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Create new network.                </div>
             </div>
             </div>
 </li>
@@ -160,11 +160,11 @@
             <span class="method-name"><a href="#method-details-rename">rename</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$newName</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    string                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Rename network.                </div>
             </div>
             </div>
 </li>
@@ -177,11 +177,11 @@
             <span class="method-name"><a href="#method-details-replace">replace</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">string</span> <span class="variable param-name">$type</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$managed</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    string                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Replace network.                </div>
             </div>
             </div>
 </li>
@@ -194,11 +194,11 @@
             <span class="method-name"><a href="#method-details-update">update</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>, <span class="param-data-type">string</span> <span class="variable param-name">$description</span>, <span class="param-data-type">array</span> <span class="variable param-name">$config</span>, <span class="param-data-type">string</span> <span class="variable param-name">$type</span>, <span class="param-data-type">bool</span> <span class="variable param-name">$managed</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    string                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Update network.                </div>
             </div>
             </div>
 </li>
@@ -211,11 +211,11 @@
             <span class="method-name"><a href="#method-details-remove">remove</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    string                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Remove network.                </div>
             </div>
             </div>
 </li>
@@ -228,11 +228,11 @@
             <span class="method-name"><a href="#method-details-delete">delete</a></span>(<span class="param-data-type">string</span> <span class="variable param-name">$name</span>)
             <span class="method-return">
                 &nbsp;<strong>:</strong>&nbsp;
-                                    string                            </span>
+                                    array                            </span>
         </div>
                     <div class="method-doc">
                 <div class="summary-text">
-                                    </div>
+                    Delete network - alias of remove.                </div>
             </div>
             </div>
 </li>
@@ -274,9 +274,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        List of all networks.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->all();
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -294,9 +296,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Show information on a network.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->info('network-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -314,9 +318,22 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Create new network.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->create(
+          'network-name', 
+          'My Network', 
+          [
+              'ipv4.address' => '192.168.1.1/8',
+              'ipv4.nat' => 'true',
+              'ipv6.address' => '2001:470:b368:4242::1/64',
+              'ipv6.nat' => 'true'
+          ], 
+          'bridge',
+          true
+      );
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -334,9 +351,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Rename network.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->remove('network-name', 'new-network-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -354,9 +373,22 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Replace network.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->replace(
+          'network-name', 
+          'My Network', 
+          [
+              'ipv4.address' => '192.168.1.1/8',
+              'ipv4.nat' => 'true',
+              'ipv6.address' => '2001:470:b368:4242::1/64',
+              'ipv6.nat' => 'true'
+          ], 
+          'bridge',
+          true
+      );
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -374,9 +406,22 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Update network.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->update(
+          'network-name', 
+          'My Network', 
+          [
+              'ipv4.address' => '192.168.1.1/8',
+              'ipv4.nat' => 'true',
+              'ipv6.address' => '2001:470:b368:4242::1/64',
+              'ipv6.nat' => 'true'
+          ], 
+          'bridge',
+          true
+      );
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -394,9 +439,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Remove network.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->remove('network-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
@@ -414,9 +461,11 @@
             </div>
             <div class="method-doc">
                                     <div class="summary">
-                                            </div>
+                        Delete network - alias of remove.                    </div>
                     <div class="description">
-                                            </div>
+                        <code>
+      $lxd->networks->delete('network-name');
+     </code>                    </div>
                             </div>
         </div>
     </div>
