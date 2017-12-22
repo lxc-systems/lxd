@@ -48,7 +48,7 @@ ZEPHIR_INIT_CLASS(Lxd_Endpoints_Images) {
 }
 
 /**
- * Class construct
+ * Class construct.
  *
  * @param  array          config Config array which holds object configuration
  * @param  <Lxd\Lib\Curl> curl
@@ -317,7 +317,7 @@ PHP_METHOD(Lxd_Endpoints_Images, info) {
  *
  * <code>
  *  $lxd->images->create(
- *      [],  // images options
+ *      [],  // image options
  *      [],  // API headers
  *      true // wait for operation
  *  );
@@ -656,7 +656,7 @@ PHP_METHOD(Lxd_Endpoints_Images, createFromContainer) {
 }
 
 /**
- * Create an image from a snapshot
+ * Create an image from a snapshot.
  *
  * <code>
  *  // Create a private image from snapshot
@@ -764,7 +764,7 @@ PHP_METHOD(Lxd_Endpoints_Images, createFromSnapshot) {
 }
 
 /**
- * Replace the configuration of a image
+ * Replace the configuration of a image.
  *
  * Configuration is overwritten, not merged. Clients should
  * first call the info method to obtain the current configuration of a
@@ -878,8 +878,8 @@ PHP_METHOD(Lxd_Endpoints_Images, replace) {
  *  $lxd->images->remove('b0f4faff46c9cb02db10984e2cf71c62fd539a9ab680d6fd54955671f3186087', true);
  * </code>
  *
- * @param  string fingerprint Fingerprint of image
- * @param  bool   wait        Wait for operation to finish
+ * @param  string  fingerprint  Fingerprint of image
+ * @param  bool    wait         Wait for operation to finish
  * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Images, remove) {
@@ -970,9 +970,9 @@ PHP_METHOD(Lxd_Endpoints_Images, remove) {
 }
 
 /**
- * Get image source attribute
+ * Get image source attribute.
  *
- * @param  array $options Options for creating image
+ * @param  array  options  Options for creating image
  * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Images, getSource) {
@@ -1028,10 +1028,10 @@ PHP_METHOD(Lxd_Endpoints_Images, getSource) {
 }
 
 /**
- * Get the options for creating image
+ * Get the options for creating image.
  *
- * @param  string $name Name of image
- * @param  array  $options Options for creating image
+ * @param  string name    Name of image
+ * @param  array  options Options for creating image
  * @return array
  */
 PHP_METHOD(Lxd_Endpoints_Images, getOptions) {
