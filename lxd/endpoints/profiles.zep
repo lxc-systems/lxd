@@ -285,7 +285,7 @@ final class Profiles extends Endpoint
      */
     public function remove(string! name) -> array
     {
-        return $this->delete(
+        return this->curl->delete(
             this->getBase(Profiles::ENDPOINT)."/".name
         );
     }
