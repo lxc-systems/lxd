@@ -133,7 +133,7 @@ final class Images extends Endpoint
      *
      * <code>
      *  $lxd->images->create(
-     *      [],  // images options
+     *      [],  // image options
      *      [],  // API headers
      *      true // wait for operation
      *  );
